@@ -149,3 +149,8 @@ $ /System/Library/CoreServices/Menu\ Extras/User.menu/Contents/Resources/CGSessi
 ```
 ```
 
+#### Changing nested plist values
+
+```
+$ /usr/libexec/PlistBuddy -c "set :$key:$subkey1:$subkey2:$subkeyn $value" $plistfiletochange
+```
