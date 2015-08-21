@@ -147,7 +147,7 @@ $ /System/Library/CoreServices/Menu\ Extras/User.menu/Contents/Resources/CGSessi
 ```bash
 $ /System/Library/CoreServices/Menu\ Extras/User.menu/Contents/Resources/CGSession -switchToUserID $UID_OR_SHORTNAME
 ```
-```
+
 
 #### Changing nested plist values
 
