@@ -6,10 +6,13 @@
   * [Ubuntu/Debian](pages/os/linux/ubuntu-debian.md)
   * [RHEL/CentOS](pages/os/linux/rhel-centos.md)
   * [Arch](pages/os/linux/arch.md)
-  * [Raspbian]pages/(os/linux/raspbian.md)
+  * [Raspbian](pages/os/linux/raspbian.md)
   - - - -
   * # OS X
   * [Command Line Tricks](pages/os/osx/command_line_tricks.md)
+  - - - -
+  * # iOS
+  * [Local SSH Access (JB)](pages/os/ios/localSSHAccess.md)
   - - - -
   * # BSD
   * [FreeBSD](pages/os/bsd/freebsd.md)
