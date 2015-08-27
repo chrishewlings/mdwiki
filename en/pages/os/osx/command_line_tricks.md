@@ -132,6 +132,16 @@ $ defaults delete .GlobalPreferences com.apple.trackpad.scrollBehavior
 $ defaults write com.apple.dock desktop-picture-show-debug-text -bool TRUE; killall Dock
 ```
 
+------
+
+#### Change keyboard layout at login screen
+
+- The .plist connector that controls the keyboard layout is `/Library/Preferences/com.apple.HIToolbox.plist`, but it's in binary format. 
+- Easiest way to convert:
+	+ ` $ plutil -convert xml1 com.apple.HIToolbox.plist`
+	+ And then remove the offending keyboard layout.  They use numeric integer codes for selection, so the easiest way to find the right one is to configure it in the user, and then convert/copy `~/Library/Preferences/com.apple.HIToolbox.plist` to `/Library/Preferences/`
+
+
 
 Scripting
 ----------
@@ -154,3 +164,4 @@ $ /System/Library/CoreServices/Menu\ Extras/User.menu/Contents/Resources/CGSessi
 ```
 $ /usr/libexec/PlistBuddy -c "set :$key:$subkey1:$subkey2:$subkeyn $value" $plistfiletochange
 ```
+
