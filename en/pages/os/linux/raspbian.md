@@ -19,7 +19,7 @@ usermod -a -G adm,dialout,cdrom,sudo,audio,video,plugdev,games,users,netdev,inpu
 
 #Remove motd
 
-sudo echo " " > /etc/motd
+echo " " | sudo tee /etc/motd
 
 # Set up fsck on every boot
 sudo tune2fs -c 1 /dev/mmcblk0p2
@@ -27,8 +27,6 @@ sudo tune2fs -c 1 /dev/mmcblk0p2
 #Remove software you don't use
 
 Sudo apt-get remove --purge wolfram* sonic-pi lxde* scratch*
-
-
 
 #Add sources you will use
 
@@ -83,3 +81,12 @@ http://www.robertsetiadi.net/installing-transmission-in-raspberry-pi/
 ## set up avahi services
 
 sudo cp ssh.service sftp.service /etc/avahi/services
+
+## americanize that shit
+
+- `sudo dpkg-reconfigure locales` and disable en_GB, enable en_US
+- `sudo dpkg-reconfigure keyboard-configuration`
+- `sudo dpkg-reconfigure tzdata`
+- `sudo setupcon`
+#### modify packages list
+- replace `.uk` with `.us` in `/etc/apt/sources.list`
