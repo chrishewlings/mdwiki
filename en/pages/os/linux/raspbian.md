@@ -85,6 +85,9 @@ sudo cp ssh.service sftp.service /etc/avahi/services
 ## americanize that shit
 
 - `sudo dpkg-reconfigure locales` and disable en_GB, enable en_US
+
+Warning: You need to restart after this step. 
+
 - `sudo dpkg-reconfigure keyboard-configuration`
 - `sudo dpkg-reconfigure tzdata`
 - `sudo setupcon`
