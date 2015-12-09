@@ -10,6 +10,7 @@
   - - - -
   * # OS X
   * [Command Line Tricks](pages/os/osx/command_line_tricks.md)
+  * [LaunchDaemons](pages/os/osx/launchdaemons.md)
   - - - -
   * # iOS
   * [Local SSH Access (JB)](pages/os/ios/localSSHAccess.md)
