@@ -99,6 +99,17 @@ This will partition the ramdisk to be usable by OS X
 ```bash
 $ sudo ruby -e 'key=[125,137,82,35,210,188,221,234,163,185,31];IO.read("/etc/kcpassword").bytes.each_with_index{|b,i|break if key.include?(b);print [b^key[i%key.size]].pack("U*")}'```
 
+--------
+
+#### Using Keychain to manage SSH keys
+
+`ssh-add` command allows you to save your private key file to the keychain instead of using `~/.ssh/`
+- Example:
+- `$ ssh-add -k keyfile`
+- `$ ssh $servername` should now use the key instead of asking for password.
+
+--------
+
 
 
 Troubleshooting
