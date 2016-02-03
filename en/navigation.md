@@ -11,6 +11,7 @@
   * # OS X
   * [Command Line Tricks](pages/os/osx/command_line_tricks.md)
   * [LaunchDaemons](pages/os/osx/launchdaemons.md)
+  * [Understanding launchd](pages/os/osx/understanding_launchd.md)
   - - - -
   * # iOS
   * [Local SSH Access (JB)](pages/os/ios/localSSHAccess.md)
