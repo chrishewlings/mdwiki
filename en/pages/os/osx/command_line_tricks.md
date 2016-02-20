@@ -1,7 +1,7 @@
 Command Line Tricks for OS X 
 ================
 
-#System Administration
+System Administration
 ---------
 
 #### Check system version without running MRI
@@ -112,7 +112,7 @@ $ sudo ruby -e 'key=[125,137,82,35,210,188,221,234,163,185,31];IO.read("/etc/kcp
 
 
 
-#Troubleshooting
+Troubleshooting
 ---------
 
 #### Start user login without launching GUI
@@ -164,7 +164,7 @@ Warning! The trailing slash is important.
 Note: the `--buildmap` option checks unsupported filesystems for free space to compact. Otherwise it'll return with no change.
 
 
-#Scripting
+Scripting
 ----------
 
 #### Scripting Fast User Switching
@@ -204,7 +204,7 @@ $ /usr/libexec/PlistBuddy -c "set :$key:$subkey1:$subkey2:$subkeyn $value" $plis
 
 `for iface in $(ifconfig -lu); do IP=$(ipconfig getifaddr $iface); [[ "$?" -eq 0 ]] && printf "$iface:\t$IP\n"; done`
 
-# Misc
+## Misc
 
 #### Scan available access points
 
