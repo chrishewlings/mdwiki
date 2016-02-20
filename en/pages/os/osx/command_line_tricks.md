@@ -1,7 +1,7 @@
 Command Line Tricks for OS X 
 ================
 
-System Administration
+#System Administration
 ---------
 
 #### Check system version without running MRI
@@ -112,7 +112,7 @@ $ sudo ruby -e 'key=[125,137,82,35,210,188,221,234,163,185,31];IO.read("/etc/kcp
 
 
 
-Troubleshooting
+#Troubleshooting
 ---------
 
 #### Start user login without launching GUI
@@ -152,9 +152,19 @@ $ defaults write com.apple.dock desktop-picture-show-debug-text -bool TRUE; kill
 	+ ` $ plutil -convert xml1 com.apple.HIToolbox.plist`
 	+ And then remove the offending keyboard layout.  They use numeric integer codes for selection, so the easiest way to find the right one is to configure it in the user, and then convert/copy `~/Library/Preferences/com.apple.HIToolbox.plist` to `/Library/Preferences/`
 
+------
+
+#### Shrink fussy Parallels disks
+
+- First, boot into the VM and zero out free space on the virtual disk. `zerofree` can do this for Linux.
+- Then: 
+`$ prl_disk_tool compact --buildmap --hdd $path_to_virtual_disk/`
+
+Warning! The trailing slash is important. 
+Note: the `--buildmap` option checks unsupported filesystems for free space to compact. Otherwise it'll return with no change.
 
 
-Scripting
+#Scripting
 ----------
 
 #### Scripting Fast User Switching
@@ -175,4 +185,38 @@ $ /System/Library/CoreServices/Menu\ Extras/User.menu/Contents/Resources/CGSessi
 ```
 $ /usr/libexec/PlistBuddy -c "set :$key:$subkey1:$subkey2:$subkeyn $value" $plistfiletochange
 ```
+
+#### Remaining Battery percentage in terminal
+`pmset -g batt | egrep "([0-9]+\%).*" -o --colour=auto | cut -f1 -d';'`
+
+#### Current display resolution
+`system_profiler SPDisplaysDataType | \grep Resolution | cut -c 11-`
+
+#### CPU + RAM info
+##### Physical cores
+`sysctl -n hw.physicalcpu`
+##### Logical cores
+`sysctl -n hw.logicalcpu`
+##### Quantity of RAM (in GB)
+`echo "$(($(sysctl -n hw.memsize)/1073741824))"`
+
+#### Show all IP addresses
+
+`for iface in $(ifconfig -lu); do IP=$(ipconfig getifaddr $iface); [[ "$?" -eq 0 ]] && printf "$iface:\t$IP\n"; done`
+
+# Misc
+
+#### Scan available access points
+
+`/System/Library/PrivateFrameworks/Apple80211.framework/Versions/Current/Resources/airport -s`
+
+#### generate random password
+
+`openssl rand -base64 $LENGTH`
+
+#### convert clipboard content to plaintext
+
+`pbpaste | textutil -convert txt -stdin -stdout -encoding 30 | pbcopy`
+
+zomg don't forget about `cheat`.
 
