@@ -1,8 +1,18 @@
+## Bloor, Richard
+- ### _Tangerine_
+	- "Paul Fisher sees the world from behind glasses so thick he looks like a bug-eyed alien. But he’s not so blind that he can’t see there are some very unusual things about his family’s new home in Tangerine County, Florida. Where else does a sinkhole swallow the local school, fire burn underground for years, and lightning strike at the same time every day?"
+
 ## Borges, Jorge Luis
 - ### _Funes the Memorius_
 	- "'Funes the Memorious' is the tale of one Ireneo Funes, who, after falling off his horse and receiving a bad head injury, acquired the amazing talent — or curse — of remembering absolutely everything."
 - ### _The Library of Babel_
 	- "A short story by Argentine author conceiving of a universe in the form of a vast library containing all possible 410-page books of a certain format and character set."
+
+## Butler, Octavia E. 
+- ### _Parable of the Sower_
+	- "When unattended environmental and economic crises lead to social chaos, not even gated communities are safe. In a night of fire and death Lauren Olamina, a minister's young daughter, loses her family and home and ventures out into the unprotected American landscape."
+
+
 
 ## Chabon, Michael
 - ### _The Amazing Adventures of Kavalier & Clay_
@@ -11,6 +21,20 @@
 ## Dostoevsky, Fyodor
 - ### _The Double_
 	- "The Double centers on a government clerk who goes mad. It deals with the internal psychological struggle of its main character, Yakov Petrovich Golyadkin, who repeatedly encounters someone who is his exact double in appearance but confident, aggressive, and extroverted, characteristics that are the polar opposites to those of the toadying 'pushover' protagonist."
+
+## Clover, Carol J.
+- ### _Men, Women, and Chain Saws: Gender in the Modern Horror Film_
+	- "Do the pleasures of horror movies really begin and end in sadism? So the public discussion of film assumes, and so film theory claims. Carol Clover argues, however, that these films work mainly to engage the viewer in the plight of the victim-hero, who suffers fright but rises to vanquish the forces of oppression."
+
+## Cringely, Robert X.
+- ### _Accidental Empires_
+	- "Computer manufacturing is--after cars, energy production and illegal drugs--the largest industry in the world, and it's one of the last great success stories in American business. Accidental Empires is the trenchant, vastly readable history of that industry, focusing as much on the astoundingly odd personalities at its core--Steve Jobs, Bill Gates, Mitch Kapor, etc. and the hacker culture they spawned as it does on the remarkable technology they created."
+
+## Demick, Barbara
+- ### _Nothing to Envy: Ordinary Lives in North Korea_
+	- "Award-winning journalist Barbara Demick follows the lives of six North Korean citizens over fifteen years—a chaotic period that saw the death of Kim Il-sung, the rise to power of his son Kim Jong-il, and a devastating famine that killed one-fifth of the population."
+
+	
 
 ## Dick, Philip K.
 - ### _Ubik_
@@ -47,6 +71,15 @@
 - ### _Finnegan's Wake_
 	- "Finnegans Wake is a novel by Irish writer James Joyce. It is significant for its experimental style and reputation as one of the most difficult works of fiction in the English language. Written in Paris over a period of seventeen years, and published in 1939, two years before the author's death, Finnegans Wake was Joyce's final work. The entire book is written in a largely idiosyncratic language, consisting of a mixture of standard English lexical items and neologistic multilingual puns and portmanteau words, which many critics believe were attempts to recreate the experience of sleep and dreams."
 
+- ## Kabat-Zinn, Jon
+- ### _Wherever You Go, There You Are_
+	- "In his follow-up to Full Catastrophe Living--a book in which he presented basic meditation techniques as a way of reducing stress and healing from illness--here Jon Kabat-Zinn goes much more deeply into the practice of meditation for its own sake."
+
+- ## Kang, Chol-hwan
+- ### _The Aquariums of Pyongyang: Ten Years in the North Korean Gulag_
+	- "North Korea is today one of the last bastions of hard-line Communism. Its leaders have kept a tight grasp on their one-party regime, quashing any nascent opposition movements and sending all suspected dissidents to its brutal concentration camps for "re-education." Kang Chol-hwan is the first survivor of one of these camps to escape and tell his story to the world."
+
+
 ## Kosinski, Jerry
 - ### _The Painted Bird_
 	- "The Painted Bird is a controversial 1965 novel by Jerzy Kosiński which describes the world as seen by a young boy, 'considered a Gypsy or Jewish stray,' who wanders about small towns scattered around Eastern Europe during World War II."
@@ -82,6 +115,10 @@
 ## Parish, James R. 
 - ### _Fiasco: A history of Hollywood's Iconic Flops_
 	- "A film hit or miss often forms two sides of the same coin, notes veteran entertainment observer Parish (The Hollywood Book of Scandals) in this gleefully readable, well-researched study of hubris in Hollywood. Parish's 15 choice box-office busts since 1963's Cleopatra demonstrate how 'the combination of ill-matched personalities and tangled situations can result in chaos during the making of a must-succeed, extremely costly Hollywood feature.'"
+
+## Ronson, John
+- ### _The Psychopath Test: A Journey Through the Madness Industry_ 
+	- "They say one out of every hundred people is a psychopath. You probably passed one on the street today. These are people who have no empathy, who are manipulative, deceitful, charming, seductive, and delusional. The Psychopath Test is the New York Times bestselling exploration of their world and the madness industry."
 
 ## Schreber, Daniel P. 
 - ### _Memoirs of my nervous illness_
