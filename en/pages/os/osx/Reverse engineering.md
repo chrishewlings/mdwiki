@@ -28,3 +28,14 @@
 - If `rc.boot` exits successfully, `/etc/rc`, the multi-user startup script is then run. If booting from a CD-ROM, the script switches over to `/etc/rc.cdrom` (installation).
 - `/etc/rc` mounts local file systems (HFS+, HFS, UFS, /dev/fd, /.vol), ensures that the directory `/private/var/tmp` exists, and runs `/etc/rc.installer_cleanup`, if one exists (left by an installer before reboot).
 - `/etc/rc.cleanup` is run. It "cleans" a number of Unix and Mac specific directories/files.
+
+## Finder behaviour
+
+### Hiding files
+
+- There are four methods to hide files from the Finder. 
+	+ On an HFS+ volume, `SetFile` can be used to flip the invisible bit.  This is the Classic Mac OS way to hide a file.
+	+ Adding a dot before the name of the file. This is the classic POSIX convention for hidden files.
+	+ The third method resembles the second – if a file named `.hidden` exists in a directory, with a newline separated list of files, the items listed in the `.hidden` file will not appear in Finder. 
+	+ Lastly, the `chflags` command can be used to assign the flag `hidden` or `nohidden`.  This _may_ be the same as flipping the invisible bit since the resource fork has been deprecated from some time.
+	

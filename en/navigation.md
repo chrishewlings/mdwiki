@@ -15,6 +15,8 @@
   * [NetRestore/NetInstall configuration](pages/os/osx/NetRestore-NetInstall configuration.md)
   * [Better Boot Camp](pages/os/osx/Better Boot Camp.md)
   * [Misc. Reverse Engineering](pages/os/osx/Reverse Engineering.md)
+  * [Code Signing Demonstration](pages/os/osx/Code Signing Demonstration.md)
+  * [Startup and login hooks](pages/os/osx/Startup and login hooks.md)
   - - - -
   * # iOS
   * [Local SSH Access (JB)](pages/os/ios/localSSHAccess.md)
@@ -59,6 +61,7 @@
   * [DOOM Wads to play](pages/games/DOOM\ Wads\ to\ play.md)
   * [DOS Games to get](pages/games/DOS\ games\ to\ get.md)
   * [Recommended console games](pages/games/recommended games per platform.md)
+  * [Games to re-test on HTPC](pages/games/games_to_retest.md)
 - - - -
 
 [Personal]()
