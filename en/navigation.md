@@ -51,6 +51,8 @@
   * # Shells
   * [Bash](pages/software/shells/bash_interactive.md)
   * [Zsh](pages/software/shells/zsh.md)
+  * # Networks
+  * [NMAP cheatsheet](pages/software/sysadmin/NMAP cheat sheet.md)
 - - - -
 
 [Games]()
