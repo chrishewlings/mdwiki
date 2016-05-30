@@ -12,6 +12,9 @@
   * [Command Line Tricks](pages/os/osx/command_line_tricks.md)
   * [LaunchDaemons](pages/os/osx/launchdaemons.md)
   * [Understanding launchd](pages/os/osx/understanding_launchd.md)
+  * [NetRestore/NetInstall configuration](pages/os/osx/NetRestore-NetInstall configuration.md)
+  * [Better Boot Camp](pages/os/osx/Better Boot Camp.md)
+  * [Misc. Reverse Engineering](pages/os/osx/Reverse Engineering.md)
   - - - -
   * # iOS
   * [Local SSH Access (JB)](pages/os/ios/localSSHAccess.md)
