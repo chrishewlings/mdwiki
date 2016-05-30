@@ -53,6 +53,12 @@
   * [Zsh](pages/software/shells/zsh.md)
 - - - -
 
+[Games]()
+  * [DOOM Wads to play](pages/games/DOOM\ Wads\ to\ play.md)
+  * [DOS Games to get](pages/games/DOS\ games\ to\ get.md)
+  * [Recommended console games](pages/games/recommended games per platform.md)
+- - - -
+
 [Personal]()
 
   * # Media
