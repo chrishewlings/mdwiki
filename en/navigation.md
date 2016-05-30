@@ -27,7 +27,7 @@
   * # Scripting Languages
   * [Bash](pages/programming/scripting/bash.md)
   * [Python](pages/programming/scripting/python.md)
-  * [Ruby](pages/programming/scripting/ruby.md)
+  * [Ruby](pages/programming/scripting/Ruby.md)
   * [Perl](pages/programming/scripting/perl.md)
   * [Ruby on Rails](pages/programming/scripting/rubyrails.md)
   - - - -
