@@ -74,7 +74,7 @@
   * [Films to watch](pages/personal/films.md)
   * [TV shows to watch](pages/personal/tv.md)
   * [Books to read](pages/personal/books.md)
-  * Assorted
+  * # Assorted
   * [Useful Mnemonics](pages/personal/useful_mnemonics.md)
 
 [gimmick:themechooser](Choose theme)
