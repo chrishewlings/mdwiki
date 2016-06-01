@@ -58,8 +58,12 @@
 - - - -
 
 [Games]()
+
+  * # DOOM
   * [DOOM Wads to play](pages/games/DOOM\ Wads\ to\ play.md)
+  * # DOS
   * [DOS Games to get](pages/games/DOS\ games\ to\ get.md)
+  * # Emulation
   * [Recommended console games](pages/games/recommended games per platform.md)
   * [Games to re-test on HTPC](pages/games/games_to_retest.md)
 - - - -
