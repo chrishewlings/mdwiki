@@ -10,9 +10,7 @@
 	- `/* This is a comment */` for multiple lines
 	- `// this is a comment` for single lines
 - Functions are declared:
-	- `func_name(int par1, int par2){`
-	- _block_
-	- `}`
+	- `func_name(int par1, int par2){_block_}`
 	- *n.b. functions can also be declared here and defined later, often at the beginning of a program or in a separate header file*
 - Then the __main__ function is declared, with a return type *int*
 	- `int main () { __block __ }` 	
@@ -22,12 +20,12 @@
 - Adding L or l at the *end* of a integer constant forces it to be a `long`.
 	- `#define CONSTANT 1048536L` 
 - Adding U or u at the *end* of a integer constant forces it to be `unsigned`.
-- Adding 0X or 0x at the *beginning* of a integer constant forces it to be __hexadecimal__.
-- Adding 0 at the *beginning* of a integer constant forces it to be __octal__.
+- Adding `0X` or `0x` at the *beginning* of a integer constant forces it to be __hexadecimal__.
+- Adding `0` at the *beginning* of a integer constant forces it to be __octal__.
 
 ###Real numbers
 - Real number constants are type `double` unless otherwise specified. 
-- Adding F or f at the *end* of a real constant forces it to be a `float`.
+- Adding `F` or `f` at the *end* of a real constant forces it to be a `float`.
 - Real number constants can be represented with scientific notation using E or e, suffixed with the sign of the exponent.
 	- `#define REAL_CONSTANT 2.0e+5`
 	- `#define ANOTHER_REAL_CONSTANT 3.0E-5` 	
@@ -117,6 +115,8 @@ Sequences|Represents
 
 - arrays can be multidimensional.
 - `int three_dee[2][3]` declares an array `three_dee` with two members. each of those two members contains three `int`s.
+
+
 ### initializing arrays with explicit size
 
 `int classrooms[5] = {15, 18, 10, 23, 15};`
@@ -182,8 +182,8 @@ int i, j;
 float f;
 j = *i; 
 ```
-- __&i__ now is of type *pointer to int*
-- __&f__ now is of type *pointer to float*
+- `&i` now is of type **pointer to int**
+- `&f` now is of type **pointer to float**
 	- if __j__ is a *pointer to int*, *__j__ is what the pointer points __to__.
 
 #### Example of usage (circumventing pass by value)
@@ -229,7 +229,7 @@ expression|action
 
 # Strings
 
-- include <string.h>
+- `include <string.h>`
 - Strings in C are arrays of `char`, and null terminated.
 	- Actually, a 'string' is of type `pointer to char`, because it points to the first element of 'hidden' array of type `char`.
 
@@ -237,10 +237,10 @@ expression|action
 
 ```
 cp = "a string\n";
-while(*cp != 0) { // *cp points to the value of the first element of the array
+while(*cp != 0) { 		// *cp points to the value of the first element of the array
 printf("%c", *cp);
-cp++; // increment where cp points to
-
+cp++; 			// increment where cp points to
+```
 
 
 
@@ -286,8 +286,7 @@ for(i = 0; i < 10; i++) {
 
 ### switch
 
-__switch__(*expression*){
-*cases*}
+__switch__(*expression*){*cases*}
 
 ```
 switch(i){
@@ -362,7 +361,7 @@ long double|16byte|3.4E-4932 to 1.1E+4932|19 decimal places
 - not defined in standard C
 - `1` is equivalent to `TRUE`
 - `0` is equivalent to `FALSE`
-- a standard boolean library, since C99, has been defined called <stdbool.h>
+- a standard boolean library, since C99, has been defined called `<stdbool.h>`
 - you can also use `typedef` to clean up code.
 
 - Workaround using preprocessor directives:
@@ -379,7 +378,7 @@ typedef int Boolean;
 ### strings in C
 
 - strings are stored in arrays of type `char`
-- `char array[30];` defines a string of thirty `char`s
+- `char array[30];` defines a string of thirty `char`
 - better support for strings is found in `<string.h>`
 	- functions:
 		- `strcmp(str1,str2)` compares two strings and returns a number result, negative if the first is longer, positive if the second is longer
@@ -433,7 +432,7 @@ int flag = (k < 10); // flag is 0 until k < 10 evaluates as true
 
 
 
-# common functions
+## common functions
 
 - `printf` provides formatting features for display multiple types of data on screen
 - `scanf` as a corollary is for taking input from the screen and terminates on whitespace
@@ -444,10 +443,10 @@ int flag = (k < 10); // flag is 0 until k < 10 evaluates as true
 - `getchar` asks the user for a single `char`
  
 
-# recursion
+## recursion
 - recursion is a process in which a function calls itself
 
-# including headers
+## including headers
 
 `#ifndef EXAMPLE_H_`
 `#define EXAMPLE_H_`
@@ -472,6 +471,6 @@ main(){
     exit(EXIT_SUCCESS);
 }
 ````
-Hello
+
 
 

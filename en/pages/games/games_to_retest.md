@@ -53,3 +53,19 @@
 - panic bomber
 
 
+## Settings to change
+
+### Switch to MT-32 music
+
+- Dark Forces
+- Star trek 
+- Stunts
+
+### Games to fix
+
+- Jazz 1 is perfect in regular, broken in svn
+- Epic pinball is perfect in regular, broken in svn
+
+- Alien trilogy needs fixed cpu, no music
+- Daggerfall installer reports not enough free space
+- Earthworm Jim has no music

@@ -39,3 +39,24 @@
 	+ The third method resembles the second – if a file named `.hidden` exists in a directory, with a newline separated list of files, the items listed in the `.hidden` file will not appear in Finder. 
 	+ Lastly, the `chflags` command can be used to assign the flag `hidden` or `nohidden`.  This _may_ be the same as flipping the invisible bit since the resource fork has been deprecated from some time.
 	
+## Startup jobs
+
+n.b. Found on MR forums. some of these are _OLD_. Like Tiger era. Needs testing.
+
+"A more complete list, roughly in order of being launched on an auto-login system:
+
+1. /etc/mach_init.d/
+2. /etc/rc/ and /etc/rc.local - totally unsupported, and not created by default (but probably still work)
+3. LaunchDaemons (run at system startup, default to root user) in /Library/LaunchDaemons and /System/Library/LaunchDaemons (possibly /Network/Library/LaunchDaemons, but I don't know)
+4. /etc/mach_init_per_login_session.d/ and /etc/mach_init_per_user.d/
+5. (old) /Library/StartupItems, /Network/Library/StartupItems, /System/Library/StartupItems - probably does not work anymore
+6. cron launched @reboot items (yes, cron is still there), this might even work for everyone's crontabs
+7. /Library/Security/SecurityAgentPlugins that have been loaded by being listed in the proper spots in /etc/authorization
+8. /private/var/root/Library/Preferences/com.apple.loginwindow.plist, in the LoginHook key (runs as root, passed the username)
+9. MCX (WorkgroupManager) login hooks (runs as root, but passed the username)
+10. note: below this network home directories are more reliably available, as is a connection to the WindowsServer
+11. LaunchAgents (run at login, generally in the user's space) in ~/Library/LaunchAgents, /Library/LaunchAgents, /Network/Library/LaunchAgents and /System/Library/LaunchAgents
+12. MenuBar items from ~/Library/Preferences/com.apple.systemuiserver.plist and /Library/Preferences/com.apple.systemuiserver.plist (+MXC added items)
+13. /Library/Preferences/loginwindow.plist, in the key (array of paths) AutoLaunchedApplicationDictionary (everyone gets this launched at login, runs as user) (+MXC added items)
+14. LoginItems (generally GUI items) ~/Library/Preferences/com.apple.loginitems.plist and possibly /Library/Preferences/com.apple.loginitems.plist (have not tried) (+MXC added items)"
+ 

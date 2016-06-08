@@ -46,5 +46,18 @@ With or without GUI:
 Note: This differs from a login item -- a LoginHook (or LogoutHook) is run at _every_ users' login/logout, not just a specific one.  It also runs as the root user, not as the user logging in. 
 
 
+## Reverse engineering launchd
+
+- `launchctl bootshell` , since 10.10 or 10.11
+
+	+ Starts system to shell but places restrictions on XPC `(XPC_NULL_BOOTSTRAP)`
+
+- Networking and whatnot work but anything relying on XPC doesn't. user login/DS/etc are inaccessible ; seems like it's essentially a chroot but doesn't actually prevent actual file level manipulations. 
+
+
+- Thoughts:
+	+ reverse what it's doing via lldb or simply checking for added flags in /var/db/com.launchd.xpcd/ 
+	+ Launchd code is no longer available open source since Yosemite, so no luck there. 
+	+ Continuing to normal boot can be done with launchctl bootshell continue
 
 
