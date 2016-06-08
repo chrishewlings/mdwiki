@@ -1,5 +1,14 @@
 # Programming in C
 
+
+## including headers
+
+`#ifndef EXAMPLE_H_`
+`#define EXAMPLE_H_`
+`#endif`
+
+
+
 ## Structure of a C program
 - every program starts with the header files that you __include__, e.g.
 	- `#include "stdio.h"`
@@ -16,6 +25,7 @@
 	- `int main () { __block __ }` 	
 
 ## Constants
+
 ###Integers
 - Adding L or l at the *end* of a integer constant forces it to be a `long`.
 	- `#define CONSTANT 1048536L` 
@@ -30,47 +40,53 @@
 	- `#define REAL_CONSTANT 2.0e+5`
 	- `#define ANOTHER_REAL_CONSTANT 3.0E-5` 	
 
-## Arithmetic
+## Operators
+	
+### Arithmetic
 
-- `/` for integer division
-- `%` for modulus
+- `+ - * / % ++ --` are all fairly self explanatory
+- `/` for integer division, `%` for modulus
 
 ### Increment and Decrement
 
 - `x++`, `x--` increment and decrement. In expressions, the __old__ value will be used.
 - `++x`, `--x` increment and decrement as well -- but in expressions, the __new__ value will be used. 
 
-### Bitwise operators
+- However, very important to correctly place the `++` or `--`
+	- `++x` increments the variable and then uses the value
+	- `x++` uses the value and _then_ increments the variable
+
+### Bitwise
 
 Operator|Effect|Conversions
 -------:|-----:|-----------
 `%`|bitwise AND| usual arithmetic conversions
-`|`|bitwise OR| usual arithmetic conversions
+`__pipe__`|bitwise OR| usual arithmetic conversions
 `^`|bitwise XOR| usual arithmetic conversions
 `<<`|left shift|integral promotions
 `>>`|right shift|integral promotions
 `~`|one's complement|integral promotions
 
+-- `>>` is equivalent to dividing by 2
+-- `<<` is equivalent to multiplying by 2
 
+### Relational
 
+Group 1|Group 2|Group 3
+-------|-------|-------
+`!` not| `>` bigger than| `&&` logical and
+`==` is equal| `<` smaller than| `||` logical or
+`!=` inequality| `>=` bigger than or equal to|  
+.|`<=` smaller than or equal to
 
-## Functions and Returns
+### Complex Statements and Assignment 
+- relational operators can be assigned to variables.
+- example:
+````
+int k = 1;
+int flag = (k < 10); // flag is 0 until k < 10 evaluates as true
+````
 
-- C functions can return any type except arrays and other functions.
-- Declaring functions (and explicit return value type) , and the types of its arguments, must be done before the function is called.
-	- e.g.: *double* __function__( int *argument*);
-	- by standard, *return* must be defined unless the return type is set to be *void*
-
-- Function __definition__ follows the form __function__(int *parameter*){ __block__};
-### Arguments
-- Functions can receive parameters in two ways:
-	- __Pass by value__:
-		- Useful when you don't want to change the value of the parameters
-		- C makes a local copy of these variables for the function and then operates on them, where the original values stay unchanged globally. 
-	- __Pass by reference__:
-		- Useful when you want the function to change the values globally
-		- Pointers are used in this syntax by prefacing the variable with an asterisk. This passes only the *addresses* of the variables so the function can manipulate them directly. 
-			- ` func_name( int *par1, int *par2 )`
 
 ## Data Types
 - Data type sizes/potential overflows can be avoided with the __sizeof__(*type*) call, or by reviewing __limits.h__
@@ -90,9 +106,6 @@ signed long int|%ld|decimal
 int, short, char|%x|hexadecimal
 int, short, char|%o|octal 
 
-
-# Format operations
-
 ### Escape characters
 Sequences|Represents
 --------:|-----------
@@ -108,7 +121,7 @@ Sequences|Represents
 `\"`|double quote
 `\?`|question mark
 
-# Arrays
+### Arrays
 
 - Arrays can be declared with the *type* of its members, and the number of indices in square brackets
 - `double ar[100]` declares an array of `double`s indexed from `[0]`-`[99]`
@@ -117,15 +130,15 @@ Sequences|Represents
 - `int three_dee[2][3]` declares an array `three_dee` with two members. each of those two members contains three `int`s.
 
 
-### initializing arrays with explicit size
+#### initializing arrays with explicit size
 
 `int classrooms[5] = {15, 18, 10, 23, 15};`
 
-### initializing arrays _without_ explicit size
+#### initializing arrays _without_ explicit size
 
 `float heights[] = {3.0, 4.2, 5.6};`
 
-### easy printing array
+#### easy printing array
 
 ```
 
@@ -135,7 +148,7 @@ void printArray(char dataName[], int dataSet[], int dataLength){
 		
 ```
 
-### two dimensional arrays
+#### two dimensional arrays
 
 ```
 int table[2][3] = {
@@ -145,7 +158,7 @@ int table[2][3] = {
 printf("Row 1 Column 2 contains %d\n", table[1][2]
 ```
 
-### easy printing two dimensional array
+#### easy printing two dimensional array
 
 ``` 
 void printTable(int table[<NUM_COLS>]){
@@ -159,11 +172,10 @@ void printTable(int table[<NUM_COLS>]){
 ```
 
 
-# Pointers
+### Pointers
+
 - Pointers are many things, but a useful application of them is to circumvent the pass by value mechanism and modify values directly in the global domain. 
 - Pointers are also useful to 'walk' along an array. Incrementing a pointer to an array element will make it point to the next array element. 
-
-
 - Pointers need to be declared like other variables. 
 - the type prefacing the pointer indicates the type of variable it will point to, e.g. `int *ip` is of type `pointer to int`.
 	- note here that the pointer has been declared, but until it is made to *point* to anything, it is *uninitialized*.
@@ -227,7 +239,7 @@ expression|action
 - Pointers can be converted using casts.
 - `p = (float *)expression;`
 
-# Strings
+### Strings
 
 - `include <string.h>`
 - Strings in C are arrays of `char`, and null terminated.
@@ -242,94 +254,11 @@ printf("%c", *cp);
 cp++; 			// increment where cp points to
 ```
 
-
-
-# Control Flow
-
-### If/Else
-```
-if (__condition__){
-	statement
-} else {
-	statement
-}
-```
-- conditions can be chained, using boolean logic. `if( a!=0 && a < 5)`
-
-### while
-
-```
-while(expression){
-	statement
-}
-```
-
-### do/while
-
-```
-do {
-	statement
-} while(expression);
-```
-
-### for
-
-__for__(*initialize*; *check*; *update*) {
-	*statement*
-}
-
-```
-for(i = 0; i < 10; i++) {
-	do_something;
-}
-```
-
-### switch
-
-__switch__(*expression*){*cases*}
-
-```
-switch(i){
-	case 1:
-	case 2:
-		printf("1 or 2\n");
-		break;
-	case 7:
-		printf("7\n");
-		break;
-	default:
-		printf("default value\n");
-}
-```
-
-### continue
-
-- `continue;` can be used to conditonally avoid an iteration of a loop, e.g. to avoid a divide by zero or something
-
-### goto
-- __goto__ can be used to jump out of a function or from a nested loop
-```
-goto L1;
-/* whatever you like here */
-L1: /* anything else */
-```
-
-# Functions
-
-### Prototypes
-- Declaring a function before it can be used by giving information about the types of arguments it takes, *without* the action definition of the function `void func(int first, int second);`
-	- n.b. the actual names of the parameters don't need to be defined, they can be specified simply as `(int, double, float)`
-
-### Definitions
-- Functions can be defined before or after `main()`
-
-# Understanding data types
+## Understanding data types
 
 - The type determines how many bytes are allocated in memory for the data that you are entering. 
 
-## Types
-
-### integers
+### Integers
 
 Type|Size|Range
 ----|----|-----
@@ -371,8 +300,6 @@ typedef int Boolean;
 #define True 1
 #define False 0
 ````
-
-
 - use `sizeof(<data type>)` to determine size on your architecture
 
 ### strings in C
@@ -386,53 +313,120 @@ typedef int Boolean;
 		- `memcpy(dest,src,n)` copies `n` chars from `src` to `dest`
 		- `strlen(str)` returns the length of a string. 
 
-# Operators
+## Control Flow
 
-### Arithmetic Operators
-- `+ - * / % ++ --` are all fairly self explanatory
-- However, very important to correctly place the `++` or `--`
-	- `++x` increments the variable and then uses the value
-	- `x++` uses the value and _then_ increments the variable
+### Conditionals
 
-	- Useful library: `<math.h>`
-	- functions:
-		- `sqrt` should be obvious
-	- constants:
+#### If / Else
+
+```
+if (__condition__){
+	statement
+} else{
+	statement
+}
+```
+- conditions can be chained, using boolean logic. `if( a!=0 && a < 5)`
+
+#### switch
+
+__switch__(*expression*){*cases*}
+
+```
+switch(i){
+	case 1:
+	case 2:
+		printf("1 or 2\n");
+		break;
+	case 7:
+		printf("7\n");
+		break;
+	default:
+		printf("default value\n");
+}
+```
+
+#### continue
+
+- `continue;` can be used to conditonally avoid an iteration of a loop, e.g. to avoid a divide by zero or something
+
+#### goto
+- __goto__ can be used to jump out of a function or from a nested loop
+```
+goto L1;
+/* whatever you like here */
+L1: /* anything else */
+```
+
+### Loops
+
+#### while
+
+```
+while(expression){
+	statement
+}
+```
+
+#### do/while
+
+```
+do {
+	statement
+} while(expression);
+```
+
+#### for
+
+__for__(*initialize*; *check*; *update*) {
+	*statement*
+}
+
+```
+for(i = 0; i < 10; i++) {
+	do_something;
+}
+```
+
+## Functions and Returns
+
+- C functions can return any type except arrays and other functions.
+- Declaring functions (and explicit return value type) , and the types of its arguments, must be done before the function is called.
+	- e.g.: *double* __function__( int *argument*);
+	- by standard, *return* must be defined unless the return type is set to be *void*
+
+- Function __definition__ follows the form __function__(int *parameter*){ __block__};
+
+
+### Arguments
+
+- Functions can receive parameters in two ways:
+	- __Pass by value__:
+		- Useful when you don't want to change the value of the parameters
+		- C makes a local copy of these variables for the function and then operates on them, where the original values stay unchanged globally. 
+	- __Pass by reference__:
+		- Useful when you want the function to change the values globally
+		- Pointers are used in this syntax by prefacing the variable with an asterisk. This passes only the *addresses* of the variables so the function can manipulate them directly. 
+			- ` func_name( int *par1, int *par2 )`
+
+### Prototypes
+- Declaring a function before it can be used by giving information about the types of arguments it takes, *without* the action definition of the function `void func(int first, int second);`
+	- n.b. the actual names of the parameters don't need to be defined, they can be specified simply as `(int, double, float)`
+- Functions can be defined before or after `main()`
+
+### recursion
+- recursion is a process in which a function calls itself
+
+
+## Useful methods in `stdlib`
+
+### `<math.h>`
+- functions:
+	- `sqrt` should be obvious
+- constants:
 		- `M_PI`
 
-### Relational Operators
-Group 1|Group 2|Group 3
--------|-------|-------
-`!` not| `>` bigger than| `&&` logical and
-`==` is equal| `<` smaller than| `||` logical or
-`!=` inequality| `>=` bigger than or equal to|  
-.|`<=` smaller than or equal to
-
-### Bitwise operators
-Group 1|Group 2
--------|-------
-`&` AND| ~ one's complement (0->1, 1->0)
-`|` OR | `>>` right shift
-`^` XOR| `<<` left shift
-
--- `>>` is equivalent to dividing by 2
--- `<<` is equivalent to multiplying by 2
-
-## Complex Statements and Assignment 
-- relational operators can be assigned to variables.
-- example:
-````
-int k = 1;
-int flag = (k < 10); // flag is 0 until k < 10 evaluates as true
-````
-
-
-# Functions
-
-
-
-
-## common functions
+### `<stdio.h>`
 
 - `printf` provides formatting features for display multiple types of data on screen
 - `scanf` as a corollary is for taking input from the screen and terminates on whitespace
@@ -441,23 +435,14 @@ int flag = (k < 10); // flag is 0 until k < 10 evaluates as true
 		- `scanf("%s", &name)`
 		- note that `scanf` requires a `&` to indicate a memory address to write to
 - `getchar` asks the user for a single `char`
+
  
 
-## recursion
-- recursion is a process in which a function calls itself
 
-## including headers
-
-`#ifndef EXAMPLE_H_`
-`#define EXAMPLE_H_`
-`#endif`
-
-
-# Useful idioms
+## Useful idioms
 
 ### Get value of input character(s) and loop until EOF
-
-````
+```
 #include <stdio.h>
 #include <stdlib.h>
 
@@ -470,7 +455,7 @@ main(){
     }
     exit(EXIT_SUCCESS);
 }
-````
+```
 
 
 
