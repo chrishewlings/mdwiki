@@ -37,6 +37,7 @@
   * [C](pages/programming/compiled/c.md)
   * [C++](pages/programming/compiled/cpp.md)
   * [Swift/Cocoa](pages/programming/compiled/swift-cocoa.md)
+  * [Objective C](pages/programming/compiled/objc.md)
   - - - -
   * # Web Languages
   * [PHP](pages/programming/web/php.md)
