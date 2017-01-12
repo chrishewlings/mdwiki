@@ -119,7 +119,7 @@ Methods:
 
 Adding members: 
 
-````
+```
 my_hash = { 'Name' => 'Chris', 'Age' => 28, 'Street' => 'Coursol' } 
 ```
 
@@ -135,6 +135,7 @@ my_hash['Name']
 - You can also access values using the `values_at` method, like arrays, by providing one or more keys. This will return the corresponding ordered values as an array.
 
 - You can also query hashes for their contents:
+- 
 ```
 my_array.has_key?('Name')
 -> True
@@ -144,4 +145,85 @@ my_array.empty?
 
 my_array.has_value?('Drolet')
 -> False
+```
+
+Other useful methods:
+
+|Syntax|Result|Returns|
+|------|------|-------|
+|`my_hash.delete['key']`|Removes `value` associated to `key`|Returns `value` itself|
+|`my_hash.clear`|Deletes all array keys and values.|newly empty `array`|
+|`my_hash.empty?`|Returns `True` if `my_hash` has no keys or values, otherwise false||
+
+
+#### Assignment, variables, etc.
+
+- In Ruby, variables are not objects themselves, but references/pointers to items in memory. 
+	+ This can have unexpected results. For example:
+
+```
+first_var = "Hello"
+second_var = first_var
+puts second_var
+-> "Hello"
+second_var.chop! #removes last character in string
+puts first_var
+-> "Hell" #what??
+```
+
+- If we want to pass by copy instead of passing by reference, you can use the `.clone` or `.dup` method on an object. 
+
+- Incrementing and decrementing can be done with the `+=` and `-=` syntax: 
+```
+var = 2
+var += 1
+puts var
+-> 3
+```
+
+You can also index strings via regex, with the `=~` syntax:
+```
+thing = "Hello World"
+thing =~ /World/
+-> 6
+```
+
+
+### Code blocks
+
+- There are multiple ways that a block can be initiated and terminated.  Common keywords include:
+	+ To define a basic block : `begin / end` 
+	+ To define a **method** : `def / end` 
+
+Hint: methods should be defined in lowercase, as Ruby uses capitalized names for **constants** and **classes**. 
+
+_Operator conventions with methods:_
+
+|Operator|Result|
+|--------|------|
+|`?`|Usually used for querying an attribute. sometimes return boolean, but not always.|
+|`!`|usually modifies the object **in place**, rather than returning a changed result and leaving the original alone.|
+
+_Methods_:
+
+```
+def addTwo(value1,value2)
+	newValue = value1 + value2
+end 
+```
+- Methods return the value of the last statement executed; i.e. the above method will return `newValue`
+
+- Parameters can be given a default value:
+```
+def new_method(a = "This", b = "is", c)
+	puts a + ' ' + b + ' ' + c + '.'
+end
+```
+- Parameter lists can be variable length, using the `*` operator, which turns the variable following it into an array when interpreted:
+
+``` 
+def calculateValues(x,y,*otherValues)
+	puts otherValues
+end
+```
 

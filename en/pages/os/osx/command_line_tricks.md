@@ -218,5 +218,37 @@ $ /usr/libexec/PlistBuddy -c "set :$key:$subkey1:$subkey2:$subkeyn $value" $plis
 
 `pbpaste | textutil -convert txt -stdin -stdout -encoding 30 | pbcopy`
 
-zomg don't forget about `cheat`.
+#### Relaunch Finder as root
 
++ <=10.9:
+	`sudo /System/Library/CoreServices/Finder.app/Contents/MacOS/Finder 2>&1`
++ >=10.10
+	`sudo login -f root /System/Library/CoreServices/Finder.app/Contents/MacOS/Finder 2>&1`
+
+#### Quit Finder and don't relaunch it:
+
+`osascript -e 'tell application "Finder" to quit'`
+
+- Write to syslog
+
+`echo "hello" | logger`
+
+- Automount drives without having a user logged in <`/Library/Preferences/SystemConfiguration/autodiskmount.plist`>:
+```
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+    <key>AutomountDisksWithoutUserLogin</key>
+    <true/>
+</dict>
+</plist>
+```
+
+- add a spacer to the dock
+`defaults write com.apple.dock persistent-apps -array-add '{"tile-type"="spacer-tile";}' `
+
+- time since last user input
+```
+echo $((`ioreg -c IOHIDSystem | sed -e'/HIDIdleTime/ !{ d'-e't'-e'}'-e's/.* = //g'-e'q'` / 1000000000))
+```

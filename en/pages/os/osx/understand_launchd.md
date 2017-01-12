@@ -60,4 +60,37 @@ Note: This differs from a login item -- a LoginHook (or LogoutHook) is run at _e
 	+ Launchd code is no longer available open source since Yosemite, so no luck there. 
 	+ Continuing to normal boot can be done with launchctl bootshell continue
 
+## Changes to `launchctl` since Yosemite
+
+
+`# cat ~/Library/LaunchAgents/org.company.test.plist`
+
+```
+<plist version="1.0">
+    <dict>
+    <key>Label</key>
+        <string>org.company.test</string>
+            <key>ProgramArguments</key>
+                <array>
+                        <string>/usr/bin/env</string>
+                 </array>
+            <key>RunAtLoad</key>
+                 <true/>
+            <key>StartCalendarInterval</key>
+                <dict>
+                  <key>Hour</key>
+                      <integer>0</integer>
+                  <key>Minute</key>
+                      <integer>0</integer>
+                 </dict>
+    </dict>
+</plist>
+```
+
+- Different launchd sessions (since 10.10)
+	- `user/$UID` is the *background* session. Needs `LimitLoadToSessionType=Background`.
+	- `gui/$UID` is the *Aqua* session.  
+
+- `bootstrap` is to load a file into a given domain
+- `kickstart` is to force running a job, ignoring its configured run condition.
 

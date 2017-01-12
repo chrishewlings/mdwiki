@@ -17,6 +17,7 @@
   * [Misc. Reverse Engineering](pages/os/osx/Reverse Engineering.md)
   * [Code Signing Demonstration](pages/os/osx/Code Signing Demonstration.md)
   * [Startup and login hooks](pages/os/osx/Startup and login hooks.md)
+  * [Python OS X Sysadmin tricks](pages/software/sysadmin/python-sysadmin.md)
   - - - -
   * # iOS
   * [Local SSH Access (JB)](pages/os/ios/localSSHAccess.md)
@@ -32,6 +33,7 @@
   * [Ruby](pages/programming/scripting/Ruby.md)
   * [Perl](pages/programming/scripting/perl.md)
   * [Ruby on Rails](pages/programming/scripting/rubyrails.md)
+  * [JXA](pages/programming/scripting/jxa.md)
   - - - -
   * # Compiled Languages
   * [C](pages/programming/compiled/c.md)
@@ -42,6 +44,10 @@
   * # Web Languages
   * [PHP](pages/programming/web/php.md)
   * [JavaScript](pages/programming/web/javascript.md)
+  - - - - 
+  * # Markup Languages
+  * [LaTeX](pages/programming/markup/LaTeX.md)
+  
   
   
 

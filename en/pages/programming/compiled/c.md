@@ -7,8 +7,6 @@
 `#define EXAMPLE_H_`
 `#endif`
 
-
-
 ## Structure of a C program
 - every program starts with the header files that you __include__, e.g.
 	- `#include "stdio.h"`
@@ -38,7 +36,7 @@
 - Adding `F` or `f` at the *end* of a real constant forces it to be a `float`.
 - Real number constants can be represented with scientific notation using E or e, suffixed with the sign of the exponent.
 	- `#define REAL_CONSTANT 2.0e+5`
-	- `#define ANOTHER_REAL_CONSTANT 3.0E-5` 	
+	- `#define ANOTHER_REAL_CONSTANT 3.0E-5` 
 
 ## Operators
 	
@@ -239,6 +237,12 @@ expression|action
 - Pointers can be converted using casts.
 - `p = (float *)expression;`
 
+#### Pointer operators
+
+De-referencing is the process of telling the computer to go to the memory address you have here, and to manipulate the memory itself. To do that in C, you use the “follow-address operator”, `*`. So, when you have a memory address in a pointer variable `m`, `*m += 1` essentially tells the computer to first “walk over to that address”, and to then add 1 to whatever it finds there.
+
+And finally, the `&`-operator, also known as “address-of”. The address-of-operator simply tells the computer to give you the memory address at which a particular variable is located. You can then stuff this address in a pointer variable and perform pointer arithmetics on it, or whatever you want.
+
 ### Strings
 
 - `include <string.h>`
@@ -253,6 +257,43 @@ while(*cp != 0) { 		// *cp points to the value of the first element of the array
 printf("%c", *cp);
 cp++; 			// increment where cp points to
 ```
+
+### User defined types
+
+#### `Struct`
+
+```
+struct studentDBEntry
+{
+	char firstName[20];
+	char lastName[20];
+	int age;
+	bool isGraduating;
+};
+
+struct studentDBEntry englishClass[20];
+englishClass[0].age = 16;
+
+// the above creates an array of 20 studentDBEntry structs and assigns age 16 to the first element
+```
+
+#### `enum`
+
+- Formally known as _enumerated symbolic constants_
+- Often used to declare constants and avoid magic numbers.
+	- *Limitation*: `enum` constants are limited in type to `int` or `char`.
+
+```
+enum choices
+{
+	YES = 1,
+	NO = 2, 
+	MAYBE = 3,
+};
+```
+- Warning: Like `struct`, an `enum` needs a terminating semicolon. 
+
+
 
 ## Understanding data types
 
@@ -428,15 +469,32 @@ for(i = 0; i < 10; i++) {
 
 ### `<stdio.h>`
 
-- `printf` provides formatting features for display multiple types of data on screen
-- `scanf` as a corollary is for taking input from the screen and terminates on whitespace
-	- ex.
-		- `char name[20];`
-		- `scanf("%s", &name)`
-		- note that `scanf` requires a `&` to indicate a memory address to write to
+#### `printf`
+- provides formatting features for display multiple types of data on screen
+#### `scanf`
+
+```
+char userInput[9];
+scanf( "%8s", userInput); // no & when assigning to an array/pointer
+```
+- note that `scanf` requires a `&` to indicate a memory address to write to
+
+- as a corollary, is for taking input from the screen and terminates on whitespace
+- The above reads 8 characters of user input into the variable of the same name. The `%8s` syntax, instead of just `%s`, limits the input to only 8 characters to prevent overrun. 
+	- The allocation of _9_ characters in the array allows for the null terminator of the string.   
+	- Warning: `scanf` breaks on whitespace
 - `getchar` asks the user for a single `char`
 
- 
+### `string.h`
+
+#### `strcmp`
+
+`int strcmp( char* strA, char* strB );`
+
+- This compares `strA` and `strB` and returns:
+	-  `0` if they are the same
+	-  `1` if `strA` would be sorted before `strB`
+	-  `-1` if `strB` would be sorted before `strA`
 
 
 ## Useful idioms
