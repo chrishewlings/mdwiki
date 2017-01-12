@@ -1,13 +1,22 @@
 # Programming in C
 
+## Organizing C projects
 
-## including headers
+### Kinds of files
+
+- `.c` are source files.
+- `.h` are header files, which contain function declarations.
+
+
+
+
+### including headers
 
 `#ifndef EXAMPLE_H_`
 `#define EXAMPLE_H_`
 `#endif`
 
-## Structure of a C program
+### Structure of a C program
 - every program starts with the header files that you __include__, e.g.
 	- `#include "stdio.h"`
 - Then, constants are initialized.
@@ -243,6 +252,23 @@ De-referencing is the process of telling the computer to go to the memory addres
 
 And finally, the `&`-operator, also known as “address-of”. The address-of-operator simply tells the computer to give you the memory address at which a particular variable is located. You can then stuff this address in a pointer variable and perform pointer arithmetics on it, or whatever you want.
 
+#### Function pointers
+
+The declaration of a variable holding a pointer to a function:
+
+```
+int doSomething(int first, int second)
+{
+	return first + second;
+}
+
+int		(*pointerToFunction)(int first, int second);
+pointerToFunction = doSomething; 
+```
+
+- the variable declaration is in brackets to indicate that it is a function pointer. 
+
+
 ### Strings
 
 - `include <string.h>`
@@ -293,7 +319,50 @@ enum choices
 ```
 - Warning: Like `struct`, an `enum` needs a terminating semicolon. 
 
+#### Constants via preprocessor
 
+- The `#define` keyword can be used to define constants of any kind, including `float` and string literals. 
+
+```
+#define PI = 3.14159
+#define GRAMS_PER_POUND = 454
+#define DEFAULT_VOLUME = "Macintosh HD"
+```
+Warning: These are _not_ terminated with a semicolon, because the preprocessor treats them specially.
+
+#### `Typedef`
+
+- Say you want a type for huge integer numbers. 
+
+```
+typedef long long int	bigNum;
+bigNum myNumber = 140975172;
+```
+
+- This is also handy to have types that are implicitly defined as pointers:
+
+`typedef int* pointerToInt;`
+
+It can equally be used to make types of `struct` and `enum`.
+
+###Bitfields
+
+```
+#define FLAG_ONE	(1 << 0) // 0001
+#define FLAG_TWO	(1 << 1) // 0010
+#define FLAG_THREE	(1 << 2) // 0100
+#define FLAG_FOUR (1 << 3) // 1000
+```
+- We're bit shifting 1 to the left here, because 1 is the rightmost bit activated and all others 0. So in a 4 bit variable, shifting `0001` to the left gives us `0010`.
+
+- Test if a certain bit is set:
+	- `if ((myFlags & FLAG_ONE) == FLAG_ONE )`
+- Clear a bit:
+	-  `myFlags &= ~FLAG-ONE;`
+		-  The `&=` is analogous to `+=`; the `~` is the complement operator. `~FLAG_ONE` is `1110`, so bitwise AND clears the value of the bit, because T & F = F. 
+-  Turn on a bit:
+	-  `myFlags |= FLAG_ONE;`
+		-  The `|=` is a bitwise OR, so `0000 & 0001 == 0001`.
 
 ## Understanding data types
 
@@ -514,6 +583,30 @@ main(){
     exit(EXIT_SUCCESS);
 }
 ```
+### taking parameters at command line
 
+`int main( int argc, char* *argv)`
+
+- `argc` is an `int` of the number of total arguments
+- `argv` is a pointer to an array of text strings.
+- So, `*argv` is the array itself. 
+
+### pointers to NULL
+
+- These have to be used carefully, because the OS almost always owns memory address `0`, and will kill any attempts to access it.  Assigning a variable to NULL is a way to set the value of a pointer to zero, and is shorthand for saying "I'll need memory for this soon, but not right away." 
+
+### `malloc` an array
+
+`int* myArray = malloc( sizeof(int) * numItems );`
+
+- `malloc` returns a `void` pointer to a section of memory, so we assign `myArray` with type `pointer to int`
+
+- Using `sizeof()` is important to ensure that the compiler accounts for different int sizes depending on architecture 
+
+### `realloc` to resize an array
+
+`void* realloc( void* originalPointer, int newSize`
+
+- Note that this executes `free()` on `originalPointer` at the same time, so make sure not to refer to it again.
 
 
