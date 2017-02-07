@@ -34,6 +34,7 @@
   * [Perl](pages/programming/scripting/perl.md)
   * [Ruby on Rails](pages/programming/scripting/rubyrails.md)
   * [JXA](pages/programming/scripting/jxa.md)
+  * [Applescript](pages/programming/scripting/applescript.md)
   - - - -
   * # Compiled Languages
   * [C](pages/programming/compiled/c.md)

@@ -65,6 +65,8 @@ Tip: These, and almost any command, can be combined with numbers, i.e 3 >> to in
 `?text` searches backward
 `n` repeats previous search
 `N` repeats previous search in opposite direction
+`*` finds next instance of text under caret
+`#` finds prev instance of text under caret
 
 ## Regexes reference
 
