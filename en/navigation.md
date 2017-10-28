@@ -84,8 +84,10 @@
   * [Books to read](pages/personal/books.md)
   * # Assorted
   * [Useful Mnemonics](pages/personal/useful_mnemonics.md)
+- - - -
 
 [School]()
+
   * #COMP 352
   * [Abstract Data Types](pages/school/COMP352/Summary of ADTs.md)
   * [Algorithmic Analysis](pages/school/COMP352/Algorithmic Analysis.md)  
