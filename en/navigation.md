@@ -88,7 +88,7 @@
 
 [School]()
 
-  * #COMP 352
+  * # COMP 352
   * [Abstract Data Types](pages/school/COMP352/Summary of ADTs.md)
   * [Algorithmic Analysis](pages/school/COMP352/Algorithmic Analysis.md)  
 
