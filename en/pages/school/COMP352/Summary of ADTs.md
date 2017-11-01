@@ -1,10 +1,12 @@
-# General Data Structure Operation Complexity
+# Abstract Data Types
+
+## General Data Structure Operation Complexity
 ![](./images/Data Structures Cheatsheet.png)
 
-# Java Centric ADT Operation Complexity
+## Java Centric ADT Operation Complexity
 ![](./images/Java Centric ADT Comparison.png)
 
-# ARRAY 
+## ARRAY 
 
 - PROS:
 	- $O(1)$ for Random or Sequential Access.
@@ -14,50 +16,50 @@
 	- $O(n)$ for most operations
 	- Inflexible.
 	
-# LIST
+## LIST
 
-## Implementations
+### Implementations
 
-### Fixed array:
+#### Fixed array:
 
 - **O(1)** - Append, Lookup,
 - **O(N)** - Insert (worst case), Prepend
 
-### Dynamic Array:
+#### Dynamic Array:
 
 - **O(1)** - Append (average), 
 - **O(n)** - Append (worst), prepend
 
-### Linked List
+#### Linked List
 
 - **O(1)** Append, prepend, insert(head/tail), removeFirst
 - **O(n)** lookup, get, search, insert (worst case), removeLast
 
-# STACK
+## STACK
 
 - Push/pop operations are O(1).
 
-## Implementations
+### Implementations
 
-### Array
+#### Array
 
 - Uses `top` variable to track insertion.
 - New elements pushed to `A[top]`, and removed from `A[top]`
 
-### Linked List
+#### Linked List
 
 - Top element stored as the head.
 
-# QUEUE
+## QUEUE
 
-## Implementations
+### Implementations
 
-### Array based
+#### Array based
 
 - Enqueue operation is `O(1)`.
 - But if `Q[0]` is at the front, every `dequeue` will be `O(n)`.
 
-### Circular Array based
+#### Circular Array based
 
 - `f,r` initialized to `0`
 - ENQUEUE: 
@@ -68,45 +70,45 @@
 - This improves `dequeue` performance to `O(1)`.
 - Avoid `f,r > N` by implementing modular arithmetic.
 
-### Linked List based
+#### Linked List based
 
 - ENQUEUE: 
 	- Keep an index of last filled element, increment `i`, add new node at tail.
 - DEQUEUE:
 	- Remove head, make `head+1` new head. 
 
-# DEQUE
+## DEQUE
 
 - Conceptually similar to a queue, but insertion and removal supported at either end.
 - Best implemented with a doubly-linked list. 
 
-# LINKED LISTS
+## LINKED LISTS
 
-## Implementations
+### Implementations
 
-### Singly Linked List
+#### Singly Linked List
 
 - **O(n)**: Access, search
 - **O(1)**: Insertion, Deletion
 
-### Doubly Linked List
+#### Doubly Linked List
 
 - **O(n)**: Access, search
 - **O(1)**: Insertion, Deletion
 
 - Using double links Gets tail removal down to O(1)
 
-### Circular Linked List
+#### Circular Linked List
 
 - Can be singly or doubly linked, but avoids null pointers by 'wrapping around' back to the head when tail is reached.
 
-# ARRAY LIST
+## ARRAY LIST
 
 - Like an array, but can hold arbitrary number of elements.
 
-## Implementations
+### Implementations
 
-### Array-based ArrayList
+#### Array-based ArrayList
 
 - **O(1)**: get,set
 - **O(n)**: add (worst case), remove (worst case)
@@ -115,35 +117,34 @@
 	- `get` returns `A[i]`
 	- `set` : `t=A[i]; A[i] = o; return t`
 
-### Growable Array based ArrayList
+#### Growable Array based ArrayList
 
 - Improves `add(),remove()` to `O(1)`
 
-# NODE LIST
+## NODE LIST
 
 - Uses the **Position** ADT to locate elements of the list.
 
-# SEQUENCE
+## SEQUENCE
 
-## Implementations
+### Implementations
 
-### Circular Array based
+#### Circular Array based
 
 - **O(n)** - insert/removeAtRank,addBefore,addAfter,remove
 - **O(1)** - replaceAtRank, first, last, prev,next
 - Use a circular array with `f,l` for first, last respectively 
 
-### Linked list based
+#### Linked list based
 
 - **O(n)** - Any *rank* based methods (elemAtRank,replaceAtRank,etc)
 - **O(1)** - Any *position* based method
 
 ![](./images/Sequence Implementation Comparison.png)
 
-# TREES
+## TREES
 
-
-## Vocabulary
+### Vocabulary
 
 |Term|Meaning|
 |----|-------|
@@ -159,7 +160,7 @@
 |Path|A sequence of nodes such that any two consecutive nodes form an edge|
 |Subtree| Tree consisting of node and its descendants|
 
-## Methods
+### Methods
 
 |Method|Meaning|Complexity|
 |------|-------|----------|
@@ -173,18 +174,18 @@
 |`isRoot(p)`|Tests if node is root|$O(1)$|
 |`element replace(p,e)`|Replace the element at node `p` with `e` and return old element|$O(1)$|
 
-## Tree Nodes
+### Tree Nodes
 
 - Node objects implement the **Position** ADT
 
-### General 
+#### General 
 
 - Node:
 	- Element
 	- Parent Node
 	- Sequence of children nodes
 
-### Binary
+#### Binary
 
 - Node:
 	- Element
@@ -254,11 +255,11 @@
 	 
 - All operations are $O(1)$ except `Iterator` and `positions` 
 
-## Traversal
+### Traversal
 
 ![](./images/tree.gif)
 
-### Preorder
+#### Preorder
 
 - RESULT : $1 \rightarrow 2 \rightarrow 4 \rightarrow 5 \rightarrow 3$
 
@@ -272,7 +273,7 @@
 	4. Traverse the right subtree by recursively calling the preorder function.
 
 	
-### Postorder
+#### Postorder
 
 - RESULT : $4 \rightarrow 5 \rightarrow 2 \rightarrow 3 \rightarrow 1$
 
@@ -281,7 +282,7 @@
 	- go back to deepest level and continue
 	- Root node is counted last
 
-### Level numbering
+#### Level numbering
 
 - RESULT : $1 \rightarrow 2 \rightarrow 3 \rightarrow 4 \rightarrow 5$
 
@@ -298,8 +299,6 @@
 	- **after** its left subtree
 	- **before** its right subtree
 
-
-
 #### Euler Tour
 
 - An **Euler Tour** walks around the tree and vists each node **three times**
@@ -309,13 +308,13 @@
 
 - Euler tour is $O(n)$
 
-# Priority Queues
+## Priority Queues
 
 - Stores a colletion of prioritized elements, referred to as **values**
 - Insertion is arbitrary, removal is **prioritized**
 - Each entry is a key-value pair
 
-## Properties and Subclasses
+### Properties and Subclasses
 
 |Method|Action|
 |------|------|
@@ -323,7 +322,7 @@
 |`removeMin()`|Removes and returns the entry with highest priority (smallest key)|
 |`min()`| Returns (but does not remove) the entry with highest priority (smallest key)|
 
-### Total Order Relations
+#### Total Order Relations
 
 - Two distinct entries in a PQ can have the same key.
 	- Therefore, a comparison rule needs to be robust
@@ -333,11 +332,11 @@
 	- **Antisymmetric**: $(k_1 \leq k_2) \land (k_2 \leq k_1) \rightarrow k_1 = k_2$
 	- **Transitive**: $(k_1 \leq k_2) \land (k_2 \leq k_3) \rightarrow k_1 \leq k_3$
 
-### Entry ADT
+#### Entry ADT
 
 - The **Entry** ADT is a key-value pair, with methods `getKey`,`getValue`
 
-### Comparator ADT
+#### Comparator ADT
 
 - A comparator encapsulates the action of comparing two objects according to a given total order relation.
 
@@ -348,21 +347,21 @@ int compare(a,b): // returns integer i s.t.
 	i > 0 if a>b;
 ```
 
-## Sorting
+### Sorting
 
 - We can use a PQ to sort a set of **comparable** elements
 	1. Insert the elements one after the other with `insert`
 	2. Remove the elements in sorted order with a series of `removeMin`
 
-### Selection Sort
+#### Selection Sort
 1. Insert the elements into the PQ with `n` `insert`s : **O(n)**
 2. Remove the elements in sorted order with `n` `removeMin`s: **O(n^2)**
 
 - Total time complexity is **O(n)**
 
-### Insertion Sort
+#### Insertion Sort
 
-#### External
+##### External
 
 1. Remove an element from the input data
 2. Insert the element into the correct position in the already-sorted list
@@ -372,18 +371,18 @@ int compare(a,b): // returns integer i s.t.
 	- If sequence is already sorted: **O(n)**
 	- Otherwise: **O(n^2)**
 
-### In Place
+#### In Place
 
 - Use swaps instead of a second list
 
-## Implementations
+### Implementations
 
-### Unsorted List
+#### Unsorted List
 
 - **O(1)** - `insert`
 - **O(n)** - `removeMin,min`
 
-### Sorted List
+#### Sorted List
 
 - **O(n)** - `insert`
 - **O(1)** - `removeMin,min` (since the smallest key is at the beginning)
