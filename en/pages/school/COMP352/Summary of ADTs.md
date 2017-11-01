@@ -1,3 +1,5 @@
+[gimmick: math]()
+
 # Abstract Data Types
 
 ## General Data Structure Operation Complexity
@@ -6,7 +8,7 @@
 ## Java Centric ADT Operation Complexity
 ![](./images/Java Centric ADT Comparison.png)
 
-## ARRAY 
+## Array 
 
 - PROS:
 	- $O(1)$ for Random or Sequential Access.
@@ -16,7 +18,7 @@
 	- $O(n)$ for most operations
 	- Inflexible.
 	
-## LIST
+## List
 
 ### Implementations
 
@@ -35,7 +37,7 @@
 - **O(1)** Append, prepend, insert(head/tail), removeFirst
 - **O(n)** lookup, get, search, insert (worst case), removeLast
 
-## STACK
+## Stack
 
 - Push/pop operations are O(1).
 
@@ -50,7 +52,7 @@
 
 - Top element stored as the head.
 
-## QUEUE
+## Queue
 
 ### Implementations
 
@@ -77,12 +79,12 @@
 - DEQUEUE:
 	- Remove head, make `head+1` new head. 
 
-## DEQUE
+## Deque
 
 - Conceptually similar to a queue, but insertion and removal supported at either end.
 - Best implemented with a doubly-linked list. 
 
-## LINKED LISTS
+## Linked Lists
 
 ### Implementations
 
@@ -102,7 +104,7 @@
 
 - Can be singly or doubly linked, but avoids null pointers by 'wrapping around' back to the head when tail is reached.
 
-## ARRAY LIST
+## ArrayList
 
 - Like an array, but can hold arbitrary number of elements.
 
@@ -121,11 +123,11 @@
 
 - Improves `add(),remove()` to `O(1)`
 
-## NODE LIST
+## NodeList
 
 - Uses the **Position** ADT to locate elements of the list.
 
-## SEQUENCE
+## Sequence
 
 ### Implementations
 
@@ -142,7 +144,7 @@
 
 ![](./images/Sequence Implementation Comparison.png)
 
-## TREES
+## Trees
 
 ### Vocabulary
 
@@ -194,14 +196,14 @@
 	- Right Child
 
 
-## Types of Trees
+### Types of Trees
 
-### Ordered Trees
+#### Ordered Trees
 
 - An **ordered tree** has a linear ordering defined for its children
 	- e.g. Section 1 -> {Chapter 1, Chapter 2, Chapter 3}
 
-### Binary trees
+#### Binary trees
 
 - Each internal node has **at most** 2 children.
 	- Left child & right child
@@ -216,7 +218,7 @@
 	- hasLeft(p)
 	- hasRight(p)
 
-#### Properties of Binary Trees
+##### Properties of Binary Trees
 
 |Symbol|Meaning|Associated Properties|
 |------|-------|---------------------|
@@ -225,14 +227,14 @@
 |`i`|number of internal nodes| $ i \geq h$|
 |`h`|height of tree| $h \leq \frac{n-1}{2}$, $ h \geq log_2(e)$, $ h \geq log_2(n+1) - 1$|
 
-#### Subtypes of Binary Tree
+##### Subtypes of Binary Tree
 
-##### Arithmetic Expression Tree
+###### Arithmetic Expression Tree
 
 - Each internal node is an **operator**	
 - Each external node is an **operand**
 
-##### Decision Tree
+###### Decision Tree
 
 - Flowchart with yes/no answers
 - Internal nodes: **questions with Y/N answer**

@@ -1,3 +1,5 @@
+[gimmick: math]()
+
 # Analysis of Algorithms
 
 ## Runtime Complexity
@@ -15,7 +17,7 @@ Efficiency of run-time algorithms (ordered from fastest to slowest):
 |Exponential|$2^n$|
 |Factorial|$n!$|
 
-### Estimating Running times
+## Estimating Running times
 
 Notations:
 
@@ -25,7 +27,7 @@ Notations:
 |Big-$\Omega$ | $\Omega(n)$ | Lower bound| $ f(n) \geq cg(n) \text{ for } n \geq n_0 $|
 |Big-$\Theta$ | $\Theta(n)$ | Both lower and upper bounds| $ c_1g(n) \leq f(n) \leq c_2g(n) \text{ for } n \geq n_0 $|
 
-### Limit method (domination)
+## Limit method (domination)
 
 If you have $f(n)$ and want to see if it's $O(g(n))$:
 
