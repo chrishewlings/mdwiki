@@ -11,11 +11,11 @@
 ## Array 
 
 - PROS:
-	- $O(1)$ for Random or Sequential Access.
+	- \\(O(1)\\) for Random or Sequential Access.
 
 - CONS:
 	- Size must be defined *a priori*
-	- $O(n)$ for most operations
+	- \\(O(n)\\) for most operations
 	- Inflexible.
 	
 ## List
@@ -166,15 +166,15 @@
 
 |Method|Meaning|Complexity|
 |------|-------|----------|
-|`iterator()`|Returns an iterator of all elements stored at nodes of the tree|$O(n)$|
-|`positions()`|Returns an iterable collection of all nodes of the tree||$O(n)$|
-|`position root()`|Returns the root node|$O(1)$|
-|`position parent()`|Returns the parent of p|$O(1)$|
-|`Iterable children(p)`|Returns a collection containing all children of p|$O(c_n)$|
-|`isInternal(p)`|Tests if node is internal|$O(1)$|
-|`isExternal(p)`|Tests if node is external|$O(1)$|
-|`isRoot(p)`|Tests if node is root|$O(1)$|
-|`element replace(p,e)`|Replace the element at node `p` with `e` and return old element|$O(1)$|
+|`iterator()`|Returns an iterator of all elements stored at nodes of the tree|\\(O(n)\\)|
+|`positions()`|Returns an iterable collection of all nodes of the tree||\\(O(n)\\)|
+|`position root()`|Returns the root node|\\(O(1)\\)|
+|`position parent()`|Returns the parent of p|\\(O(1)\\)|
+|`Iterable children(p)`|Returns a collection containing all children of p|\\(O(c_n)\\)|
+|`isInternal(p)`|Tests if node is internal|\\(O(1)\\)|
+|`isExternal(p)`|Tests if node is external|\\(O(1)\\)|
+|`isRoot(p)`|Tests if node is root|\\(O(1)\\)|
+|`element replace(p,e)`|Replace the element at node `p` with `e` and return old element|\\(O(1)\\)|
 
 ### Tree Nodes
 
@@ -222,10 +222,10 @@
 
 |Symbol|Meaning|Associated Properties|
 |------|-------|---------------------|
-|`n`|number of nodes| $n = 2e-1 = 2i + 1$|
-|`e`|number of external nodes| $e = i+1$, $e \leq 2^h$|
-|`i`|number of internal nodes| $ i \geq h$|
-|`h`|height of tree| $h \leq \frac{n-1}{2}$, $ h \geq log_2(e)$, $ h \geq log_2(n+1) - 1$|
+|`n`|number of nodes| \\(n = 2e-1 = 2i + 1\\)|
+|`e`|number of external nodes| \\(e = i+1\\), \\(e \leq 2^h\\)|
+|`i`|number of internal nodes| \\( i \geq h\\)|
+|`h`|height of tree| \\(h \leq \frac{n-1}{2}\\), \\( h \geq log_2(e)\\), \\( h \geq log_2(n+1) - 1 \\)|
 
 ##### Subtypes of Binary Tree
 
@@ -244,8 +244,8 @@
 
 ##### List
 
-- All operations are $O(1)$ except `Iterator` and `positions`  
-- Since there are at most two children of any node, `children` is reduced to $O(1)$.
+- All operations are \\(O(1)\\) except `Iterator` and `positions`  
+- Since there are at most two children of any node, `children` is reduced to \\(O(1)\\).
 
 ##### Array
 
@@ -255,7 +255,7 @@
 	- If **left** child: `rank(node) = 2 * rank(parent(node))`
 	- If **right** child: `rank(node) = 2 * rank(parent(node) + 1)`
 	 
-- All operations are $O(1)$ except `Iterator` and `positions` 
+- All operations are \\(O(1)\\) except `Iterator` and `positions` 
 
 ### Traversal
 
@@ -263,7 +263,7 @@
 
 #### Preorder
 
-- RESULT : $1 \rightarrow 2 \rightarrow 4 \rightarrow 5 \rightarrow 3$
+- RESULT : \\(1 \rightarrow 2 \rightarrow 4 \rightarrow 5 \rightarrow 3\\)
 
 - Root visited first. **Root, Left, Right.**
 	- Subtrees rooted as its children traversed recursively, left to right 
@@ -277,7 +277,7 @@
 	
 #### Postorder
 
-- RESULT : $4 \rightarrow 5 \rightarrow 2 \rightarrow 3 \rightarrow 1$
+- RESULT : \\(4 \rightarrow 5 \rightarrow 2 \rightarrow 3 \rightarrow 1\\)
 
 - Bottom left visited first. **Left, Right, Root.**
 	- move right until no more children, then move up one level
@@ -286,7 +286,7 @@
 
 #### Level numbering
 
-- RESULT : $1 \rightarrow 2 \rightarrow 3 \rightarrow 4 \rightarrow 5$
+- RESULT : \\(1 \rightarrow 2 \rightarrow 3 \rightarrow 4 \rightarrow 5\\)
 
 - Start at root
 	- Visit all nodes at depth `d`
@@ -294,7 +294,7 @@
 
 #### In Order
 
-- RESULT : $4 \rightarrow 2 \rightarrow 5 \rightarrow 1 \rightarrow 3$
+- RESULT : \\(4 \rightarrow 2 \rightarrow 5 \rightarrow 1 \rightarrow 3\\)
 
 - **Left, Root, Right.**
 - An **inorder** traversal visits a node:
@@ -308,7 +308,7 @@
 	- From below: inorder
 	- On the right : postorder
 
-- Euler tour is $O(n)$
+- Euler tour is \\(O(n)\\)
 
 ## Priority Queues
 
@@ -330,9 +330,9 @@
 	- Therefore, a comparison rule needs to be robust
 
 - Three properties:
-	- **Reflexive**: $ k \leq k$
-	- **Antisymmetric**: $(k_1 \leq k_2) \land (k_2 \leq k_1) \rightarrow k_1 = k_2$
-	- **Transitive**: $(k_1 \leq k_2) \land (k_2 \leq k_3) \rightarrow k_1 \leq k_3$
+	- **Reflexive**: \\( k \leq k\\)
+	- **Antisymmetric**: \\((k_1 \leq k_2) \land (k_2 \leq k_1) \rightarrow k_1 = k_2\\)
+	- **Transitive**: \\((k_1 \leq k_2) \land (k_2 \leq k_3) \rightarrow k_1 \leq k_3\\)
 
 #### Entry ADT
 
