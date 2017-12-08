@@ -1,3 +1,5 @@
+#C
+
 ## Functions
 
 ```c

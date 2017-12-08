@@ -1,11 +1,11 @@
-# LISP 
+# Common Lisp 
 
 ## Basic syntax
 
 - Always (**function-name** arguments)
 - Infix everything
-    * - `(* 2 3 4) = 24`
-    * - `(< 1 3 2) = NIL` (1 < 3 < 2).
+    * `(* 2 3 4) = 24`
+    * `(< 1 3 2) = NIL` (1 < 3 < 2).
 
 - To prevent subexpressions being evaluated, quote them:
     * `(/ (* 2 6) 3) = 4`
@@ -52,10 +52,12 @@
 > (list 1 2 3 (list ’a ’b 4) 5) 
 (1 2 3 (A B 4) 5)
 ```
+
 #### `append`
 
-- Append takes ONLY LISTS. Syntax error for non-lists.
-- Creates a list by concatenating existing lists
+- Append takes ONLY LISTS. Syntax error for non-lists.  
+- Creates a list by concatenating existing lists  
+
 ```
 > (append '(1 2) '(3 4))
 (1 2 3 4)
@@ -87,14 +89,17 @@
 
 ### `if`
 
+```lisp
 ( if *testExpr* *thenExpr* )  
 ( if *testExpr* *thenExpr* *elseExpr* )  
-
+```
 So if (*predicate* *expression* *expression*).
 
 ### `cond`
 
+```lisp
 ( cond (q1 a1) (q2 a2) ... (else an) )
+```
 
 For the first `q` to eval true, then the corresponding `a` is evaluated and returned
 If no `q` evals true, returns the `an` value
@@ -128,6 +133,7 @@ n.b. `(cons 'a)` is a syntax error, not enough args
 ( defun *name* (*formal parameter list*) body )  
 
 ex. 
+
 ```
 (defun absdiff (x y)
     (if (> x y)
@@ -143,7 +149,7 @@ ex.
 
 ### Anonymous / Lambda functions
 
-(lambda (*formal parameter list*) (*body*) )
+`(lambda (*formal parameter list*) (*body*) )`
 
 ex. `( (lambda (x) (* x x )) 3 ) ` -> 9 
 
@@ -162,7 +168,8 @@ ex. `( (lambda (x) (* x x )) 3 ) ` -> 9
 
 
 1) Base case: If the list is empty, then sum is 0.
-2) Recursive case: Add the head element to the sum of the elements of the tail.
+2) Recursive case: Add the head element to the sum of the elements of the tail.  
+
 ```
 (defun sum (lst)
   (cond ((null lst) 0)
@@ -181,6 +188,7 @@ ex. `( (lambda (x) (* x x )) 3 ) ` -> 9
 
 ### PRINT
 
+```lisp
 (print '(a b c)) - 
 
 (A B C)
@@ -251,3 +259,4 @@ ex. `( (lambda (x) (* x x )) 3 ) ` -> 9
 
 ((A) (B) (C))
 ((A) (B) (C))
+```
