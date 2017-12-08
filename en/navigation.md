@@ -91,5 +91,12 @@
   * # COMP 352
   * [Abstract Data Types](pages/school/COMP352/Summary of ADTs.md)
   * [Algorithmic Analysis](pages/school/COMP352/Algorithmic Analysis.md)  
+  * # COMP 348
+  * [Prolog](pages/school/COMP348/Prolog Overview.md)
+  * [Lisp](pages/school/COMP348/Lisp Overview.md)
+  * [C](pages/school/COMP348/C Overview.md)
+  * [Ruby](pages/school/COMP348/Ruby Overview.md)
+  * [AspectJ](pages/school/COMP348/AspectJ Overview.md)
+
 
 [gimmick:themechooser](Choose theme)
