@@ -34,6 +34,12 @@ person2 = person1
 
 ## Methods
 
+- Methods can be called without parentheses.
+- Methods do not overload like they would in Java, e.g. defining a method twice (with different signatures) the latter one replaces the former.
+- In general: 
+    - methods with a `?` return a boolean value.
+    - methods with a `!` will perform an operation in-place, instead of creating a new object. (e.g. `collect!`, `sort!`, `reverse!`)
+
 - Methods can be provided with default variables, and are variadic up to the number of parameters in the method.
 
 ```ruby
@@ -88,13 +94,18 @@ ModuleName
 #### Classes
 
 - Defined by the `class` keyword.
-- Every class must contain an `initialize` method.
+- Every class must contain an `initialize` method, which is **private**.
+- defining class methods (like static in Java) uses the `<ClassName>.<methodName> construct`
+- Additional functionality can be defined on an instantiated object via : def `<obj_name>.<method_name>` followed by a function definition.
+
+
 
 - Instantiation:  
 	- `object = ClassName.new(<params>`
 
 - Accessing class members:
 	- Using the `attr_accessor :var1, var2` will implicitly define available getter/setters, retrives with `obj.var1`
+    - `attr_accessor` works with instance variables only, not class variables.
 
 ### Inheritance:
 
@@ -107,8 +118,12 @@ class Student < Person
 end
 ```
 
+- You can call `super()` to refer back to a parent class constructor.
+
 #### Arrays
 - An array is an **ordered** collection of elements of any type.
+
+
 
 - Creation:
 	1. `a = ["hello",1,2,4.5]`
@@ -122,6 +137,22 @@ end
 - Modification:
 	- `a.pop` will remove & return the last element
 	- `a.unshift(<item>)` will prepend an item
+
+##### Array operators and methods
+
+|Operator|Action|
+|--------|------|
+|`&` | Array intersection|
+|`+` | Array union |
+|`-` | Array difference 
+
+|Method|Action|
+|------|------|
+|`collect {|elem| #action }` | performs `action` on every element of array, and returns new array as a result.|
+|`reverse` | reverses array and returns a new array with the result.|
+|`sort`| sorts array and returns a new array with the result.| 
+
+
 
 #### Associative Arrays (Hash)
 

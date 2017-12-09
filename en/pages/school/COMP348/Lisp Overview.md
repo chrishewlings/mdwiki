@@ -126,6 +126,69 @@ If no `q` evals true, returns the `an` value
 `(a) == (cons 'a '()) == (cons 'a nil)`
 n.b. `(cons 'a)` is a syntax error, not enough args
 
+
+## Loops
+
+### dotimes
+```
+(dotimes (<counter> <limit> <optional-return-value>)
+    <body>)
+```
+
+### dolist
+
+```
+(dolist (<var> <list-to-iterate-over> <optional-return-value>)
+          <expression>)
+```
+
+###Increment/Decrement
+
+```
+(incf n)
+(decf n)
+```
+
+
+## Blocks
+
+### progn
+
+- Expressions in body eval'ed in order, value of last is returned.
+```
+(progn
+    (print “a”)
+    (print “b”)
+    (+ 11 12))
+```
+
+### block
+
+- like progn, but with a name and an emergency exit.
+- use `return-from` with the blocks name to return a value immediately
+
+```
+   (block head
+      (format t “Here we go.”)
+      (return-from head ‘idea)
+      (format t “We will never see this.”))
+```
+
+### tagbody
+
+- Atoms in body are labels
+
+```
+(tagbody
+      (setf x 0)
+     top
+      (setf x (+ x 1))
+      (format t “~A “ x)
+      (if (< x 10) (go top)))
+```
+
+
+
 ## Functions
 
 ### `defun`
@@ -140,6 +203,19 @@ ex.
       (- x y)
       (- y x)))
 ```
+
+#### Optional and keyworded parameters
+
+- `(defun foo (a b &optional c d) (list a b c d)` 
+  - When called, arguments are bound to the required parameters.
+  - **Case 1**: If there are any arguments left, assign them to the optional parameters.
+  - **Case 2**: If the arguments run out before the optional parameters do, bind them to the value `NIL`.
+
+- `(defun + (&rest numbers) ...)` 
+  - Allows function to be variadic. Arguments after the required ones are assigned to the `&rest` list.
+
+- `(defun foo (&key a b c) (list a b c))`
+  - Allows function to be called with explicitly defined parameters, e.g.` (foo :a 1 :b 2)`
 
 ### Higher order functions
 
@@ -259,4 +335,69 @@ ex. `( (lambda (x) (* x x )) 3 ) ` -> 9
 
 ((A) (B) (C))
 ((A) (B) (C))
+```
+
+
+### Common idioms for functions
+
+- Treat the null list as a base case
+- otherwise, recur on car and cdr
+
+#### Set operations 
+
+##### Membership
+
+```
+(defun is-member? (element lst)
+  (cond
+    ((null lst)  '())
+    ((equal element (car lst))  t)
+    (t  (is-member? element (cdr lst)))))
+```
+
+##### Intersection
+
+```
+(defun my-intersection (lst1 lst2)
+  (cond
+    ((null lst1) '())
+    ;((null lst2) '())
+    ((member (car lst1) lst2)
+     (cons (car lst1)
+           (my-intersection (cdr lst1) lst2)))
+    (t (my-intersection (cdr lst1) lst2))))
+```
+
+##### Union
+
+```
+(defun my-union (lst1 lst2) (cond
+((null lst1) lst2) ((null lst2) lst1) ((member (car lst1) lst2)
+    (cons (car lst1)
+          (my-union (cdr lst1)
+                 (setdiff lst2
+                          (cons (car lst1) '())))))
+(t (cons (car lst1) (my-union (cdr lst1) lst2)))))
+```
+
+##### Difference
+
+```
+(defun setdiff (lst1 lst2)
+  (cond
+    ((null lst1) '())
+    ((null lst2) lst1)
+    ((member (car lst1) lst2)
+     (setdiff (cdr lst1) lst2))
+    (t (cons (car lst1)
+             (setdiff (cdr lst1) lst2)))))
+```
+
+#### Checking if sorted
+
+```
+(defun issorted (lst)
+    (setf lst1 (copy-list lst))
+    (setf lst2) (sort lst #’<))
+    (equal lst lst1)) 
 ```

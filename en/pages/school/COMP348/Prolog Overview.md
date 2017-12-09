@@ -4,6 +4,8 @@
 
 ### Arithmetic
 
+- The `is` keyword takes an arithmetic expression as its right operand, and a variable as its left.
+- All variables on the RHS must be instantiated, but the LHS **cannot** be previously instantiated.
 - tl;dr, use `is` keyword if you want arithmetic evaluated
 
 ### Unification
@@ -13,6 +15,18 @@
     * If it's non-ground, Prolog seeks **instantiations** that could make the query succeed.
 - The process of taking two atoms (one from head, one from rule) and determining if there exists a substitution that makes them the same.
 
+- Example:
+
+Success: 
+```
+healthyFood(bread,X) = healthyFood(Y,salad)
+% X = salad, Y = bread.  
+```
+
+```
+healthyFood(bread,X,milk) = healthyFood(Y,salad,X)
+% Does not unify, because salad != milk.
+```
 ### Instantiation
 
 e.g. `parent(X,tom)`
@@ -25,6 +39,15 @@ e.g. `parent(X,tom)`
 - When an instantiation is found, Prolog **resolves** to a new query.
 - When an atom from the query has been unified with the head of a rule, resolution replaces the atom with the **body** of the rule and applies the substitution to the new query. 
 
+### Function purity
+
+A function is **pure**, if:
+
+1. It always evaluates to the same result, given the same arguments.
+2. The evaluation does not cause any semantically observable side effect or output.
+
+Ex. `print()` causes an output, `today()` returns a different value at different times, so both are impure. 
+
 ## Variables
 
 - Variables always start with `_` or a capital letter
@@ -36,6 +59,42 @@ e.g. `parent(X,tom)`
 
 `findall(X,P,L)`: returns a list L with all values for X that satisfy predicate P. 
 `list_to_set(List,Set)`: returns a set from a list (removes redundancies)
+
+## Control flow
+
+### "Q is true if P is not" : 
+
+```
+Q :- P, !, fail.
+Q.
+```
+
+Ex.
+
+```
+different(X,Y) :- X=Y, !, fail.
+different(X,Y).
+```
+
+### "If P, then Q, else R." (`if-then-else`)
+
+```
+S :- P, !, Q.
+S :- R.
+```
+
+### Cut (`!`)
+
+- `!` always succeeds, but removes any alternative choices (i.e., stops backtracking).
+
+Ex.
+
+```
+max(X,Y,X) :- X>= Y, !.
+max(X,Y,Y).
+```
+
+- If `max` is called with X>Y, the first clause succeeds, and the second clause is never followed.
 
 
 ## Lists
