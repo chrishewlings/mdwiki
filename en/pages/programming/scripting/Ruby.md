@@ -119,7 +119,7 @@ Methods:
 
 Adding members: 
 
-```
+````
 my_hash = { 'Name' => 'Chris', 'Age' => 28, 'Street' => 'Coursol' } 
 ```
 
@@ -135,7 +135,6 @@ my_hash['Name']
 - You can also access values using the `values_at` method, like arrays, by providing one or more keys. This will return the corresponding ordered values as an array.
 
 - You can also query hashes for their contents:
-- 
 ```
 my_array.has_key?('Name')
 -> True
@@ -145,7 +144,8 @@ my_array.empty?
 
 my_array.has_value?('Drolet')
 -> False
-```
+
+#### Hashes, continued
 
 Other useful methods:
 
@@ -206,24 +206,12 @@ _Operator conventions with methods:_
 
 _Methods_:
 
-```
-def addTwo(value1,value2)
-	newValue = value1 + value2
-end 
-```
-- Methods return the value of the last statement executed; i.e. the above method will return `newValue`
-
 - Parameters can be given a default value:
 ```
 def new_method(a = "This", b = "is", c)
 	puts a + ' ' + b + ' ' + c + '.'
 end
 ```
-- Parameter lists can be variable length, using the `*` operator, which turns the variable following it into an array when interpreted:
+- Parameter lists can be variable length, using the `*` operator, which turns the variable following it  into an array when interpreted
 
-``` 
-def calculateValues(x,y,*otherValues)
-	puts otherValues
-end
-```
-
+continue from page 45

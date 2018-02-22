@@ -20,3 +20,9 @@
 |`ImageType`|String|NetRestore/NetInstall|Depends on how you've configured the image|
 |`DisabledSystemIdentifers`|Array of String|Any|Disables certain models of Mac from NetBooting to this server|
 
+## Files in `/var/db`
+
+|File|Description|
+|----|-----------|
+|`.AppleSetupDone`|Created on completion of Setup Assistant. Remove to skip login window and create a new admin account.|
+|`.RunLanguageChooserToo`|If exists, allows user to change language of Setup Assistant, otherwise it follows the installer language|
