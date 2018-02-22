@@ -1,3 +1,5 @@
+[gimmick: math]()
+
 # COMP 353 Midterm Summary
 
 ## Definitions
