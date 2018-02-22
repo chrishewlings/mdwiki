@@ -98,6 +98,8 @@
   * [C](pages/school/COMP348/C Overview.md)
   * [Ruby](pages/school/COMP348/Ruby Overview.md)
   * [AspectJ](pages/school/COMP348/AspectJ Overview.md)
+  * # COMP 353
+  * [Midterm preparation](pages/school/COMP353/Midterm Summary.md)
 
 
 [gimmick:themechooser](Choose theme)
