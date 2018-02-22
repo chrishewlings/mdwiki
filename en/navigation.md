@@ -62,17 +62,17 @@
   * [Bash](pages/software/shells/bash_interactive.md)
   * [Zsh](pages/software/shells/zsh.md)
   * # Networks
-  * [NMAP cheatsheet](pages/software/sysadmin/NMAP cheat sheet.md)
+  * [NMAP cheatsheet]("pages/software/sysadmin/NMAP cheat sheet.md")
 - - - -
 
 [Games]()
 
   * # DOOM
-  * [DOOM Wads to play](pages/games/DOOM\ Wads\ to\ play.md)
+  * [DOOM Wads to play]("pages/games/DOOM Wads to play.md")
   * # DOS
-  * [DOS Games to get](pages/games/DOS\ games\ to\ get.md)
+  * [DOS Games to get]("pages/games/DOS games to get.md")
   * # Emulation
-  * [Recommended console games](pages/games/recommended games per platform.md)
+  * [Recommended console games]("pages/games/recommended games per platform.md")
   * [Games to re-test on HTPC](pages/games/games_to_retest.md)
 - - - -
 
@@ -89,17 +89,17 @@
 [School]()
 
   * # COMP 352
-  * [Abstract Data Types](pages/school/COMP352/COMP 352 - Data Structures.md)
-  * [Algorithmic Analysis](pages/school/COMP352/COMP 352 - Algorithms.md)  
-  * [Sorting](pages/school/COMP352/COMP 352 - Sorting.md)  
+  * [Abstract Data Types]("pages/school/COMP352/COMP 352 - Data Structures.md")
+  * [Algorithmic Analysis]("pages/school/COMP352/COMP 352 - Algorithms.md) " 
+  * [Sorting]("pages/school/COMP352/COMP 352 - Sorting.md) " 
   * # COMP 348
-  * [Prolog](pages/school/COMP348/Prolog Overview.md)
-  * [Lisp](pages/school/COMP348/Lisp Overview.md)
-  * [C](pages/school/COMP348/C Overview.md)
-  * [Ruby](pages/school/COMP348/Ruby Overview.md)
-  * [AspectJ](pages/school/COMP348/AspectJ Overview.md)
+  * [Prolog]("pages/school/COMP348/Prolog Overview.md")
+  * [Lisp]("pages/school/COMP348/Lisp Overview.md")
+  * [C]("pages/school/COMP348/C Overview.md")
+  * [Ruby]("pages/school/COMP348/Ruby Overview.md")
+  * [AspectJ]("pages/school/COMP348/AspectJ Overview.md")
   * # COMP 353
-  * [Midterm preparation](pages/school/COMP353/Midterm Summary.md)
+  * [Midterm preparation]("pages/school/COMP353/Midterm Summary.md")
 
 
 [gimmick:themechooser](Choose theme)
