@@ -357,6 +357,34 @@ WHERE cert# IN (SELECT presC#
 - An object is represented by a typle that has `NULL` in each attribute that is not defined for that entity.
 - May allow efficient query processing but wastes space.
 
+### Functional Dependencies
 
+- Suppose \\(R\\) is a relation schema, and \\(X,Y \subset R\\).
+- A **functional dependency** on \\(R\\) is a statement of the form \\(X\rightarrow Y\\):
+	- *For every valid instance \\(r\\) of \\(R\\), and for all pairs of tuples \\((t1,t2)\\), if \\((t1,t2)\\) agree on the values in \\(X\\), then \\((t1,t2)\\) agree also on the values in \\(Y\\).
+- Generalizes the concept of a key. 
+- Functional dependencies help detect redundancies. The presence of some FDs in a relation suggests possible redundancy.
 
+Example: If A table has fields (Name, SSN, Phone), and multiple entries share the same values for Name and SSN, then there is a **functional dependency** from SSN to Name.
 
+#### Equivalence and Axioms
+
+- Given relation schema \\(R\text{ and subsets } X,Y,Z\\):
+
+|Axiom|Meaning|
+|-----|-------|
+|Reflexivity|If \\(Y \subset X,\text{ then } X \rightarrow Y\\)|
+|Augmentation|If \\(X \rightarrow Y,\text{ then } XZ \rightarrow YZ,\text{ for every } Z\\)|
+|Transitivity|If \\(X \rightarrow Y \text{ and } Y \rightarrow Z,\text{ then } X\rightarrow Z\\)|
+|Union|If \\(X \rightarrow Y \text{ and } X \rightarrow Z,\text{ then } X\rightarrow YZ\\)|
+|Decomposition|If \\(X \rightarrow YZ,\text{ then } X \rightarrow Y, X \rightarrow Z\\)|
+|Pseudotransitivity|If \\(X \rightarrow Y \text{ and } WY \rightarrow Z,\text{ then } XW\rightarrow Z\\)|
+
+- These axioms can be used to discover 'hidden' FDs.
+
+#### Closures
+
+- The **closure of F** (denoted by \\(F^+\\), is the set of every FD such that \\( X \rightarrow Y\\).
+- \\(F^+\\) includes \\(F\\) (and possibly more)
+
+- Given a set \\(F\\), we can find the **closure of X under F**, which is the set of all attributes \\(Y\text{ in } R\text{ that are determined by } X\\).
