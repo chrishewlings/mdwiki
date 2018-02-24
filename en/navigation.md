@@ -100,6 +100,7 @@
   * [AspectJ](pages/school/COMP348/AspectJ%20Overview.md)
   * # COMP 353
   * [Midterm preparation](pages/school/COMP353/Midterm%20Summary.md)
+  * [Tutorials until midterm](pages/school/COMP353/Tutorials.md)
 
 
 [gimmick:themechooser](Choose theme)
