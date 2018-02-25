@@ -3,5 +3,10 @@
   "anchorCharacter": "#",
   "lineBreaks": "gfm",
   "title": "chewlings - mdwiki",
-  "useSideMenu": true
+  //"useSideMenu": true
+   "pageMenu": {
+        "disable": false,
+        "returnAnchor": "[top]",
+        "useHeadings": "h2,h3"
+    }
 }
