@@ -320,8 +320,10 @@ Definition: **Entity-Relationship model** is a graphical approach to data modeli
 
 ### Primitives
 
-![Primitives for ER model](./images/ermodel.png)  
+![Primitives for ER model](./images/ermodel.png) 
+
 - Sharp arrow: at most one ![at most one](./images/AtMostOne.png)  
+
 - Rounded arrow: exactly one ![exactly one](./images/ExactlyOne.png)  
 
 ### Converting n-ary relationships
