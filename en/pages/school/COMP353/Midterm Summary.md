@@ -2,33 +2,30 @@
 
 # COMP 353 Midterm Summary
 
-## Definitions
+## Introduction
+### Various Definitions
 
 |Term|Definition|Characteristics|
 |----|----------|--------------|
 |Database|Collection of organized data on persistent storage.||
-|Database Management System (DBMS)| A complex software package to store and manage databases.|<ul><li>**Access & Manipulation**: Convenient, efficient, and secure.</li><li>**Programming interface**: Users can create, query, and modify data.</li><li>**Persistent Storage**: Storage of data over long period of time.</li><li>**Transaction management/recovery**: Controls access with ACID principles.</li></ul>|
+|Database Management System (DBMS)| A complex software package to store and manage databases.|<dl><dt>Access &amp; Manipulation:</dt><dd>Convenient, efficient, and secure.</dd><dt>Programming interface:</dt><dd>Users can create, query, and modify data.</dd><dt>Persistent Storage:</dt><dd>Storage of data over long period of time.</dd><dt>Transaction management/recovery:</dt><dd>Controls access with ACID principles.</dd></dl>|
 |Database System| Database + DBMS||
-|ACID|Atomicity, Consistency, Isolation, Durability||
+|ACID|Atomicity, Consistency, Isolation, Durability|<dl><dt>Atomicity</dt><dd>- All transactions are committed completely, or not at all.</dd><dt>Consistency</dt><dd>- Any transaction leaves the DB in a valid state. </dd><dt>Isolation</dt><dd>- Conncurrent transactions do not interfere or collide with one another.</dd><dt>Durability</dt><dd>Once a transaction is commmitted, it is stored permanently.</dd></dl>|
 |Instance| Current content of the database||
 |Schema| Structure of the data, described by some model||
 |Data Independence| Ability to modify definition of schema at one level, without affecting definitions at a higher level.|<ul><li>**Logical Data Independence**: Ability to modify logical schema without requiring rewrite of programs</li><li>**Physical Data Independence**: Ability to modify physical schema without causing conceptual schema or applications to be modified.</li></ul>|
-|Data Definition Language (DDL)|Language or notation for defining a database schema||
-|Data Manipulation Language (DML)|Language for accessing and manipulating data||
 |Cartesian Product| Set of all pairs \\((a,b)\\) such that \\(a \in R\\) and \\(b \in S\\)|`SELECT * FROM t1,t2`|
-|Entity Set|||
 |Key|Attibute(s) that uniquely identify an entity within its entity set.||
 |Weak entity set| An entity set without sufficient attributes to form a key.|Uses a set of attributes (*discriminator*) along with a key of a strong entity to form its key.|
 
-
-## History
+### History
 
 |System|Pros|Cons|
 |------|----|----|
 |File Processing Systems|<ul><li>Simple to implement</li><li>Leverages existing filesystem</li></ul>|<ul><li>Wastes space (stores fields in multiple files)</li><li>Inconsistent: Field may be updated in one file, but not another</li><li>No single coherent language</li></ul>|
 |Database Systems|<ul><li>Minimizes data redundancy</li><li>Concurrent access</li><li>Centralized control</li><li>Security and authorization</li><li>Integrity and reliability</li><li>Data abstraction and independence</li></ul>||
 
-## Models
+### Models
 
 |Model|Real-world example|
 |-----|------------------|
@@ -36,8 +33,9 @@
 |Object-Oriented Data Model|<ul><li>ObjectStore</li><li>Postgres</li></ul>|
 |Logical Data Model|<ul><li>Datalog</li></ul>|
 
+### Levels of Abstraction
 
-## Levels of Abstraction
+- Allows system to be simple to interact with, but complex enough to accomplish many tasks. 
 
 |Name|Description|
 |----|-----------|
@@ -45,37 +43,50 @@
 |Conceptual| Defines the logical structure|
 |Physical| Describes the storage structure and indices of data|
 
-## DBMS Architecture
+### DBMS Architecture
 
-- The **query processor** handles:
-    - Queries
-    - Modifications (schema or data)
-- The **query optimizer**, together with the QP:
-    - Find the best plan to process the query
-    - Issue commands to storage manager
-- The **storage manager**:
-    - Obtains information requested from data storage
-    - Modify the information on the data storage when requested.
-- The **Transaction Manager**:
-    - Responsible for data consistency
-    - Ensure simultaneous queries do not interfere with one another
-    - Ensure data integrity under exceptional circumstances (power failure, etc)
+|Name|Responsibilities|
+|----|----------------|
+|Query Processor|<ul><li>Queries</li><li>Modifications (schema or data)</li></ul>|
+|Query Optimizer|<ul><li>Find best plan to process query</li><li>Issue commands to storage manager</li></ul>|
+|Storage Manager|<ul><li>Obtains requested information from storage</li><li>Modify the information on storage when requested</li></ul>|
+|Transaction Manager|<ul><li>Ensure data consistency</li><li>Ensure simultaneous queries do not interfere with one another</li><li>Ensure data integrity under exceptional circumstances (power failure, etc)</li></ul>|
 
+## SQL
 
-## Query languages
-
-### SQL
-
-#### Revisions
+### Revisions
 
 - First developed at IBM (1976).
 - Revised to first standard: SQL-86 (1986)
 - Revised again to second standard: SQL-92 (1992)
 - Latest standard: SQL-99/SQL3.
 
-#### Schema (Data Definition Language) 
+### Schema (Data Definition Language) 
 
-##### Creating tables
+#### Attributes
+
+|Attribute Type|Definition|
+|----|----------|
+|<ul><li>`INT`</li><li>`INTEGER`</li></ul>|Single integer number.|
+|<ul><li>`REAL`</li><li>`FLOAT`</li></ul>|Single floating point number|
+|<ul><li>`DECIMAL(n,d)`</li><li>`NUMERIC(n,d)`</li></ul>|`n` denotes total number of characters, `d` denotes number following decimal point.|
+|<ul><li>`CHAR(n)`</li><li>`BIT(b)`</li></ul>| Fixed length character/bit string, padded if not enough characters.|
+|<ul><li>`VARCHAR(n)`</li><li>`BIT VARYING(n)`</li></ul>|Variable length strings up to `n` characters.|
+|<ul><li>`DATE`</li></ul>|`YYYY-MM-DD`|
+|<ul><li>`TIME`</li></ul>|`HH:MM:SS`|
+
+#### Attribute Properties
+
+|Attribute Property|Definition|
+|------------------|----------|
+|`NOT NULL`| Must have a real value.|
+|`DEFAULT`| Defines a default value for attribute, if it is not provided.|
+|`UNIQUE`| Ensures all values in a column are different.|
+|`PRIMARY KEY`|Combines `NOT NULL` and `UNIQUE`|
+|`FOREIGN KEY`| Uniquely identifies a record in another table.|
+|`CHECK`| Ensures values match a specific condition. Not implemented in MySQL.|
+
+#### Creating tables
 
 ```sql
 CREATE TABLE Star (
@@ -86,49 +97,33 @@ CREATE TABLE Star (
 );
 ```
 
-|Type|Definition|
-|----|----------|
-|`INT`/`INTEGER`|Single integer number.|
-|`REAL`/`FLOAT`|Single floating point number|
-|`DECIMAL(n,d)`/`NUMERIC(n,d)`|`n` denotes total number of characters, `d` denotes number following decimal point.|
-|`CHAR(n)`/`BIT(b)`| Fixed length character/bit string, padded if not enough characters.|
-|`VARCHAR(n)`/`BIT VARYING(n)`|Variable length strings up to `n` characters.|
-|`DATE`|`YYYY-MM-DD`|
-|`TIME`|`HH:MM:SS`|
+#### Altering existing tables
 
-##### Altering existing tables
-
-- Adding columns:
+Example: Adding columns:
 
 ```sql 
-ALTER TABLE Star ADD phone CHAR(16);
+ALTER TABLE Star 
+ADD phone CHAR(16);
 ```
 
-- Removing columns:
+Example: Removing columns
 
 ```sql
-ALTER TABLE Star DROP COLUMN phone;
+ALTER TABLE Star
+DROP COLUMN phone;
 ```
 
-Note: A column cannot be dropped if it is the only remaining one.
+Warning: A column cannot be dropped if it is the only remaining one!
 
-##### Attribute Properties
+### Queries (Data Manipulation Language)
 
-|Property|Result|
-|--------|------|
-|`NOT NULL`| Must have a real value.|
-|`DEFAULT`| Defines a default value for attribute, if it is not provided.|
-
-
-#### Queries (Data Manipulation Language)
-
-##### Selection
+#### Selection
 
 ```sql
 
-SELECT ...
-FROM ...
-WHERE ...
+SELECT <fields>
+FROM <tables>
+WHERE <conditions>;
 ```
 
 ```sql
@@ -137,14 +132,25 @@ FROM Student
 WHERE firstName = 'John' AND GPA > 3;
 ```
 
-###### Qualifiers
+##### Qualifiers
 
 - Following `WHERE`, comparison operators may be used:
     - Arithmetic comparisons: `=, <>, <, >, <=, >=`
     - Arithmetic operators: `+,-,*,/`
     - Boolean operators: `AND,OR,NOT`
 
-###### Basic Aggregation:
+- Make sure when comparing two tables to have title = title, year = year, etc., otherwise duplicates and stuff.
+- Can only use boolean conditions in WHERE clause.
+
+- Pattern matching: Use `LIKE` operator on a string.
+- Use `LIKE "something#%" ESCAPE '#'` to escape and search `something%`
+
+|Character|Action|
+|---------|------|
+|`%`|Any sequence of zero or more characters|
+|`_`|Any single character|
+
+##### Basic Aggregation:
 
 - `NULL`s are ignored.
 
@@ -167,7 +173,9 @@ SELECT COUNT(DISTINCT name)
 FROM Exec;
 ```
 
-###### `GROUP BY`
+Note: `COUNT(*)` will count all rows in the table, whereas `COUNT(columnName)` will only count rows that do not have `NULL` in `columnName`.
+
+##### `GROUP BY`
 
 - `NULL`s are counted.
 - Whatever aggregation used in the `SELECT` statement will be applied only within groups.
@@ -180,11 +188,15 @@ FROM Movie
 GROUP BY studioName;
 ```
 
-###### `HAVING`
+Warning: `GROUP BY` cannot use column aliasing!  
+Warning: When using `GROUP BY` and aggregate functions, any items in the `SELECT` list not used as an argument to an aggregate function must be included in the `GROUP BY` clause.  
+
+##### `HAVING`
 
 - The `HAVING` keyword allows us to choose a group based on a property of the group.
 
-- Example: For those producers who made at least one film prior to 1930, list the total length of the films produced.
+Example: For those producers who made at least one film prior to 1930, list the total length of the films produced.
+
 ```sql
 SELECT Exec.name, SUM(Movie.length)
 FROM Exec, Movie
@@ -193,7 +205,9 @@ GROUP BY Exec.name
 HAVING MIN(Movie.year) < 1930;
 ```
 
-###### `ORDER BY`
+Warning: Only attributes mentioned in `GROUP BY` can appear unaggregated in the `HAVING` clause!
+
+##### `ORDER BY`
 
 - Allows a grouping/relation to be displayed in a specified order.
 
@@ -208,11 +222,26 @@ HAVING MIN(Movie.year) < 1930
 ORDER BY Exec.name ASC;
 ```
 
-##### Insertion
+#### Joins
+
+```sql 
+SELECT ...
+FROM ...
+<LEFT/INNER/RIGHT> JOIN table2 on table1.attr1 = table2.attr1;
+```
+
+|Type|Definition|Comments|
+|----|----------|-------|
+|`INNER JOIN`|Returns records that have matching values in both tables.|Works like set intersection.|
+|`LEFT JOIN`| Returns all records from left table, and matched records from right table.|Always returns all records from left table, even if no matches on the right.|
+|`RIGHT JOIN`| Returns all records from right table, and matched records from left table.|Always returns all records from right table, even if no matches on the left.|
+|`FULL OUTER JOIN`|Returns all records when there is a match in either left or right table record.|Returns all rows from left and right tables.|
+
+#### Insertion
 
 Given schema: `StarsIn (title, year, starName)`
 
-- Adding single elements:
+Example: Adding single elements:
 
 ```sql
 INSERT INTO StarsIn (title,year, starName)
@@ -224,7 +253,7 @@ INSERT INTO StarsIn
 VALUES (’The Maltese Falcon’, 1942, ’Sydney Greenstreet’);
 ```
 
-- Adding multiple elements:
+Example: Adding multiple elements
 
 ```sql
 INSERT INTO StarsIn
@@ -235,7 +264,7 @@ VALUES (filmName1,date1,starName1),
 
 ```
 
-- Adding a full set:
+Example: Adding a full set
 
 ```sql
 INSERT INTO Studio(name)
@@ -245,16 +274,17 @@ WHERE studioName NOT IN (SELECT name
                          FROM Studio);
 ```
 
-##### Deletion
+#### Deletion
 
-- Deleting single elements:
+Example: **Deleting single elements**:
+
 ```sql
 DELETE FROM StarIn
 WHERE title = ’The Maltese Falcon’ AND
 starName = ’Sydney Greenstreet’;
 ```
 
-- Deleting multiple elements : Delete from `Studio` those studios not mentioned in `Movie`.
+Example: **Deleting multiple elements** : Delete from `Studio` those studios not mentioned in `Movie`.
 
 ```sql
 DELETE FROM Studio
@@ -262,7 +292,7 @@ WHERE name NOT IN (SELECT StudioName
 FROM Movie);
 ```
 
-##### Updating
+#### Updating
 
 Example: Modify table Exec by attaching the title ‘Pres. ’ in front of the name
 of every movie executive who is also the president of some studio.
@@ -270,23 +300,36 @@ of every movie executive who is also the president of some studio.
 ```sql
 UPDATE Exec
 SET name = ’Pres. ’ || name 
-WHERE cert# IN (SELECT presC#
+WHERE cert IN (SELECT presC
                 FROM Studio);
 ```
 
+## Relational Algebra
+
+|Name|Operator|SQL Equivalent|Action|Example|
+|----|--------|--------------|------|-------|
+|Select|\\(\sigma_p(r)\\)|`SELECT *...`|Selects tuples from relation \\(r\\)that satisfy a predicate \\(p\\)|\\(\sigma_{name="lemon"}(Cats)\\)|
+|Project|\\(\Pi_a_n(r)\\)|`SELECT x,y...`|Selects columns from relation \\(r\\)that match \\(a_n\)|\\(\Pi_{name,breed}(Cats)\\)|
+|Union|\\(\cup\\)|`UNION`| Joins two given relations.| \\(A \cup B\\)|
+|Difference|\\(A - B\\)|n/a| Subtracts elements present in relation B from relation A.| |
+|Cartesian Product|\\(A x B\\)|`JOIN`|Combines information of two different relations together.||
 
 ## Data Models
 
-### Entity-Relationship
+Definition: **Entity-Relationship model** is a graphical approach to data modeling, allowing *n-ary* relationships.
 
-- Graphical approach
-- Allows **n-ary** relationships.
+### Primitives
 
-#### Primitives
+![Primitives for ER model](./images/ermodel.png)  
+- Sharp arrow: at most one ![at most one](./images/AtMostOne.png)  
+- Rounded arrow: exactly one ![exactly one](./images/ExactlyOne.png)  
 
-![Primitives for ER model](./images/ermodel.png)
+### Converting n-ary relationships
 
-#### Relationships
+- Create a new connecting weak entity set to represent rows of a relationship set.
+- Many-one relationships from the connecting weak entity set to the others. 
+
+### Relationships
 
 |Types|Representation|Meaning|
 |-----|--------------|-------|
@@ -295,10 +338,17 @@ WHERE cert# IN (SELECT presC#
 |A isa B| \\(A \triangleright B\\) | \\(A\\) inherits from \\(B\\)|
 
 - Sometimes it is more appropriate to associate attributes with a relationship rather than an entity set.
-
 - An inherited entity has whatever attributes any of its components have, and participates in whatever relationships its components participate in. 
 
-#### Constraints
+### Relationships -> Weak Entity Sets
+
+|Type|Characteristics|
+|----|---------------|
+|Many to Many| <ul><li>Convert relationship \\(R\\) to a weak entity set, joined by weak relatonships.</li><li>Add its own attributes and keys of the parent as attributes.</li></ul>|
+|Many to One) | <ul><li>Convert relationship \\(R\\) to a weak entity set, joined by weak relationships. </li><li>Add the keys of the *many* side as key attributes, plus the attributes of \\(R\\).</li><li>On the *one* side, assign key(s) of many side as keys, and any keys of the one side as regular attributes.</li></ul>|
+|One-to-One|<ul><li>Split relationship \\(R\\) into weak entity set and two weak relationships \\(R,WR1,WR2\\).</li><li>One of the two weak relationships will be one-to-one on both sides, and the other will be many to one.</li></ul>|
+
+### Constraints
 
 - **Single-value** constraints are requirements that a value be unique.
     - e.g. The value for \\(A\\) must exist, if \\(A\\) is part of the key.
@@ -310,11 +360,6 @@ WHERE cert# IN (SELECT presC#
 - **Relationship degree** constraints restrict the number of entities in the entity sets in the relationship.
     - e.g. A student may enroll in \\(\leq 5\\) courses, represented by writing the constraint along the relationship line.
 - **Domain** constraints require that the value of an attribute must be within a specific set of values.
-
-### Object-Oriented
-
-- Only allows defining **binary** relationships.
-- An object must be a member of exactly one class. 
 
 ### Converting to Relational Data Model
 
@@ -341,6 +386,13 @@ WHERE cert# IN (SELECT presC#
 
 #### Dealing with *isa* hierarchies
 
+|Method|Characteristics|Attributes|Illustration|
+|------|---------------|----------|------------|
+|Straight E/R|<ul><li>One relation per subclass</li></ul>|<ul><li>Key attributes of parents</li><li>Attributes of that subclass</li></ul>|![StraightERMethod.png](./images/StraightERMethod.png)|![StraightERMethod.png](./images/StraightERMethod.png)|
+|Object-Oriented|<ul><li>One relation per subset of subclasses</li></ul>|<ul><li>Inherit keys and other attributes from parent</li></ul>|![OOMethod.png](./images/OOMethod.png)|
+|Null method|<ul><li>One single relation</li></ul>|<ul><li>Entities have `NULL` in attributes that don't belong to them.</li></ul>|![NullMethod.png](./images/NullMethod.png)|
+
+
 ##### E/R approach
 
 - For each entity set \\(E\\), create a table \\(e\\) with attributes \\(a\\) such that:
@@ -359,15 +411,20 @@ WHERE cert# IN (SELECT presC#
 
 ### Functional Dependencies
 
-- Suppose \\(R\\) is a relation schema, and \\(X,Y \subset R\\).
-- A **functional dependency** on \\(R\\) is a statement of the form \\(X\rightarrow Y\\):
-	- *For every valid instance \\(r\\) of \\(R\\), and for all pairs of tuples \\((t1,t2)\\), if \\((t1,t2)\\) agree on the values in \\(X\\), then \\((t1,t2)\\) agree also on the values in \\(Y\\).
-- Generalizes the concept of a key. 
-- Functional dependencies help detect redundancies. The presence of some FDs in a relation suggests possible redundancy.
+Definition: A **functional dependency** is a constraint derived from *meaning* and *interrelation* of attributes.
 
+- A set of attributes \\(X\\) functionally determines a set of attributes \\(Y\\) if whenever 2 tuples have same value for \\(X\\), they **must have** the same value for \\(Y2\\).
+
+- More formally:
+    - Suppose \\(R\\) is a relation schema, and \\(X,Y \subset R\\).
+    - A **functional dependency** on \\(R\\) is a statement of the form \\(X\rightarrow Y\\):
+	   - *For every valid instance \\(r\\) of \\(R\\), and for all pairs of tuples \\((t1,t2)\\), if \\((t1,t2)\\) agree on the values in \\(X\\), then \\((t1,t2)\\) agree also on the values in \\(Y\\).
+      
 Example: If A table has fields (Name, SSN, Phone), and multiple entries share the same values for Name and SSN, then there is a **functional dependency** from SSN to Name.
 
-#### Equivalence and Axioms
+#### Deriving additional functional dependencies
+
+##### Method 1: Using inference rules
 
 - Given relation schema \\(R\text{ and subsets } X,Y,Z\\):
 
@@ -380,11 +437,16 @@ Example: If A table has fields (Name, SSN, Phone), and multiple entries share th
 |Decomposition|If \\(X \rightarrow YZ,\text{ then } X \rightarrow Y, X \rightarrow Z\\)|
 |Pseudotransitivity|If \\(X \rightarrow Y \text{ and } WY \rightarrow Z,\text{ then } XW\rightarrow Z\\)|
 
-- These axioms can be used to discover 'hidden' FDs.
+##### Method 2: Closure test
 
-#### Closures
+Definition: - The **closure of F** (denoted by \\(F^+\\), is the set of every FD such that \\( X \rightarrow Y\\).
 
-- The **closure of F** (denoted by \\(F^+\\), is the set of every FD such that \\( X \rightarrow Y\\).
-- \\(F^+\\) includes \\(F\\) (and possibly more)
+- \\(Y\\) is a set of attributes, as is \\(Y^+\\).
 
-- Given a set \\(F\\), we can find the **closure of X under F**, which is the set of all attributes \\(Y\text{ in } R\text{ that are determined by } X\\).
+Example: Given \\(R(X,Y,Z,W)\\) with FDs \\(W\rightarrow Y, X \rightarrow Z\\), prove or disprove \\(F |= WX \rightarrow Y \\).
+
+|Step|Action|Result|
+|----|------|------|
+|Basis step| Assume the closure of a given attribute contains itself.|\\(WX^+ = WX\\)|
+|Inductive step|<ul><li>Find FDs with LHS \\(X\\) containing members of \\(Y^+\\).</li><li> If \\(X\rightarrow A), add \\(A\text{ to } Y^+\\)</li></ul>|<ul><li><ul><li>\\(W\rightarrow Y\\), so add Y to RHS: \\(WX^+ = WXY\\)</li><li>\\(X\rightarrow Z\\), so add Z to RHS: \\(WX^+ = WXYZ\\)</li></ul></li><li>\\(Y \in WX^+\text{ , so } WX \rightarrow Y\\) is implied.</li></ul>|
+
