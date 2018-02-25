@@ -390,7 +390,7 @@ Definition: **Entity-Relationship model** is a graphical approach to data modeli
 
 |Method|Characteristics|Attributes|Illustration|
 |------|---------------|----------|------------|
-|Straight E/R|<ul><li>One relation per subclass</li></ul>|<ul><li>Key attributes of parents</li><li>Attributes of that subclass</li></ul>|![StraightERMethod.png](./images/StraightERMethod.png)|![StraightERMethod.png](./images/StraightERMethod.png)|
+|Straight E/R|<ul><li>One relation per subclass</li></ul>|<ul><li>Key attributes of parents</li><li>Attributes of that subclass</li></ul>|![StraightERMethod.png](./images/StraightERMethod.png)|
 |Object-Oriented|<ul><li>One relation per subset of subclasses</li></ul>|<ul><li>Inherit keys and other attributes from parent</li></ul>|![OOMethod.png](./images/OOMethod.png)|
 |Null method|<ul><li>One single relation</li></ul>|<ul><li>Entities have `NULL` in attributes that don't belong to them.</li></ul>|![NullMethod.png](./images/NullMethod.png)|
 
