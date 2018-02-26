@@ -309,7 +309,7 @@ WHERE cert IN (SELECT presC
 |Name|Operator|SQL Equivalent|Action|Example|
 |----|--------|--------------|------|-------|
 |Select|\\(\sigma_p(r)\\)|`SELECT *...`|Selects tuples from relation \\(r\\)that satisfy a predicate \\(p\\)|\\(\sigma_{name="lemon"}(Cats)\\)|
-|Project|\\(\Pi_a_n(r)\\)|`SELECT x,y...`|Selects columns from relation \\(r\\)that match \\(a_n\)|\\(\Pi_{name,breed}(Cats)\\)|
+|Project|\\(\pi_{a_{n}}(r)\\)|`SELECT x,y...`|Selects columns from relation \\(r\\)that match \\(a_{n}\\)|\\(\Pi_{name,breed}(Cats)\\)|
 |Union|\\(\cup\\)|`UNION`| Joins two given relations.| \\(A \cup B\\)|
 |Difference|\\(A - B\\)|n/a| Subtracts elements present in relation B from relation A.| |
 |Cartesian Product|\\(A x B\\)|`JOIN`|Combines information of two different relations together.||
@@ -336,7 +336,7 @@ Definition: **Entity-Relationship model** is a graphical approach to data modeli
 |Types|Representation|Meaning|
 |-----|--------------|-------|
 |A (many-one) B| \\(\Box \rightarrow \Box\\)| Each entity in \\(A\\) is related to **at most one** entity in \\(B\\).|
-|A (one-one) B | \\(\Box \leftrightarrow \Box\\) | Each entity in \\(A\\) is related to **at most one** entity in \\)B\\), and vice versa.|
+|A (one-one) B | \\(\Box \leftrightarrow \Box\\) | Each entity in \\(A\\) is related to **at most one** entity in \\(B\\), and vice versa.|
 |A isa B| \\(A \triangleright B\\) | \\(A\\) inherits from \\(B\\)|
 
 - Sometimes it is more appropriate to associate attributes with a relationship rather than an entity set.
@@ -450,5 +450,5 @@ Example: Given \\(R(X,Y,Z,W)\\) with FDs \\(W\rightarrow Y, X \rightarrow Z\\), 
 |Step|Action|Result|
 |----|------|------|
 |Basis step| Assume the closure of a given attribute contains itself.|\\(WX^+ = WX\\)|
-|Inductive step|<ul><li>Find FDs with LHS \\(X\\) containing members of \\(Y^+\\).</li><li> If \\(X\rightarrow A), add \\(A\text{ to } Y^+\\)</li></ul>|<ul><li><ul><li>\\(W\rightarrow Y\\), so add Y to RHS: \\(WX^+ = WXY\\)</li><li>\\(X\rightarrow Z\\), so add Z to RHS: \\(WX^+ = WXYZ\\)</li></ul></li><li>\\(Y \in WX^+\text{ , so } WX \rightarrow Y\\) is implied.</li></ul>|
+|Inductive step|<ul><li>Find FDs with LHS \\(X\\) containing members of \\(Y^+\\).</li><li> If \\(X\rightarrow A\text{, add }A\text{ to } Y^+\\)</li></ul>|<ul><li><ul><li>\\(W\rightarrow Y\\), so add Y to RHS: \\(WX^+ = WXY\\)</li><li>\\(X\rightarrow Z\\), so add Z to RHS: \\(WX^+ = WXYZ\\)</li></ul></li><li>\\(Y \in WX^+\text{ , so } WX \rightarrow Y\\) is implied.</li></ul>|
 
