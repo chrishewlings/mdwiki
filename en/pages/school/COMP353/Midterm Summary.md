@@ -1,5 +1,21 @@
 [gimmick: math]()
 
+
+
+<script type="text/javascript">
+$(function(){
+            $(".innerlist").css({"padding-left": "15px"})
+            $(".innerlist > li").css({"padding-bottom": "5px"})
+
+            $("dt").css({"font-weight":"bold","color":"green"})
+            $("dd").css({"margin-left": "10%"})
+            
+});
+</script>
+
+
+
+
 # COMP 353 Midterm Summary
 
 ## Introduction
@@ -10,10 +26,10 @@
 |Database|Collection of organized data on persistent storage.||
 |Database Management System (DBMS)| A complex software package to store and manage databases.|<dl><dt>Access &amp; Manipulation:</dt><dd>Convenient, efficient, and secure.</dd><dt>Programming interface:</dt><dd>Users can create, query, and modify data.</dd><dt>Persistent Storage:</dt><dd>Storage of data over long period of time.</dd><dt>Transaction management/recovery:</dt><dd>Controls access with ACID principles.</dd></dl>|
 |Database System| Database + DBMS||
-|ACID|Atomicity, Consistency, Isolation, Durability|<dl><dt>Atomicity</dt><dd>- All transactions are committed completely, or not at all.</dd><dt>Consistency</dt><dd>- Any transaction leaves the DB in a valid state. </dd><dt>Isolation</dt><dd>- Conncurrent transactions do not interfere or collide with one another.</dd><dt>Durability</dt><dd>Once a transaction is commmitted, it is stored permanently.</dd></dl>|
+|ACID|Atomicity, Consistency, Isolation, Durability|<dl><dt>Atomicity</dt><dd>All transactions are committed completely, or not at all.</dd><dt>Consistency</dt><dd>Any transaction leaves the DB in a valid state. </dd><dt>Isolation</dt><dd>Concurrent transactions do not interfere with one another.</dd><dt>Durability</dt><dd>Once a transaction is commmitted, it is stored permanently.</dd></dl>|
 |Instance| Current content of the database||
 |Schema| Structure of the data, described by some model||
-|Data Independence| Ability to modify definition of schema at one level, without affecting definitions at a higher level.|<ul><li>**Logical Data Independence**: Ability to modify logical schema without requiring rewrite of programs</li><li>**Physical Data Independence**: Ability to modify physical schema without causing conceptual schema or applications to be modified.</li></ul>|
+|Data Independence| Ability to modify definition of schema at one level, without affecting definitions at a higher level.|<dl><dt>Logical Data Independence</dt><dd>Ability to modify logical schema without requiring rewrite of programs</dd><dt>Physical Data Independence</dt><dd>Ability to modify physical schema without causing conceptual schema or applications to be modified.</dd></dl>|
 |Cartesian Product| Set of all pairs \\((a,b)\\) such that \\(a \in R\\) and \\(b \in S\\)|`SELECT * FROM t1,t2`|
 |Key|Attibute(s) that uniquely identify an entity within its entity set.||
 |Weak entity set| An entity set without sufficient attributes to form a key.|Uses a set of attributes (*discriminator*) along with a key of a strong entity to form its key.|
@@ -52,7 +68,7 @@
 |Storage Manager|<ul><li>Obtains requested information from storage</li><li>Modify the information on storage when requested</li></ul>|
 |Transaction Manager|<ul><li>Ensure data consistency</li><li>Ensure simultaneous queries do not interfere with one another</li><li>Ensure data integrity under exceptional circumstances (power failure, etc)</li></ul>|
 
-## SQL
+## SQL - Basics
 
 ### Revisions
 
@@ -61,7 +77,7 @@
 - Revised again to second standard: SQL-92 (1992)
 - Latest standard: SQL-99/SQL3.
 
-### Schema (Data Definition Language) 
+### Schema 
 
 #### Attributes
 
@@ -86,7 +102,7 @@
 |`FOREIGN KEY`| Uniquely identifies a record in another table.|
 |`CHECK`| Ensures values match a specific condition. Not implemented in MySQL.|
 
-#### Creating tables
+## SQL (DDL) - Creating, altering and deleting tables
 
 ```sql
 CREATE TABLE Star (
@@ -97,7 +113,7 @@ CREATE TABLE Star (
 );
 ```
 
-#### Altering existing tables
+### Altering existing tables
 
 Example: Adding columns:
 
@@ -113,18 +129,19 @@ ALTER TABLE Star
 DROP COLUMN phone;
 ```
 
-Warning: A column cannot be dropped if it is the only remaining one!
+## SQL (DML) - Queries
 
-### Queries (Data Manipulation Language)
-
-#### Selection
+### Selection
 
 ```sql
-
-SELECT <fields>
-FROM <tables>
-WHERE <conditions>;
+SELECT S1,S2,...,Sn
+FROM T1,T2,....Tn
+WHERE C1
+GROUP BY A1,...,Ak
+HAVING C2
 ```
+
+- Conditions can be grouped:
 
 ```sql
 SELECT ID
@@ -132,7 +149,18 @@ FROM Student
 WHERE firstName = 'John' AND GPA > 3;
 ```
 
-##### Qualifiers
+- A complex SQL query can be evaluated easily by splitting it into chunks:
+
+|Evaluation Step|Result|
+|---------------|------|
+|Evaluate **FROM-WHERE**: apply \\(C1\text{ on } R1,...,Rn\\) |<img src="./images/GroupBy1.png" height=300 width=550>|
+|**GROUP BY** attributes \\(a_1,...,a_k\\)|<img src="./images/GroupBy2.png" height=300 width=550>|
+|Apply **HAVING** condition \\(C_2\\) to each group|<img src="./images/GroupBy3.png" height=300 width=550>|
+|Compute aggregates in **SELECT**, return result.|<img src="./images/GroupBy4.png" height=300 width=550>|
+
+Hint: `WHERE` clauses contain conditions on **individual tuples**, whereas `HAVING` clauses contain condition on **aggregates**.
+
+#### Qualifiers
 
 - Following `WHERE`, comparison operators may be used:
     - Arithmetic comparisons: `=, <>, <, >, <=, >=`
@@ -140,7 +168,7 @@ WHERE firstName = 'John' AND GPA > 3;
     - Boolean operators: `AND,OR,NOT`
 
 - Make sure when comparing two tables to have title = title, year = year, etc., otherwise duplicates and stuff.
-- Can only use boolean conditions in WHERE clause.
+- When dealing with possible `NULL` values, one can use `IS NULL` and `NOT NULL` to avoid issues. 
 
 - Pattern matching: Use `LIKE` operator on a string.
 - Use `LIKE "something#%" ESCAPE '#'` to escape and search `something%`
@@ -150,7 +178,44 @@ WHERE firstName = 'John' AND GPA > 3;
 |`%`|Any sequence of zero or more characters|
 |`_`|Any single character|
 
-##### Basic Aggregation:
+#### Modifying `WHERE`:
+
+##### `ALL`: Find products more expensive than all products produced by G:
+
+```sql
+SELECT name
+FROM   Product
+WHERE  price > ALL(
+  SELECT price
+  FROM   Product
+  WHERE  maker = ‘G’)
+```
+
+##### `ANY`: Find products more expensive than any **one product** produced by G:
+
+```sql
+SELECT name
+FROM   Product
+WHERE  price > ANY(
+  SELECT price
+  FROM   Product
+  WHERE  maker = ‘G’)
+```
+
+##### `EXISTS` : Find products where there exists some product with the same price produced by G:
+
+```sql
+SELECT name
+FROM   Product p1
+WHERE  EXISTS (
+  SELECT *
+  FROM   Product p2
+  WHERE  p2.maker = ‘G’
+    AND  p1.price =         p2.price)
+```
+
+
+## SQL (DML) - Basic Aggregation:
 
 - `NULL`s are ignored.
 
@@ -175,7 +240,7 @@ FROM Exec;
 
 Note: `COUNT(*)` will count all rows in the table, whereas `COUNT(columnName)` will only count rows that do not have `NULL` in `columnName`.
 
-##### `GROUP BY`
+#### `GROUP BY`
 
 - `NULL`s are counted.
 - Whatever aggregation used in the `SELECT` statement will be applied only within groups.
@@ -189,9 +254,10 @@ GROUP BY studioName;
 ```
 
 Warning: `GROUP BY` cannot use column aliasing!  
-Warning: When using `GROUP BY` and aggregate functions, any items in the `SELECT` list not used as an argument to an aggregate function must be included in the `GROUP BY` clause.  
 
-##### `HAVING`
+Hint: When using `GROUP BY` and aggregate functions, any items in the `SELECT` list not used as an argument to an aggregate function must be included in the `GROUP BY` clause.  
+
+#### `HAVING`
 
 - The `HAVING` keyword allows us to choose a group based on a property of the group.
 
@@ -207,7 +273,7 @@ HAVING MIN(Movie.year) < 1930;
 
 Warning: Only attributes mentioned in `GROUP BY` can appear unaggregated in the `HAVING` clause!
 
-##### `ORDER BY`
+#### `ORDER BY`
 
 - Allows a grouping/relation to be displayed in a specified order.
 
@@ -222,7 +288,7 @@ HAVING MIN(Movie.year) < 1930
 ORDER BY Exec.name ASC;
 ```
 
-#### Joins
+## SQL (DML) - Joining Relations:
 
 ```sql 
 SELECT ...
@@ -237,7 +303,28 @@ FROM ...
 |`RIGHT JOIN`| Returns all records from right table, and matched records from left table.|Always returns all records from right table, even if no matches on the left.|
 |`FULL OUTER JOIN`|Returns all records when there is a match in either left or right table record.|Returns all rows from left and right tables.|
 
-#### Insertion
+- Regular `JOIN`s/`INNER JOIN`s are same as S-F-W queries:
+
+```sql
+SELECT Product.name, Purchase.store
+FROM   Product 
+  JOIN Purchase ON Product.name = Purchase.prodName
+
+// is equivalent to //
+
+SELECT Product.name, Purchase.store
+FROM   Product 
+INNER JOIN Purchase ON Product.name = Purchase.prodName
+
+
+// is equivalent to //
+
+SELECT Product.name, Purchase.store
+FROM   Product, Purchase
+WHERE  Product.name = Purchase.prodName
+```
+
+## SQL (DML) - Inserting, Modifying, and Deleting values
 
 Given schema: `StarsIn (title, year, starName)`
 
@@ -274,7 +361,7 @@ WHERE studioName NOT IN (SELECT name
                          FROM Studio);
 ```
 
-#### Deletion
+### Deletion
 
 Example: **Deleting single elements**:
 
@@ -292,7 +379,7 @@ WHERE name NOT IN (SELECT StudioName
 FROM Movie);
 ```
 
-#### Updating
+### Updating
 
 Example: Modify table Exec by attaching the title ‘Pres. ’ in front of the name
 of every movie executive who is also the president of some studio.
@@ -308,30 +395,31 @@ WHERE cert IN (SELECT presC
 
 |Name|Operator|SQL Equivalent|Action|Example|
 |----|--------|--------------|------|-------|
-|Select|\\(\sigma_p(r)\\)|`SELECT *...`|Selects tuples from relation \\(r\\)that satisfy a predicate \\(p\\)|\\(\sigma_{name="lemon"}(Cats)\\)|
-|Project|\\(\pi_{a_{n}}(r)\\)|`SELECT x,y...`|Selects columns from relation \\(r\\)that match \\(a_{n}\\)|\\(\Pi_{name,breed}(Cats)\\)|
+|Select|\\(\sigma_p(r)\\)|`SELECT *...`|Selects tuples from relation \\(r\\) that satisfy a predicate \\(p\\)|\\(\sigma_{name="lemon"}(Cats)\\)|
+|Project|\\(\pi\_{a_{n}}(r)\\)|`SELECT x,y...`|Selects columns from relation \\(r\\)that match \\(a_{n}\\)|\\(\pi_{name,breed}(Cats)\\)|
 |Union|\\(\cup\\)|`UNION`| Joins two given relations.| \\(A \cup B\\)|
 |Difference|\\(A - B\\)|n/a| Subtracts elements present in relation B from relation A.| |
-|Cartesian Product|\\(A x B\\)|`JOIN`|Combines information of two different relations together.||
+|Cartesian Product|\\(A x B\\)|`JOIN`|Combines information of two different relations together.| ||
 
-## Data Models
+## ER Model - Basics
 
-Definition: **Entity-Relationship model** is a graphical approach to data modeling, allowing *n-ary* relationships.
+Definition: The ER, or **Entity-Relationship model** is a graphical approach to data modeling, allowing *n-ary* relationships.
+
+- The ER model does not deal with single entities, but **entity sets**.
 
 ### Primitives
 
 ![Primitives for ER model](./images/ermodel.png) 
 
-- Sharp arrow: at most one ![at most one](./images/AtMostOne.png)  
 
-- Rounded arrow: exactly one ![exactly one](./images/ExactlyOne.png)  
+- Sharp arrow: **at most one**
+    - <img src="./images/AtMostOne.png" height=60 width=125>
+- Rounded arrow: **exactly one**
+    - <img src="./images/ExactlyOne.png" height=60 width=125>
 
-### Converting n-ary relationships
+## ER Model - Relationships
 
-- Create a new connecting weak entity set to represent rows of a relationship set.
-- Many-one relationships from the connecting weak entity set to the others. 
-
-### Relationships
+Definition: Given two sets \\(A,B\\), a **relationship** is a subset of the *cross product* of the sets.
 
 |Types|Representation|Meaning|
 |-----|--------------|-------|
@@ -342,13 +430,18 @@ Definition: **Entity-Relationship model** is a graphical approach to data modeli
 - Sometimes it is more appropriate to associate attributes with a relationship rather than an entity set.
 - An inherited entity has whatever attributes any of its components have, and participates in whatever relationships its components participate in. 
 
-### Relationships -> Weak Entity Sets
+### ER Model - Relationships to Weak Entity Sets
 
 |Type|Characteristics|
 |----|---------------|
 |Many to Many| <ul><li>Convert relationship \\(R\\) to a weak entity set, joined by weak relatonships.</li><li>Add its own attributes and keys of the parent as attributes.</li></ul>|
 |Many to One) | <ul><li>Convert relationship \\(R\\) to a weak entity set, joined by weak relationships. </li><li>Add the keys of the *many* side as key attributes, plus the attributes of \\(R\\).</li><li>On the *one* side, assign key(s) of many side as keys, and any keys of the one side as regular attributes.</li></ul>|
 |One-to-One|<ul><li>Split relationship \\(R\\) into weak entity set and two weak relationships \\(R,WR1,WR2\\).</li><li>One of the two weak relationships will be one-to-one on both sides, and the other will be many to one.</li></ul>|
+
+- To convert n-ary relationships:
+    - Create a new connecting weak entity set to represent rows of a relationship set.
+    - Many-one relationships from the connecting weak entity set to the others. 
+
 
 ### Constraints
 
@@ -376,42 +469,42 @@ Definition: **Entity-Relationship model** is a graphical approach to data modeli
     - ![relationship to table](./images/relationship_to_table.png)
     - becomes: 
     - EnrolledIn(__ID__,__courseNumber__,grade)
-3. For each weak entity set \\(W\\), create a **relation schema** with all the attributes of \\)W\\) as well as any key attributes of strong entity sets it's attached to. 
+3. For each weak entity set \\(W\\), create a **relation schema** with all the attributes of \\(W\\) as well as any key attributes of strong entity sets it's attached to. 
     - ===add img===
 
-#### Determining the Key of a relationship
+## ER Model - Determining the Key of a relationship
 
 - If \\(R\\) is a binary relationship betweeen \\(E1,E2\\):
     - If \\(R\\) is Many-to-Many, the keys of \\(E1,E2\\) together form the key of \\(R\\).
     - If \\(R\\) is Many-to-One from \\(E1\\) to \\(E2\\), The key of \\(E1\\) is part of the key of \\(R\\).
     - If \\(R\\) is One-to-One from \\(E1\\) to \\(E2\\), then either the key of \\(E1\\) or the key of \\(E2\\) is part of the key of \\(R\\), but not both. 
 
-#### Dealing with *isa* hierarchies
+## ER Model - Dealing with `isa` inheritance
 
 |Method|Characteristics|Attributes|Illustration|
 |------|---------------|----------|------------|
-|Straight E/R|<ul><li>One relation per subclass</li></ul>|<ul><li>Key attributes of parents</li><li>Attributes of that subclass</li></ul>|![StraightERMethod.png](./images/StraightERMethod.png)|
-|Object-Oriented|<ul><li>One relation per subset of subclasses</li></ul>|<ul><li>Inherit keys and other attributes from parent</li></ul>|![OOMethod.png](./images/OOMethod.png)|
-|Null method|<ul><li>One single relation</li></ul>|<ul><li>Entities have `NULL` in attributes that don't belong to them.</li></ul>|![NullMethod.png](./images/NullMethod.png)|
+|Straight E/R|<ul><li>One relation per subclass</li></ul>|<ul><li>Key attributes of parents</li><li>Attributes of that subclass</li></ul>|<img src="./images/StraightERMethod.png" height=300 width=550>|
+|Object-Oriented|<ul><li>One relation per subset of subclasses</li></ul>|<ul><li>Inherit keys and other attributes from parent</li></ul>|<img src="./images/OOMethod.png" height=300 width=550>|
+|Null method|<ul><li>One single relation</li></ul>|<ul><li>Entities have `NULL` in attributes that don't belong to them.</li></ul>|<img src="./images/NullMethod.png" height=300 width=550>|
 
 
-##### E/R approach
+### E/R approach
 
 - For each entity set \\(E\\), create a table \\(e\\) with attributes \\(a\\) such that:
     - \\(a\\) belongs to \\(E\\)
     - \\(a\\) is the key attribute of the parent relation
 
-##### Object oriented approach
+### Object oriented approach
 
 ===add contents===
 
-##### Null approach
+### Null approach
 
 - Use a single relation with all values of any attached entity sets.
 - An object is represented by a typle that has `NULL` in each attribute that is not defined for that entity.
 - May allow efficient query processing but wastes space.
 
-### Functional Dependencies
+## FDs (Functional Dependencies)
 
 Definition: A **functional dependency** is a constraint derived from *meaning* and *interrelation* of attributes.
 
@@ -424,9 +517,9 @@ Definition: A **functional dependency** is a constraint derived from *meaning* a
       
 Example: If A table has fields (Name, SSN, Phone), and multiple entries share the same values for Name and SSN, then there is a **functional dependency** from SSN to Name.
 
-#### Deriving additional functional dependencies
+## FDs - Deriving additional functional dependencies
 
-##### Method 1: Using inference rules
+### Method 1: Using inference rules
 
 - Given relation schema \\(R\text{ and subsets } X,Y,Z\\):
 
@@ -439,7 +532,7 @@ Example: If A table has fields (Name, SSN, Phone), and multiple entries share th
 |Decomposition|If \\(X \rightarrow YZ,\text{ then } X \rightarrow Y, X \rightarrow Z\\)|
 |Pseudotransitivity|If \\(X \rightarrow Y \text{ and } WY \rightarrow Z,\text{ then } XW\rightarrow Z\\)|
 
-##### Method 2: Closure test
+### Method 2: Closure test
 
 Definition: - The **closure of F** (denoted by \\(F^+\\), is the set of every FD such that \\( X \rightarrow Y\\).
 
@@ -452,3 +545,14 @@ Example: Given \\(R(X,Y,Z,W)\\) with FDs \\(W\rightarrow Y, X \rightarrow Z\\), 
 |Basis step| Assume the closure of a given attribute contains itself.|\\(WX^+ = WX\\)|
 |Inductive step|<ul><li>Find FDs with LHS \\(X\\) containing members of \\(Y^+\\).</li><li> If \\(X\rightarrow A\text{, add }A\text{ to } Y^+\\)</li></ul>|<ul><li><ul><li>\\(W\rightarrow Y\\), so add Y to RHS: \\(WX^+ = WXY\\)</li><li>\\(X\rightarrow Z\\), so add Z to RHS: \\(WX^+ = WXYZ\\)</li></ul></li><li>\\(Y \in WX^+\text{ , so } WX \rightarrow Y\\) is implied.</li></ul>|
 
+## FDs - Superkeys and Keys 
+
+- A **superkey** determines all attributes of a relation.
+
+- To determine if \\(A\\) is a superkey:
+    1. Compute the closure of \\(A = A^+\\).
+    2. If \\(A+\\) is equal to the full set of attributes, it **is** a superkey.
+
+- To determine if \\(A\\) is a key:
+    1. Confirm \\(A\\) is a superkey.
+    2. If any subset of \\(A\\) is a superkey, then it's **not** a key. 
