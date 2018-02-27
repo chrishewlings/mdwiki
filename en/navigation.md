@@ -101,6 +101,8 @@
   * # COMP 353
   * [Midterm preparation](pages/school/COMP353/Midterm%20Summary.md)
   * [Tutorials until midterm](pages/school/COMP353/Tutorials.md)
+  * # COMP 345
+  * [Midterm preparation](pages/school/COMP345/MidtermReview.md)
 
 
 [gimmick:themechooser](Choose theme)
