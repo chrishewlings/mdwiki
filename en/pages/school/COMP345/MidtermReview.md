@@ -57,11 +57,16 @@ void main() {
 
 - - - -
 
+## Operator precedence
+
+<table><tbody><tr><th style="text-align: left"> Precedence</th><th style="text-align: left"> Operator</th><th style="text-align: left"> Description</th><th style="text-align: left"> Associativity</th></tr><tr><th> 1</th><td> <code>::</code></td><td> Scope resolution</td><td style="vertical-align: top" rowspan="6"> Left-to-right</td></tr><tr><th rowspan="5"> 2</th><td style="border-bottom-style: none"> <code>a++</code>&nbsp;&nbsp; <code>a--</code></td><td style="border-bottom-style: none"> Suffix/postfix increment and decrement</td></tr><tr><td style="border-bottom-style: none; border-top-style: none"> <code><i>type</i>()</code>&nbsp;&nbsp; <code><i>type</i>{}</code></td><td style="border-bottom-style: none; border-top-style: none"> Functional cast</td></tr><tr><td style="border-bottom-style: none; border-top-style: none"> <code>a()</code></td><td style="border-bottom-style: none; border-top-style: none"> Function call</td></tr><tr><td style="border-bottom-style: none; border-top-style: none"> <code>a[]</code></td><td style="border-bottom-style: none; border-top-style: none"> Subscript</td></tr><tr><td style="border-bottom-style: none; border-top-style: none"> <code>.</code>&nbsp;&nbsp; <code>-&gt;</code></td><td style="border-bottom-style: none; border-top-style: none"> Member access</td></tr><tr><th rowspan="9"> 3</th><td style="border-bottom-style: none"> <code>++a</code>&nbsp;&nbsp; <code>--a</code></td><td style="border-bottom-style: none"> Prefix increment and decrement</td><td style="vertical-align: top" rowspan="9"> Right-to-left</td></tr><tr><td style="border-bottom-style: none; border-top-style: none"> <code>+a</code>&nbsp;&nbsp; <code>-a</code></td><td style="border-bottom-style: none; border-top-style: none"> Unary plus and minus</td></tr><tr><td style="border-bottom-style: none; border-top-style: none"> <code>!</code>&nbsp;&nbsp; <code>~</code></td><td style="border-bottom-style: none; border-top-style: none"> bitwise NOT</td></tr><tr><td style="border-bottom-style: none; border-top-style: none"> <code>(<i>type</i>)</code></td><td style="border-bottom-style: none; border-top-style: none"> C-style cast</td></tr><tr><td style="border-bottom-style: none; border-top-style: none"> <code>*a</code></td><td style="border-bottom-style: none; border-top-style: none"> Indirection (dereference)</td></tr><tr><td style="border-bottom-style: none; border-top-style: none"> <code>&amp;a</code></td><td style="border-bottom-style: none; border-top-style: none"> Address-of</td></tr><tr><td style="border-bottom-style: none; border-top-style: none"> <code>sizeof</code></td><td style="border-bottom-style: none; border-top-style: none">Size-of</td></tr><tr><td style="border-bottom-style: none; border-top-style: none"> <code>new</code>&nbsp;&nbsp; <code>new[]</code></td><td style="border-bottom-style: none; border-top-style: none"> Dynamic memory allocation</td></tr><tr><td style="border-top-style: none"> <code>delete</code>&nbsp;&nbsp; <code>delete[]</code></td><td style="border-top-style: none"> Dynamic memory deallocation</td></tr><tr><th> 4</th><td> <code>.*</code>&nbsp;&nbsp; <code>-&gt;*</code></td><td> Pointer-to-member</td><td style="vertical-align: top" rowspan="13"> Left-to-right</td></tr><tr><th> 5</th><td> <code>a*b</code>&nbsp;&nbsp; <code>a/b</code>&nbsp;&nbsp; <code>a%b</code></td><td> Multiplication, division, and remainder</td></tr><tr><th> 6</th><td> <code>a+b</code>&nbsp;&nbsp; <code>a-b</code></td><td> Addition and subtraction</td></tr><tr><th> 7</th><td> <code>&lt;&lt;</code>&nbsp;&nbsp; <code>&gt;&gt;</code></td><td> Bitwise left shift and right shift</td></tr><tr><th> 8</th><td> <code>&lt;=&gt;</code></td><td> Three-way comparison operator <span class="t-mark-rev t-since-cxx20">(since C++20)</span></td></tr><tr><th rowspan="2"> 9</th><td style="border-bottom-style: none"> <code>&lt;</code>&nbsp;&nbsp; <code>&lt;=</code></td><td style="border-bottom-style: none"> For relational operators &lt; and ≤ respectively</td></tr><tr><td style="border-top-style: none"> <code>&gt;</code>&nbsp;&nbsp; <code>&gt;=</code></td><td style="border-top-style: none"> For relational operators &gt; and ≥ respectively</td></tr><tr><th> 10</th><td> <code>==</code>&nbsp;&nbsp; <code>!=</code></td><td> For relational operators = and ≠ respectively</td></tr><tr><th> 11</th><td> <code>&amp;</code></td><td> Bitwise AND</td></tr><tr><th> 12</th><td> <code>^</code></td><td> Bitwise XOR (exclusive or)</td></tr><tr><th> 13</th><td> <code>|</code></td><td> Bitwise OR (inclusive or)</td></tr><tr><th> 14</th><td> <code>&amp;&amp;</code></td><td> Logical AND</td></tr><tr><th> 15</th><td> <code>||</code></td><td> Logical OR</td></tr><tr><th rowspan="7"> 16</th><td style="border-bottom-style: none"> <code>a?b:c</code></td><td style="border-bottom-style: none"> Ternary conditional</td><td style="vertical-align: top" rowspan="7"> Right-to-left</td></tr><tr><td style="border-bottom-style: none; border-top-style: none"> <code>throw</code></td><td style="border-bottom-style: none; border-top-style: none"> throw operator</td></tr><tr><td style="border-bottom-style: none; border-top-style: none"> <code>=</code></td><td style="border-bottom-style: none; border-top-style: none"> Direct assignment (provided by default for C++ classes)</td></tr><tr><td style="border-bottom-style: none; border-top-style: none"> <code>+=</code>&nbsp;&nbsp; <code>-=</code></td><td style="border-bottom-style: none; border-top-style: none"> Compound assignment by sum and difference</td></tr><tr><td style="border-bottom-style: none; border-top-style: none"> <code>*=</code>&nbsp;&nbsp; <code>/=</code>&nbsp;&nbsp; <code>%=</code></td><td style="border-bottom-style: none; border-top-style: none"> Compound assignment by product, quotient, and remainder</td></tr><tr><td style="border-bottom-style: none; border-top-style: none"> <code>&lt;&lt;=</code>&nbsp;&nbsp; <code>&gt;&gt;=</code></td><td style="border-bottom-style: none; border-top-style: none"> Compound assignment by bitwise left shift and right shift</td></tr><tr><td style="border-top-style: none"> <code>&amp;=</code>&nbsp;&nbsp; <code>^=</code>&nbsp;&nbsp; <code>|=</code></td><td style="border-top-style: none"> Compound assignment by bitwise AND, XOR, and OR</td></tr><tr><th> 17</th><td> <code>,</code></td><td> Comma</td><td> Left-to-right</td></tr></tbody></table>
+
 ## Namespaces
 
 - the `using namespace` keywords allows a bulk import of commands into the current namespace.
     - Should be avoided due to collisions.
 - Can also import single commands: `using std::cin;`
+- This operator `::` is generally the scope operator. Using on its own will explicitly access global namespace, e.g. `::x` will access global version of x.
 - Users can define their own namespaces at will:
 
 ```c++
@@ -74,7 +79,8 @@ namespace Space1 {
 using namespace Space1::function;
 ```
 
-- Every compilation unit (file) has implied unnamed namespace.
+- Every compilation unit (file) has implied unnamed namespace. Adding explicitly to the unnamed namespace is as simple as omitting the name following `namespace` when starting a block.
+- Classes can also exist in namespaces.
 
 - - - -
 
@@ -145,6 +151,52 @@ Warning: Each element is pointed to by a pointer, so it is an **array of pointer
 
 - The `vector` class is a STL dynamic array type allows for automatic resizing, bounds checking, iterators, memory management. 
 
+## Data Types - Composite types
+
+### enum
+
+- Contains named symbolic values
+- default numbering from 0-n
+- if an explicit value is not given, implicit numbering starts at last value given.
+
+```c++
+enum color {
+    red,
+    blue,
+    yellow,
+    green
+};
+```
+
+### union
+
+- Consists of one or more aliases for the same storage
+- Useful when a single type of data can be accessed in several ways
+
+```c++
+union student {
+    int id;
+    char username[5];
+};
+```
+- In above example, we can define and access student data by either id or username.
+
+### typedefs
+
+- Allows type names to be aliased
+
+```c++
+typedef unsigned short word; // word is now synonym for unsigned short;
+
+typedef float rgb[3]; // rgb now synonym for array with 3 float elements;
+
+typedef struct {
+    double x,y;
+} coordinate; // coordinate is now a struct with properties x,y;
+
+coordinate p = {1,2};
+```
+
 ## Variables
 
 - Multiple variables can be declared on the same line: `int x,y,z`
@@ -153,6 +205,19 @@ Warning: Each element is pointed to by a pointer, so it is an **array of pointer
     - `Type a2 = {v};`
     - `Type a3 = v;`
     - `Type a4(v);`
+
+- string literals are `const char[]`, not `std::string`
+
+### keywords
+
+`auto` - internal reference in temp storage
+`volatile` - may change unexpectedly
+`register` - value is used often - compiler can refuse
+`extern` - external reference 
+    - declares a function/objet which is defined later in the file or another file
+    - allows global scope in c++ projects
+    - compiler does not allocate memory for the variable
+
 
 ### Type checking/coercion
 
@@ -177,15 +242,105 @@ Where `p1,p2` are pointers, `v1,v2` are values:
 |`*p2 = *p1`| **Value assignment.** Assigns value pointed to by `p1` to value pointed to by `p2`.|
 |`p->a`| Shorthand for `*(p).a`|
 
+In other words:
+
+```c++
+int* a_ptr = &a; // Assigns address of a to a_ptr.
+
+value of *a_ptr is same as value of a.
+value of a_ptr is the memory address of a. 
+value of &a_ptr is the memory address of a_ptr.
+```
+
 - Arithmetic operators can be used on pointers, which is helpful for navigating arrays. 
     - Incrementing a pointer `p` of type `int` actually moves the pointed-to location up by `sizeof(int)`.
 
+### Pitfalls
+
+- We can assign a pointer any memory address, and bad bad things will happen. 
+- We can also assign a typed pointer to an object of a completely different type via casting. Again, bad bad things.
+
+#### Easy mistakes
+
+- `*p2 = x` assigns **value of x** to value **pointed to by p2**
+- `*p2 = &x` assigns **address of x** to **p2**
+
+- `p4 = p5` : both now point to the same place
+- `*p4 = *p5`: **overwrites p4** with data from p5
+
+- `*p += 1`: Increments value.
+- `*p++`: Dereference, then modifies **address** of p
+
+#### Null pointers
+
+- A **null** pointer stores 0 as memory address. 
+- DO NOT DEREFERENCE. Segfault if you do.
+```c++
+int* null_p = NULL;
+```
+
+#### Wild pointer
+
+- A **wild** pointer points to nothing in particular. Most likely a garbage value.
+- wild pointer dereference may corrupt memory.
+
+```c++
+int* wild_p;
+```
+
+#### Dangling pointer
+
+- When the object pointed to is deleted, but pointer is still pointing there
+- If dereference happens, can segfault or corrupt data.
+
+```c++
+int a = 5;
+int *p = &a;
+
+free(&a);
+cout << p;
+```
+
+
 ## References
 
-- References are similar to pointers, but with some limitations:
+- References are essentially like an alias to a variable. They are similar to pointers, but with some limitations:
     - Cannot use pointer arithmetic.
     - Any operation applied to a reference is *actually* applied on the variable it refers to.
     - References must be initialized and declared at the same time, and cannot be changed afterwards. 
+
+```c++
+int a = 1;
+int& b = a; // b is a reference to c
+```
+
+### References as function parameters
+
+- Often simpler than function parameter passing with pointers.
+
+```c++
+void swap(int &a, int &b) {
+    int tmp = a;  //Compiler knows what to do even without dereferences
+    a = b;
+    b = tmp;
+}
+```
+
+### References as return values
+
+- Allows a large object in memory to be returned without making a copy of it.
+
+```c++
+BigStructure& fn() {
+    //do stuff
+    return *bigThing;
+}
+```
+
+### Caveats
+
+- Can't have references in an array, e.g. `int& refArray[5]` is illegal.
+- if A -> B -> C, and an A& is created that actually refers to a C, then any public method of A will work on the object, even if C has tried to hide it. 
 
 ## Dynamic variables
 
@@ -195,11 +350,41 @@ Where `p1,p2` are pointers, `v1,v2` are values:
     - Older compilers: returns `NULL`
     - Since C++98: Throws `bad_alloc` exception
 
-- The `delete` operator destroys existing dynamic variables. 
+- The `delete` operator destroys existing dynamic variables. Note that `delete` only is useful on pointers that were allocated by `new`!
 
 ```cpp
 delete p;
 p = NULL; // assign NULL to pointer to avoid leaving a dangling pointer
+```
+
+- - - -
+
+## Memory Management
+
+- c++ uses `new` and `delete` instead of `malloc` and `free`
+- **Stack** : where all declared and initialized variables before runtime are stored.
+- **Heap (free store)**: where all variables created and initialized at runtime are stored. 
+
+#### Deleting a pointer that wasn't returned by new:
+
+- If a pointer wasn't returned by `new`, it isn't dynamically allocated and `delete` will either attept to call a destructor a second time, or simply segfault.
+
+#### Assuming memory has been initialized
+
+```c++
+float *p1 = new float[10];
+float sum;
+
+sum += p1[0]; // p1[0] is undefined!
+```
+
+#### Deleting a pointer twice:
+
+```c++
+int *p = new int(5);
+delete p; 
+...
+delete p;
 ```
 
 - - - -
@@ -238,7 +423,39 @@ int MyClass::getNum() const {
 
 Note: Only methods declared as `const` can be called on an object that was itself declared as `const` upon declaration!
 
+### Summary 
+
+|Name|Syntax|Meaning|
+|----|------|-------|
+|Constant variable|`const int a = 10`| `a` is a constant initialized to 10|
+|Constant parameter|`void f(const int a) {...}`|`a` cannot be modified within the body of the function|
+|Constant method|`void m() const{...}`|<ul><li>Cannot modify class members</li><li>Cannot call non-`const` methods</li></ul>|
+|Pointer to constant int |<ul><li>`int const * ....`</li><li>`const int * ...`</li></ul>| Lets you change where it points, but not the value pointed to.|
+|Constant pointer to int|`int* const ....`| Lets you change value, but not where it points. |
+|Constant pointer to constant int|`int const * const`| Can change neither value or where it points.|
+
+### Clockwise rule example:
+
+Given: `const int * ptr`:
+
+|Step|Action|Result|
+|----|------|------|
+|1|Start from name of variable: `ptr`| `ptr` is a ...|
+|2|Move clockwise to next **pointer** or **type** : `*`| `ptr` is a pointer to ... |
+|3|Keep moving clockwise to next **pointer** or **type**: `int`| `ptr` is a pointer to `int`....|
+|4+|Move clockwise until hitting left hand side: `const`| `ptr` is a pointer to `int` constant|
+
 - - - -
+
+## Functions
+
+- Functions can have default arguments:
+
+```c++
+void sort(int *arr, bool descending = false);
+```
+
+- When overloading, functions cannot differ by return type alone.
 
 ## Classes - Basics
 
@@ -285,15 +502,38 @@ int day3 = obj2->getNum();
     - `myClass *obj2 = new myClass();`
     - `obj3 = myClass();`
 
-- Has the same name as its class. 
+- Has the same name as its class, and no return type. 
 - Can have multiple constructors.
 - Can include guarding conditions in constructors to ensure valid data is passed. 
+- If no constructor specified, a default one is given. However, if you write any constructor then the built in one is no longer provided.
+- Member variables are initialized **before** the constructor is called, so any object members will have their constructors called in order. 
+- Constructor is **not necessarily public**! 
+
+#### Initializer lists
+
+- Can call parametrized constructors of component objects within containing class.
+
+```c++
+class coordPair {
+    coordinate c1,c2;
+
+    public:
+        coordPair(int n, int m) 
+          : c1(n,m), c2(n,m) {
+            // do other constructor stuff//
+          }
+ }
+```
 
 ### Destructors
 
 - Called when:
     - Object goes out of scope
-    - When the `delete` operator is explicitly called on a pointer variable.
+    - When the `delete` operator is explicitly called on a variable returned by `new`.
+
+- Destructors should almost always be **virtual**, since any derived classes will need to call their own destructor, not that of the base class. 
+- Destructor is called **before** member variables are destroyed. Their destructors are called bottom to top.
+- Destructor is **not necessarily public**! If it's private, compile time error. 
 
 - - - -
 
@@ -301,6 +541,11 @@ int day3 = obj2->getNum();
 
 - Inlined functions aim at optimization execution. They do so by replcing any call to this function with the functions entire code. To define a function as inline, use the `inline` prefix when defining the function.
 - Inline functions are also useful for simple methods like getters and setters in the header file. 
+- Similar to macros, but provide type safety.
+
+```c++
+inline int add(int a, int b) { return (a+b);}
+```
 
 - - - -
 
@@ -364,10 +609,35 @@ cout << d ; // ERROR
     - Constructor(s)
     - Assignment operator
     - Destructor(s)
+    - Friends
+
+- When creating a derived object:
+    - Base constructor called first
+    - -> Derived1 constructor
+    - -> -> Derived 2 constructor
+    - -> -> -> etc.
+
+- When multiple constructors are called, and then go out of scope, destructors are executed in the opposite order. 
+- trying to store a derived class in a 'smaller box', e.g. `Base b = new derived()` will clobber any members of the derived class. 
+    - Correct way is `Base& b = new derived()` or `Base* b = &(new derived())`
+
+## Classes - Inheritance - Functions
+
+- Derived classes can override base function implementations.
 
 - **Overriding**: derived class has __exactly the same signature__
+    - Overriden functions don't automatically invoke base class! No `super` method.
 - **Overloading**: Two or more functions have same name with different parameter lists
 
+### Virtual functions
+
+- declaring a function virtual allows derived objects to apply polymorphic behaviour
+- if a class contains a **pure virtual function**, it is automatically considered **abstract**.
+
+```c++
+void virtual doThing(); // regular ol' virtual fn
+void virtual pure_doThing() = 0; // pure virtual fn
+```
 ### Inherited Copy Constructors
 
 - Copy constructor is called:
@@ -405,11 +675,35 @@ class DerivedMulti : virtual public Animal1 {
 }
 ```
 
+- Virtual inheritance ensures that only a single copy of a common base class is maintained in derived classes. 
+- On the class that derives from both children of the base, the `virtual` keyword isn't needed. 
+
 - - - -
 
 ## Type Casting
 
 - C++ cast operation is checked at compile time, unlike C casting.
+- There are a few different kinds of casts.
+
+### Implicit Casting
+
+```c++
+short a = 2000;
+int b;
+b = a;
+```
+
+### Explicit Casting
+
+```c++
+double x = 10.3;
+int y;
+
+y = int(x); // functional notation
+y = (int) x; // c notation
+```
+
+## Generic Casting
 
 |Cast type|Result|When?|
 |---------|------|-----|
@@ -449,7 +743,9 @@ dynamic_cast<SubClass>(SuperClassObj)
 
 - - - - 
 
-## Streams and Stream Operators
+## Operator Overloading
+
+- Most operators can be overloaded. The only ones that can't are `.`,`::`,`?:`,`sizeof`
 
 - To allow a user-defined type to be output to a stream, one can overload the `<<` operator:
 
@@ -470,6 +766,41 @@ std::ostream& operator<<(std::ostream &strm, const A &a) {
 ## Streams : Console Input/Output: <iostream>
 
 - Contains `std::cin`,`std::cout`,`std::cerr`
+
+## Streams: Console I/O: Output: <iomanip>
+
+### `<iomanip>` library
+
+|Name |Temp|Description|
+|-----|----|-----------|
+|`std::hex` | N | Print integers in base 16|
+|`std::oct` | N | Print in base 8|
+|`std::dec` | N | Print in base 10|
+|`std::fixed` | N | Set fixed precision|
+|`std::scientific` | N | Set scientific notation|
+|`std::left` | Y | Left justify in width|
+|`std::right` | Y | Right justify in width|
+|`std::setw(n)` | Y | Set minimum field width|
+|`std::setprecision(m)` | N | Set number of decimal places|
+|`std::setfill('0')` | N | Set fill character|
+
+### `<iomanip>` examples:
+
+- Given: 
+    - `double x = 3.1415926534;`
+    - `double y = 187523.523626;`
+
+|`floatfield`| `setprecision`| Result (`cout << x`)|Result (`cout << y`)|
+|------------|---------------|---------------------|--------------------|
+| Default    | Default       | `3.14159`           | `187524`           |
+| Default    | `2`           | `3.1`               | `1.9e+05`          |
+| Default    | `10`          | `3.141592653`       | `187523.5236`      |
+|`std::fixed`| Default       | `3.14159`           | `187523.523626`    |
+|`std::fixed`| `2`           | `3.14`              | `187523.52`        |
+|`std::fixed`| `10`          | `3.1415926534`      | `187523.5236260000`|
+|`std::scientific`| Default  | `3.141593e+00`      | `1.875235e+05`     |
+|`std::scientific`| `2`      | `3.14e+00`          | `1.88e+05`         |
+|`std::scientific`| `10`     | `3.1415926534e+00`  | `1.8752352363e+05` |
 
 ### Formatting output
 
@@ -531,6 +862,8 @@ filestream.open("file.txt", MODE);
     - Boost: `Serialization`
 
 - - - -
+
+
 
 ## MVC Model (Model View Controller)
 
