@@ -900,3 +900,107 @@ Invented at PARC in 1979 for Smalltalk.
 2. Client class instantiates and attaches concrete observers using methods from the Observable interface
 3. Each time observable state changes, it notifies all attached Observers.
 4. When a new Observer is added, all we need to do is instantiate it in the client class and attach it to the Observable object. 
+
+## MVC - Better Explanation
+
+- MVC is a paradigm for programming. 
+- Separates **computation** and **data** from **interface**
+- An example usage is a modern website:
+    - **Model**: Database (MySQL, etc.)
+    - **Controller**: Server side languages (PHP, Rails, etc.)
+    - **View**: Browser, client side languages (HTML,CSS,JS)
+
+### Model: Interacting with data
+
+- Contains the data
+- Speaks only with the controller
+
+### View: Displaying to the user
+
+- The interface
+- Listens to input from the user (buttons, keyboard input, etc.)
+- Listens to the controller
+
+### Controller: 
+
+- Coordinates interactions between model and view
+- Process events and input to send to Model
+- Transforms data to present to the View
+
+Example: A (pseudocode) calculator application
+
+```c++
+
+//Model
+
+class CalcModel {
+    private:
+        int x,y,sum;
+
+    public:
+        CalcModel(int x, int y) {
+            sum = x+y;
+        }
+
+        int getSum() {
+            return sum;
+        }
+};
+
+// View
+
+class CalcView {
+    // Include fields for getting two numbers
+    private:
+        TextField f1,f2,result;
+        GUIButton calc;
+
+    public:
+        CalcView() {
+            // create a window, present widgets
+            window.add(f1,f2,result,calc);
+        }
+
+        //Methods for the controller to use
+
+        void setSolution(int z) {
+            result.setText(z);
+        }
+
+        void addCalcListener(CalcListener listenCalc) {
+            calc.addListener(listenCalc);
+        }
+};
+
+// Controller
+
+class CalcController {
+    // Controls interaction between view and model
+
+    private:
+        CalcView v;
+        CalcModel m;
+
+    public:
+        CalcController(CalcView v, CalcModel m) {
+            this.v = v;
+            this.m = m;
+
+            v.addCalcListener(new CalcListener());
+        }
+
+        class CalcListener {
+            public:
+                void action(event e) {
+                    int x,y;
+                    x = v.f1;
+                    y = v.f2;
+
+                    m = new CalcModel(x,y);
+                    v.setSolution(m.getSum());
+                }
+        };
+};
+```
+
+
