@@ -105,6 +105,6 @@
   * [Midterm preparation](pages/school/COMP345/MidtermReview.md)
   * # COMP 346
   * [Midterm preparation](pages/school/COMP346/MidtermReview.md)
-  * [Brief Midterm Recap](pages/school/COMP346/Brief.md)
+  * [Brief Midterm Recap](pages/school/COMP346/BriefReview.md)
 
 [gimmick:themechooser](Choose theme)
