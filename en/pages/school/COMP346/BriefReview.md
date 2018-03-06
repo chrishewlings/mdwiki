@@ -248,7 +248,8 @@ do {
     - `interested[]`: `interested[n] == true` means `n` wants to enter CS.
     - `turn`: indicates with process has priority
 
-- n.b. for 2+ processes, uses an integer variable per process, and n-1 additional variables
+- n.b. for 2+ processes, uses an integer variable per process, and n-1 additional variables  
+
 
 ```c
 int turn; 
