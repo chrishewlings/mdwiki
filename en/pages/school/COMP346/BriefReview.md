@@ -425,7 +425,7 @@ void philosopher(int i) {
 
 void take_forks(int i) {
     wait(mutex);        // enter CS
-    state[i];           // indicate hunger
+    state[i] = HUNGRY;  // indicate hunger
     test(i);            // try to acquire two forks
     signal(mutex);      // exit CS
     wait(s[i]);         // go from hungry-> eating, or block if forks were not acquired

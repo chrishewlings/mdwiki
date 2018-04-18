@@ -399,7 +399,18 @@ WHERE cert IN (SELECT presC
 |Project|\\(\pi\_{a_{n}}(r)\\)|`SELECT x,y...`|Selects columns from relation \\(r\\)that match \\(a_{n}\\)|\\(\pi_{name,breed}(Cats)\\)|
 |Union|\\(\cup\\)|`UNION`| Joins two given relations.| \\(A \cup B\\)|
 |Difference|\\(A - B\\)|n/a| Subtracts elements present in relation B from relation A.| |
-|Cartesian Product|\\(A x B\\)|`JOIN`|Combines information of two different relations together.| ||
+|Cartesian Product|\\(A \times B\\)|`JOIN`|Combines information of two different relations together.| ||
+|Theta join \\(\theta\\) | \\( R \bowtie_c S\\)| | Gets the set of all tuples from \\(R,S\\) fulfilling some condition \\(C\\) |
+|Equijoin | \\( R \bowtie_c S\\)| | Special case of theta join that can only use \\( = \\) operator.|
+|Natural join| \\( R \bowtie S\\) | | If \\(R,S\\) have common attributes, they are combined in output schema. |
+|Rename | \\( \rho_{a/b}(R) \\) | | Used to copy schema of \\(R\\) with \\(a\\) renamed to \\(b\\) | 
+|Rename | \\( \rho_{s}(R) \\) | | Used to copy entire relation \\(R\\) to \\( S \\) | |
+|Division | \\( \div \\) | | |  
+
+Constraints can be expressed in relational algebra in two ways:
+
+1. \\(r = \emptyset \\) : where r is an expression, i.e. the result of r must be null.
+2. \\(R \subset s \\): every tuple in the result of r is in the result of s.
 
 ## ER Model - Basics
 
@@ -504,55 +515,4 @@ Definition: Given two sets \\(A,B\\), a **relationship** is a subset of the *cro
 - An object is represented by a typle that has `NULL` in each attribute that is not defined for that entity.
 - May allow efficient query processing but wastes space.
 
-## FDs (Functional Dependencies)
 
-Definition: A **functional dependency** is a constraint derived from *meaning* and *interrelation* of attributes.
-
-- A set of attributes \\(X\\) functionally determines a set of attributes \\(Y\\) if whenever 2 tuples have same value for \\(X\\), they **must have** the same value for \\(Y2\\).
-
-- More formally:
-    - Suppose \\(R\\) is a relation schema, and \\(X,Y \subset R\\).
-    - A **functional dependency** on \\(R\\) is a statement of the form \\(X\rightarrow Y\\):
-	   - *For every valid instance \\(r\\) of \\(R\\), and for all pairs of tuples \\((t1,t2)\\), if \\((t1,t2)\\) agree on the values in \\(X\\), then \\((t1,t2)\\) agree also on the values in \\(Y\\).
-      
-Example: If A table has fields (Name, SSN, Phone), and multiple entries share the same values for Name and SSN, then there is a **functional dependency** from SSN to Name.
-
-## FDs - Deriving additional functional dependencies
-
-### Method 1: Using inference rules
-
-- Given relation schema \\(R\text{ and subsets } X,Y,Z\\):
-
-|Axiom|Meaning|
-|-----|-------|
-|Reflexivity|If \\(Y \subset X,\text{ then } X \rightarrow Y\\)|
-|Augmentation|If \\(X \rightarrow Y,\text{ then } XZ \rightarrow YZ,\text{ for every } Z\\)|
-|Transitivity|If \\(X \rightarrow Y \text{ and } Y \rightarrow Z,\text{ then } X\rightarrow Z\\)|
-|Union|If \\(X \rightarrow Y \text{ and } X \rightarrow Z,\text{ then } X\rightarrow YZ\\)|
-|Decomposition|If \\(X \rightarrow YZ,\text{ then } X \rightarrow Y, X \rightarrow Z\\)|
-|Pseudotransitivity|If \\(X \rightarrow Y \text{ and } WY \rightarrow Z,\text{ then } XW\rightarrow Z\\)|
-
-### Method 2: Closure test
-
-Definition: - The **closure of F** (denoted by \\(F^+\\), is the set of every FD such that \\( X \rightarrow Y\\).
-
-- \\(Y\\) is a set of attributes, as is \\(Y^+\\).
-
-Example: Given \\(R(X,Y,Z,W)\\) with FDs \\(W\rightarrow Y, X \rightarrow Z\\), prove or disprove \\(F |= WX \rightarrow Y \\).
-
-|Step|Action|Result|
-|----|------|------|
-|Basis step| Assume the closure of a given attribute contains itself.|\\(WX^+ = WX\\)|
-|Inductive step|<ul><li>Find FDs with LHS \\(X\\) containing members of \\(Y^+\\).</li><li> If \\(X\rightarrow A\text{, add }A\text{ to } Y^+\\)</li></ul>|<ul><li><ul><li>\\(W\rightarrow Y\\), so add Y to RHS: \\(WX^+ = WXY\\)</li><li>\\(X\rightarrow Z\\), so add Z to RHS: \\(WX^+ = WXYZ\\)</li></ul></li><li>\\(Y \in WX^+\text{ , so } WX \rightarrow Y\\) is implied.</li></ul>|
-
-## FDs - Superkeys and Keys 
-
-- A **superkey** determines all attributes of a relation.
-
-- To determine if \\(A\\) is a superkey:
-    1. Compute the closure of \\(A = A^+\\).
-    2. If \\(A+\\) is equal to the full set of attributes, it **is** a superkey.
-
-- To determine if \\(A\\) is a key:
-    1. Confirm \\(A\\) is a superkey.
-    2. If any subset of \\(A\\) is a superkey, then it's **not** a key. 
