@@ -95,8 +95,8 @@ That is:
 
 ### Example
 
-\\( F = \{ A \rightarrow B, B \rightarrow C, C \rightarrow A \} \\)
-\\( G = \{ C \rightarrow B, B \rightarrow A, A \rightarrow C \} \\)
+\\( F = { A \rightarrow B, B \rightarrow C, C \rightarrow A } \\)
+\\( G = { C \rightarrow B, B \rightarrow A, A \rightarrow C } \\)
 
 1. Take LHSes of \\(F\\), do their closures with respect to \\(G\\).
 
