@@ -1,35 +1,5 @@
 [gimmick: math]()
 
-## Canonical Closure 
-
-\\(R(A,B,C)\\)
-
-\\(F = \{ A \rightarrow BC, B \rightarrow C, A \rightarrow B, AB \rightarrow C \} \\)
-
-\\(F_c?\\)
-
-\\(A \rightarrow BC\\)
-\\(AB \rightarrow C\\) 
-
-\\(A \rightarrow B\\) ✅
-\\(A \rightarrow C\\) ❌
-\\(B \rightarrow C\\) ✅
-\\(AB \rightarrow C\\) ❌
-
-compute closure of \\(A\\) with \\(A \rightarrow B\\):  \\(A+ = ABC\\)
-compute closure of \\(A\\) without \\(A \rightarrow B\\): \\(A+ = AC\\)
-
-compute closure of \\(A\\) with \\(A \rightarrow C\\):  \\(A+ = ABC\\)
-compute closure of \\(A\\) without \\(A \rightarrow C\\): \\(A+ = ABC\\)
-
-compute closure of \\(B\\) with \\(B \rightarrow C\\):  \\(B+ = BC\\)
-compute closure of \\(B\\) without \\(B \rightarrow C\\): \\(B+ = B\\)
-
-compute closure of \\(AB\\) with \\(AB \rightarrow C\\):    \\(AB+ = ABC\\)
-compute closure of \\(AB\\) without \\(AB \rightarrow C\\): \\(AB+ = ABC\\)
-
-- - - -
-
 ## ER
 
 - Entity: 
@@ -88,38 +58,34 @@ Attributes that are only on R **must not** be part of any key.
 
 ## Covers:
 
-2 sets of FDs \\(F,G\\) are equivalent if \\(F\\) covers \\(G\\) and \\(G\\) covers \\(F\\).
-That is:
-  - \\(F\\) is a subset of \\(G+\\) 
-  - \\(G\\) is a subset of \\(F+\\)
+- 2 sets of FDs \\(F,G\\) are equivalent if \\(F\\) covers \\(G\\) and \\(G\\) covers \\(F\\).
+- That is:
+  - \\(F\\) is a subset of \\(G^{+}\\) 
+  - \\(G\\) is a subset of \\(F^{+}\\)
 
 ### Example
 
-\\( F = { A \rightarrow B, B \rightarrow C, C \rightarrow A } \\)
-\\( G = { C \rightarrow B, B \rightarrow A, A \rightarrow C } \\)
+- \\( F = \\{ A \rightarrow B, B \rightarrow C, C \rightarrow A \\} \\)
+- \\( G = \\{ C \rightarrow B, B \rightarrow A, A \rightarrow C \\} \\)
+
 
 1. Take LHSes of \\(F\\), do their closures with respect to \\(G\\).
-
-\\(A+ = ACB\\).
-This contains the RHS of \\(F \{ A->B \}\\), so we know it'le be in \\(G+\\).
-
-\\(B+ = BAC\\)
-This contains the RHS of \\(F \{ B->C \}\\), so we know it'll be in \\(G+\\).
-
-\\(C+ = CBA\\)
-This contains the RHS of \\(F \{ C->A \}\\), so we know it'll be in \\(G+\\).
-
-So we know \\(F\\) is a subset of \\(G+\\), or that \\(G\\) *covers* \\(F\\).
-
+  - \\(A^{+} = ACB\\).
+    - This contains the RHS of \\(F \\{ A->B \\}\\), so we know it'll be in \\(G^{+}\\).
+  - \\(B^{+} = BAC\\)
+    - This contains the RHS of \\(F \\{ B->C \\}\\), so we know it'll be in \\(G^{+}\\).
+  - \\(C^{+} = CBA\\)
+    - This contains the RHS of \\(F \\{ C->A \\}\\), so we know it'll be in \\(G^{+}\\).
+  - 
+  - So we know \\(F\\) is a subset of \\(G^{+}\\), or that \\(G\\) **covers** \\(F\\).
 2. Take LHSes of \\(G\\), do their closures with respect to \\(F\\).
+  - \\(C^{+} = CAB \hspace{5mm} G \\{C \rightarrow B\\} \\)
+  - \\(B^{+} = BAC \hspace{5mm} G \\{B \rightarrow A\\} \\)
+  - \\(A^{+} = ACB \hspace{5mm} G \\{A \rightarrow C\\} \\)
+  - 
+  - So we know \\(G\\) is a subset of \\(F^{+}\\), or that \\(F\\) **covers** \\(G\\).
 
-\\(C+ = CAB \hspace{5mm} G{C->B} \\)
-\\(B+ = BAC \hspace{5mm} G{B->A} \\)
-\\(A+ = ACB \hspace{5mm} G{A->C} \\)
-
-So we know \\(G\\) is a subset of \\(F+\\), or that \\(F\\) *covers* \\(G\\).
-
-Therefore we have proven that \\(F\\) is *equivalent* to \\(G\\). 
+Therefore we have proven that \\(F\\) is **equivalent** to \\(G\\). 
 
 ## Normal form shortcuts:
 
@@ -139,31 +105,24 @@ BCNF : LHS is a superkey.
 
 ### Checking: 
 
-\\( R(A,B,C,D,E) \\)
-\\( F = \{ ABD \rightarrow C, BC \rightarrow D, CD \rightarrow E \} \\)
+- \\( R(A,B,C,D,E) \\)
+- \\( F = \\{ ABD \rightarrow C, BC \rightarrow D, CD \rightarrow E \\} \\)
 
 1. Find keys
+  - Try \\( AB^{+} = AB \\)      ❌
+  - Try \\( ABC^{+} = ABCDE \\)  ✅
+  - Try \\( ABD^{+} = ABDCE \\)  ✅
 
-|Left    |Middle     |Right|
-|--------|-----------|-----|
-| AB     | CD        |  E  |
 
-Try \\( AB+ = AB \\)      ❌
-Try \\( ABC+ = ABCDE \\)  ✅
-Try \\( ABD+ = ABDCE \\)  ✅
-
-Keys are \\(ABC,ABD\\).
-
-So the prime attributes are \\(ABCD\\), and the only non-prime is \\(E\\). 
-
-If the LHS is a proper subset of a key, and RHS is non-prime, 2NF is violated. 
-
-Take closures of proper subsets of keys:
+- Keys are \\(ABC,ABD\\).
+- So the prime attributes are \\(ABCD\\), and the only non-prime is \\(E\\). 
+- If the LHS is a proper subset of a key, and RHS is non-prime, 2NF is violated. 
+- Take closures of proper subsets of keys:
 
 - \\(ABC\\) : 
-  - \\(AB+ : AB\\)   ✅ ( no non-primes )
-  - \\(AC+ : AC\\)   ✅ ( no non-primes )
-  - \\(BC+ : BCDE\\) ❌ ( E is nonprime )
+  - \\(AB^{+} : AB\\)   ✅ ( no non-primes )
+  - \\(AC^{+} : AC\\)   ✅ ( no non-primes )
+  - \\(BC^{+} : BCDE\\) ❌ ( E is nonprime )
 
 So this violates 2NF. 
 
@@ -171,68 +130,84 @@ So this violates 2NF.
 
 For each FD \\(X \rightarrow A\\):
 
-1. if \\(A\\) is be non-prime, \\(X\\) must be a superkey (or a key) 
+- If \\(A\\) is be non-prime, \\(X\\) must be a superkey (or a key) 
 
 ### Example
 
-\\(R(ABC)\\)
-\\(F = \{ A \rightarrow B, B \rightarrow C \}\\)
-
-\\(A\\) is prime, \\(BC\\) are non-prime.
-In \\(B \rightarrow C\\), \\(C\\) is non-prime, and \\(B\\) is not a superkey, so this violates 3NF.
+- \\(R(ABC)\\)
+- \\(F = \\{ A \rightarrow B, B \rightarrow C \\}\\)
+- 
+- \\(A\\) is prime, \\(BC\\) are non-prime.
+- In \\(B \rightarrow C\\), \\(C\\) is non-prime, and \\(B\\) is not a superkey, so this **violates** 3NF.
 
 ### Bernsteins Synthesis
 
 - **Guarantees** : dependency preserving
 - **Does Not Guarantee** : lossless
 
-Summary:
-1. Make sure FDs are a minimal cover
-2. Take each FD and make it its own subschema
-3. try to combine subschemas
+- Summary:
+  1. Make sure FDs are a minimal cover
+  2. Take each FD and make it its own subschema
+  3. try to combine subschemas
 
-\\(R(ABCDE)\\)
-\\(F = \{ A \rightarrow B, A \rightarrow C, DE \rightarrow C, DE \rightarrow B, C \rightarrow D \}\\)
+Ex:
 
-1. Find keys.
+- \\(R(ABCDE)\\)
+- \\(F = \\\{ A \rightarrow B, A \rightarrow C, DE \rightarrow C, DE \rightarrow B, C \rightarrow D \\\}\\)
 
-| L  | M  | R | 
-|----|----|---|
-| AE | CD | B | 
+<ol> 
+<li> Find keys. <table style="width: 25%">
+  <thead>
+    <th>L</th>
+    <th>M</th>
+    <th>R</th>
+  </thead>
+  <tbody>
+    <tr>
+      <td> AE</td>
+      <td> CD</td>
+      <td> B</td>
+    </tr>
+  </tbody>
+</table>
+<ul> <li> \\(AE^{+} = AEBCD\\), so \\(AE\\) is a key.</li>
+    <li> Therefore: 
+      <ul><li>Prime    : \\(AE\\)</li>
+        <li>Nonprime : \\(BCD\\)</li>
+      </ul>
+    </li>
+</li>
+</ul>
+<li>Test for 2NF
+  <ul>
 
-\\(AE+ = AEBCD\\), so \\(AE\\) is a key.
+  <li>\\(A\{+} = ABCD\\)</li>
+  <li>\\(E\{+} = E\\)</li>
+  <li>A proper subset of the key (\\(A^{+}\\)) contains non-prime attributes (\\(BCD\\)), so 2NF is violated. </li>
+</ul>
+</li>
 
-Therefore:
-- Prime    : \\(AE\\)
-- Nonprime : \\(BCD\\)
+<li> Make a relation subschema for each FD. 
 
-2. Test for 2NF
+<ul>
+  <li>\\(R1(\underline{A}B)\\)</li>
+  <li>\\(R2(\underline{A}C)\\)</li>
+  <li>\\(R3(\underline{DE}C)\\)</li>
+  <li>\\(R4(\underline{DE}B)\\)</li>
+  <li>\\(R5(\underline{C}D)\\)</li>
+</ul>
+<br/>
 
-\\(A+ = ABCD\\)
-\\(E+ = E\\)
+<ul>
+  <li>\\(R1,R2\\) share a LHS so we can combine them: \\(S(\underline{A}BC)\\)</li>
+  <li>\\(R3,R4\\) share a LHS so we can combine them: \\(T(\underline{DE}BC)\\)</li>
+  <li>All attributes in \\(R5\\) are contained in \\(T\\), so we can discard it.</li>
+</ul>
 
-A proper subset of the key (\\(A+\\)) contains non-prime attributes (\\(BCD\\)), so
-2NF is violated. 
+</li>
+</ol>
 
-3. Make a relation subschema for each FD. 
-
-\\(R1(\underline{A}B)\\)
-\\(R2(\underline{A}C)\\)
-\\(R3(\underline{DE}C)\\)
-\\(R4(\underline{DE}B)\\)
-\\(R5(\underline{C}D)\\)
-
-\\(R1,R2\\) share a LHS so we can combine them.
-
-\\(S(\underline{A}BC)\\)
-
-\\(R3,R4\\) share a LHS so we can combine them.
-
-\\(T(\underline{DE}BC)\\)
-
-All attributes in \\(R5\\) are contained in \\(T\\), so we can discard it. 
-
-Decomposition of \\(R to \\(S(\underline{A}BC),T(\underline{DE}BC)\\), but it's lossy.
+Decomposition of \\(R\\) to \\(S(\underline{A}BC),T(\underline{DE}BC)\\), but it's lossy.
 
 To make this lossless, we can add a schema \\(U\\) with the key : \\(U(AE)\\). This only works with Bernstein's synthesis. 
 
@@ -246,7 +221,7 @@ Every LHS has to be a superkey (or a key)
 - **Does Not Guarantee** : dependency preserving
 
 \\(R(ABCD)\\)
-\\(F = \{ A \rightarrow C, BC \rightarrow A, C \rightarrow D\}\\)
+\\(F = \\{ A \rightarrow C, BC \rightarrow A, C \rightarrow D\\}\\)
 
 1. Set up a variable \\(Z\\) that contains all attributes of \\(R\\).
 
@@ -259,17 +234,17 @@ Every LHS has to be a superkey (or a key)
 3. Take closure of result. If that closure contains the subtracted value(s),
 we have a violation and need to decompose. 
 
-\\(CD+ = CD\\). So \\(AB\\) is OK.
+\\(CD^{+} = CD\\). So \\(AB\\) is OK.
 
 Repeat (2,3) for next pair.
 
 \\(R - AC = BD\\)
 
-\\(BD+ = BD\\). So \\(AC\\) is OK.
+\\(BD^{+} = BD\\). So \\(AC\\) is OK.
 
 Repeat (2,3) for next pair. 
 
-\\(R - AD = BC+ = ABCD\\). So we have a violation, and need to decompose. 
+\\(R - AD = BC^{+} = ABCD\\). So we have a violation, and need to decompose. 
 
 -----
 
@@ -277,7 +252,7 @@ Decompose(\\(ABCD\\)
 
 (i) Make a separate variable, e.g. \\(Y\\), containing the attributes of \\(Z\\).
 
-\\(BC+ = ABCD = Y\\)
+\\(BC^{+} = ABCD = Y\\)
 
 (ii) Offending LHS attributes are \\(A,D\\). Choose one to remove; let's go with \\(D\\).
 
@@ -286,13 +261,13 @@ Decompose(\\(ABCD\\)
 (iii) Do \\(Y - pairs\\)
 
 \\(Y - AB = C\\)
-\\(C+ = C\\), so \\(AB\\) is OK.
+\\(C^{+} = C\\), so \\(AB\\) is OK.
 
 \\(Y - AC = B\\)
-\\(B+ = B\\), so \\(AC\\) is OK.
+\\(B^{+} = B\\), so \\(AC\\) is OK.
 
 \\(Y - BC = A\\)
-\\(A+ = ACD\\). \\(ACD\\) contains \\(C\\), so we get rid of the \\(B\\).
+\\(A^{+} = ACD\\). \\(ACD\\) contains \\(C\\), so we get rid of the \\(B\\).
 
 We're left with \\(AC\\), which was the last thing we included before the decomposition, so we need to remove \\(C\\) from \\(Z\\).
 
@@ -307,13 +282,13 @@ Continuing:
 2. \\(R - \\text{ pairs in } Z\\)
 
 \\(R - AB = D\\)
-\\(D+ = D\\), so \\(AB\\) is OK.
+\\(D^{+} = D\\), so \\(AB\\) is OK.
 
 \\(R - AD = B\\)
-\\(B+ = B\\), so \\(AD\\) is OK.
+\\(B^{+} = B\\), so \\(AD\\) is OK.
 
 \\(R - BD = A\\)
-\\(A+ = ACD\\). \\(ACD\\) contains \\(D\\), so we need to call decompose again.
+\\(A^{+} = ACD\\). \\(ACD\\) contains \\(D\\), so we need to call decompose again.
 
 ----
 
@@ -348,7 +323,7 @@ Lossless : do a join of all subschemas and we get back the same thing.
 ### Checking for lossless decomposition
 
 \\(R(A,B,C,D,E) \\)
-\\(F = \{ AB \rightarrow C, C \rightarrow E, B \rightarrow D, E \rightarrow A \} \\)
+\\(F = \\{ AB \rightarrow C, C \rightarrow E, B \rightarrow D, E \rightarrow A \\} \\)
 \\(R1(BCD),R2(ACE) \\)
 
 |Subschema| A | B | C | D | E |
@@ -414,7 +389,7 @@ We have a full row of DVs, so we can now say this is a **lossless decomposition*
 Using the same example from above. 
 
 \\( R(A,B,C,D,E) \\)
-\\( F = \{ AB \rightarrow C, C \rightarrow E, B \rightarrow D, E \rightarrow A\} \\)
+\\( F = \\{ AB \rightarrow C, C \rightarrow E, B \rightarrow D, E \rightarrow A\\} \\)
 \\( R1(BCD),R2(ACE) \\)
 
 1. Take the LHS of the first FD and intersect it with \\(R_1\\)
@@ -423,7 +398,7 @@ Using the same example from above.
 
 2. Take closure of the result.
 
-\\(B+ = BD\\)
+\\(B^{+} = BD\\)
 
 3. Take the result of (2) and intersect it with \\(R_1\\).
 
@@ -437,7 +412,7 @@ Using the same example from above.
 
 2. Take closure of result
 
-\\(A+ = A. No change, so we repeat the process starting with \\(R_1\\).
+\\(A^{+} = A. No change, so we repeat the process starting with \\(R_1\\).
 
 1. Intersect \\(Z with \\(R_1\\)
 
@@ -446,7 +421,7 @@ Using the same example from above.
 
 2. Take closure of the result:
 
-\\(BD+ = BD\\). 
+\\(BD^{+} = BD\\). 
 No change, so repeat the process with \\(R_2\\).
 
 1. Intersect \\(Z with \\(R_2\\). 
@@ -473,11 +448,11 @@ n.b. Minimal covers are not unique.
 **Important to do steps in order**
 
 \\(R(ABCDE)\\)
-\\(F = \{ A \rightarrow D, BC \rightarrow AD, C \rightarrow B, E \rightarrow A, E \rightarrow D \}\\)
+\\(F = \\{ A \rightarrow D, BC \rightarrow AD, C \rightarrow B, E \rightarrow A, E \rightarrow D \\}\\)
 
 1. Make sure all FDs have singleton RHS.
 
-\\(F = \{ A \rightarrow D, BC \rightarrow A, BC \rightarrow D, C \rightarrow B, E \rightarrow A, E \rightarrow D \}\\)
+\\(F = \\{ A \rightarrow D, BC \rightarrow A, BC \rightarrow D, C \rightarrow B, E \rightarrow A, E \rightarrow D \\}\\)
 
 2. Using FDs that have 2+ members on the LHS, see if any are extraneous. (one at a time) 
 
@@ -485,45 +460,45 @@ Taking \\(BC \rightarrow A\\).
 
 3. Take closure of members of LHS.
 
-\\(B+ = B\\)
-\\(C+ = CBAD\\)
+\\(B^{+} = B\\)
+\\(C^{+} = CBAD\\)
 
 4. Since the closure of \\(C\\) contains \\(B\\) (and \\(A)\\) we can remove \\(B\\) from the LHS.
 
-\\(F = \{ A \rightarrow D, C \rightarrow A, BC \rightarrow D, C \rightarrow B, E \rightarrow A, E \rightarrow D \}\\)
+\\(F = \\{ A \rightarrow D, C \rightarrow A, BC \rightarrow D, C \rightarrow B, E \rightarrow A, E \rightarrow D \\}\\)
 
 Move on to \\(BC \rightarrow D\\), and repeating (3):
 
-\\(B+ = B\\)
-\\(C+ = BCAD\\)
+\\(B^{+} = B\\)
+\\(C^{+} = BCAD\\)
 
 Since \\(C+\\) contains \\(B\\), we can remove it from the LHS.
 
-\\(F = \{ A \rightarrow D, C \rightarrow A, C \rightarrow D, C \rightarrow B, E \rightarrow A, E \rightarrow D \}\\)
+\\(F = \\{ A \rightarrow D, C \rightarrow A, C \rightarrow D, C \rightarrow B, E \rightarrow A, E \rightarrow D \\}\\)
 
 5. Check for redundant FDs by doing the closure with and without that dependency.
 
-with:    \\(A+ = AD\\)
-without: \\(A+ = A\\), so we need to keep \\(A \rightarrow D\\).
+with:    \\(A^{+} = AD\\)
+without: \\(A^{+} = A\\), so we need to keep \\(A \rightarrow D\\).
 
-with:    \\(C+ = CADB\\)
-without: \\(C+ = CDB\\), so we need to keep \\(C \rightarrow A\\).
+with:    \\(C^{+} = CADB\\)
+without: \\(C^{+} = CDB\\), so we need to keep \\(C \rightarrow A\\).
 
-with:    \\(C+ = CADB\\)
-without: \\(C+ = CADB\\), so we \\(C \rightarrow D\\) is redundant.
+with:    \\(C^{+} = CADB\\)
+without: \\(C^{+} = CADB\\), so we \\(C \rightarrow D\\) is redundant.
 
-with:    \\(C+ = CADB\\)
-without: \\(C+ = CAD\\), so we need to keep \\(C \rightarrow B\\).
+with:    \\(C^{+} = CADB\\)
+without: \\(C^{+} = CAD\\), so we need to keep \\(C \rightarrow B\\).
 
-with:    \\(E+ = EAD\\)
-without: \\(E+ = E\\), so we need to keep \\(E \rightarrow A\\).
+with:    \\(E^{+} = EAD\\)
+without: \\(E^{+} = E\\), so we need to keep \\(E \rightarrow A\\).
 
-with:    \\(E+ = EAD\\)
-without: \\(E+ = EAD\\), so we \\(E \rightarrow D\\) is redundant.
+with:    \\(E^{+} = EAD\\)
+without: \\(E^{+} = EAD\\), so we \\(E \rightarrow D\\) is redundant.
 
 Our set of FDs becomes:
 
-\\(F = \{ A \rightarrow D, C \rightarrow A, C \rightarrow B, E \rightarrow A \} \\)
+\\(F = \\{ A \rightarrow D, C \rightarrow A, C \rightarrow B, E \rightarrow A \\} \\)
 
 ### Shortcut
 

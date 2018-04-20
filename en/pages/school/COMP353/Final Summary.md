@@ -1,4 +1,3 @@
-<!-- markdownlint-disable -->
 [gimmick: math]()
 
 <script type="text/javascript">
@@ -11,8 +10,6 @@ $(function(){
             
 });
 </script>
-<!-- markdownlint-enable -->
-<!--markdownlint-disable MD013 MD033 -->
 
 # COMP 353 Final Summary
 
