@@ -101,6 +101,8 @@
   * # COMP 353
   * [Midterm preparation](pages/school/COMP353/Midterm%20Summary.md)
   * [Tutorials until midterm](pages/school/COMP353/Tutorials.md)
+  * [Final Prep](pages/school/COMP353/Final%20Summary.md)
+  * [Video notes Summary](pages/school/COMP353/VideoNotesSummary.md)
   * # COMP 345
   * [Midterm preparation](pages/school/COMP345/MidtermReview.md)
   * # COMP 346

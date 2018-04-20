@@ -1,11 +1,3 @@
-##Attack on Titan:
-
-After his hometown is destroyed and his mother is killed, young Eren Jaegar vows to cleanse the earth of the giant humanoid Titans that have brought humanity to the brink of extinction.
-
-##Death note:
-
-An intelligent high school student goes on a secret crusade to eliminate criminals from the world after discovering a notebook capable of killing anyone whose name is written into it.
-
 ##Engineering Connections:
 
 - It is presented by Richard Hammond, and looks at how engineers and designers use historic inventions and clues from the natural world in ingenious ways to develop new buildings and machines.

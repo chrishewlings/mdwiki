@@ -23,10 +23,6 @@ Two boys growing up in a violent neighborhood of Rio de Janeiro take different p
 
 A Catholic school principal questions a priest's ambiguous relationship with a troubled young student.
 
-##Edge of Tomorrow:
-
-A military officer is brought into an alien war against an extraterrestrial enemy who can reset the day and know the future. When this officer is enabled with the same power, he teams up with a Special Forces warrior to try and end the war.
-
 ##F for Fake:
 
 A documentary about fraud and fakery by Orson Welles.
@@ -74,7 +70,6 @@ Two aspiring boxers, lifelong friends, get involved in a money-laundering scheme
 ##Maléfique:
 
 In a penitentiary, four prisoners occupy a cell: Carrère, who used his company to commit a fraud and was betrayed by his wife; the drag Marcus and his protégée, the intellectually disabled Paquerette, who ate his six months sister; and the intellectual, Lassalle who killed his wife. One night, Carrère finds an ancient journal hidden in a hole in the wall of the cell. They realize that the book was written by Danvers in the beginning of the last century and is about black magic. They decide to read and use its content to escape from the prison, when they find the truth about Danvers' fate.
-
 
 ##Metropia:
 
@@ -144,10 +139,6 @@ A newcomer to a fancy ballet academy gradually comes to realize that the school 
 
 Wannabe actors become regulars in the stylish neo-lounge scene; Trent teaches his friend Mike the unwritten rules of the scene.
 
-##The Conjuring:
-
-Paranormal investigators Ed and Lorraine Warren work to help a family terrorized by a dark presence in their farmhouse.
-
 ##The Brass teapot:
 
 When a couple discovers that a brass teapot makes them money whenever they hurt themselves, they must come to terms with how far they are willing to go.
@@ -175,9 +166,5 @@ A bureaucrat rents a Paris apartment where he finds himself drawn into a rabbit 
 ##Trauma:
 
 A young man tries to help a teenage European girl whom escaped from a clinic hospital after witnessing the murder of her parents by a serial killer and they try to find the killer before the killer finds them.
-
-##Yacht Rock:
-
-N/A
 
 

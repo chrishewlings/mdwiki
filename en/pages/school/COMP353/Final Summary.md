@@ -370,7 +370,7 @@ class Movie (extent Movies key (title, year)) {
   - `Array` : fixed list type
   - `Struct` : just like C. 
     - e.g. `Struct Address (string street, string city)`
-  - `List` : growable list type
+  - `List` : ordered collection, growable list type
   - `Dictionary` : a key value store.
 
 n.b. Collections cannot be nested, i.e. you can't have an `Array` of `List`, etc.
