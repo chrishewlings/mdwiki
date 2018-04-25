@@ -344,13 +344,37 @@ ClassName *var = new ClassName(); // allocated on the heap
     + copy constructor
     + move constructor
 
-- Derived classes call their own constructors, then base constructors. 
+
 - Copy constructor and assignment operator do member-wise shallow copy. 
 - Calling virtual methods from constructors **will not do what you think** it will.
 - Placement constructor replaces a current instance. 
 - You can make constructors private or protected.
 - Member variables are initialized **before** the constructor is called, so any object members will have their constructors called in order. 
 
+- Derived classes call their base constructors, then their own constructors:
+
+```cpp
+
+class A {
+public:
+    A() { std::cout << "A Constructor" << std::endl; }
+};
+
+class B: public A {
+public:
+    B() { std::cout << "B Constructor" << std::endl; }
+};
+
+int main(void) {
+    B b; 
+    return 0;
+}
+```
+
+output is :
+
+- `A Constructor`
+- `B Constructor`
 
 ### Destructors
 
@@ -358,7 +382,37 @@ ClassName *var = new ClassName(); // allocated on the heap
 - Throwing an exception from a destructor is **definitely** a bad idea. 
 - On destruction, member variables are destroyed in reverse order. 
 - classes get a default destructor, **unless** inheriting from a base class with a virtual destructor 
-- Destructor is called **before** member variables are destroyed. Their destructors are called bottom to top.
+- Destructor is called **before** member variables are destroyed. 
+
+- Derived destructors are called in reverse order from constructors. Extending the example from above:
+
+```cpp
+
+class A {
+public:
+    A() { std::cout << "A Constructor" << std::endl; }
+    ~A() { std::cout << "A Destructor" << std::endl; }
+};
+
+class B: public A {
+public:
+    B() { std::cout << "B Constructor" << std::endl; }
+    ~B() { std::cout << "B Destructor" << std::endl; }
+};
+
+int main(void) {
+    B b; 
+    return 0;
+}
+```
+
+output is :
+
+- `A Constructor`
+- `B Constructor`
+- `B Destructor`
+- `A Destructor`
+
 
 
 #### Initializer list
