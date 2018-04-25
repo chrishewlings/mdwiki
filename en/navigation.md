@@ -104,7 +104,7 @@
   * [Final Prep](pages/school/COMP353/Final%20Summary.md)
   * [Video notes Summary](pages/school/COMP353/VideoNotesSummary.md)
   * # COMP 345
-  * [Midterm preparation](pages/school/COMP345/MidtermReview.md)
+  * [Final preparation](pages/school/COMP345/345_rveview.md)
   * # COMP 346
   * [Midterm preparation](pages/school/COMP346/MidtermReview.md)
   * [Brief Midterm Recap](pages/school/COMP346/BriefReview.md)
