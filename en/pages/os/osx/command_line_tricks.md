@@ -229,11 +229,11 @@ $ /usr/libexec/PlistBuddy -c "set :$key:$subkey1:$subkey2:$subkeyn $value" $plis
 
 `osascript -e 'tell application "Finder" to quit'`
 
-- Write to syslog
+#### Write to syslog
 
 `echo "hello" | logger`
 
-- Automount drives without having a user logged in <`/Library/Preferences/SystemConfiguration/autodiskmount.plist`>:
+#### Automount drives without having a user logged in <`/Library/Preferences/SystemConfiguration/autodiskmount.plist`>:
 ```
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
@@ -245,10 +245,17 @@ $ /usr/libexec/PlistBuddy -c "set :$key:$subkey1:$subkey2:$subkeyn $value" $plis
 </plist>
 ```
 
-- add a spacer to the dock
+#### add a spacer to the dock
 `defaults write com.apple.dock persistent-apps -array-add '{"tile-type"="spacer-tile";}' `
 
-- time since last user input
+#### time since last user input
 ```
 echo $((`ioreg -c IOHIDSystem | sed -e'/HIDIdleTime/ !{ d'-e't'-e'}'-e's/.* = //g'-e'q'` / 1000000000))
 ```
+
+#### Files in `/var/db`
+
+|File|Description|
+|----|-----------|
+|`.AppleSetupDone`|Created on completion of Setup Assistant. Remove to skip login window and create a new admin account.|
+|`.RunLanguageChooserToo`|If exists, allows user to change language of Setup Assistant, otherwise it follows the installer language|

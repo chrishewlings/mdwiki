@@ -10,19 +10,11 @@
   * [Command Line Tricks](pages/os/osx/command_line_tricks.md)
   * [LaunchDaemons](pages/os/osx/launchdaemons.md)
   * [Understanding launchd](pages/os/osx/understand_launchd.md)
-  * [NetRestore/NetInstall configuration](pages/os/osx/NetRestore-NetInstall%20configuration.md)
   * [Better Boot Camp](pages/os/osx/Better%20Boot%20Camp.md)
-  * [Misc. Reverse Engineering](pages/os/osx/Reverse%20Engineering.md)
+  * [Misc. Reverse Engineering](pages/os/osx/Reverse%20engineering.md)
   * [Code Signing Demonstration](pages/os/osx/Code%20Signing%20Demonstration.md)
-  * [Startup and login hooks](pages/os/osx/Startup%20and%20login%20hooks.md)
   * [Python OS X Sysadmin tricks](pages/software/sysadmin/python-sysadmin.md)
-  - - - -
-  * # iOS
-  * [Local SSH Access (JB)](pages/os/ios/localSSHAccess.md)
-  - - - -
-  * # BSD
-  * [FreeBSD](pages/os/bsd/freebsd.md)
-
+  
 [Programming]()
 
   * # Scripting Languages
@@ -36,7 +28,6 @@
   - - - -
   * # Compiled Languages
   * [C](pages/programming/compiled/c.md)
-  * [C++](pages/programming/compiled/cpp.md)
   * [Swift/Cocoa](pages/programming/compiled/swift-cocoa.md)
   * [Objective C](pages/programming/compiled/objc.md)
   - - - -
@@ -86,6 +77,8 @@
 
 [School]()
 
+
+  * [COMP 354 - Advanced C++](pages/school//COMP345.md)
   * # COMP 352
   * [Abstract Data Types](pages/school/COMP352/COMP%20352%20%2D%20Data%20Structures.md)
   * [Algorithmic Analysis](pages/school/COMP352/COMP%20352%20%2D%20Algorithms.md)  
@@ -102,7 +95,7 @@
   * [Final Prep](pages/school/COMP353/Final%20Summary.md)
   * [Video notes Summary](pages/school/COMP353/VideoNotesSummary.md)
   * # COMP 345
-  * [Final preparation](pages/school/COMP345/345_review.md)
+  
   * # COMP 346
   * [Midterm preparation](pages/school/COMP346/MidtermReview.md)
   * [Brief Midterm Recap](pages/school/COMP346/BriefReview.md)
