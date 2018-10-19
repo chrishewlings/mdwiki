@@ -3,8 +3,6 @@
 [Operating systems]()
 
   * # Linux
-  * [Ubuntu/Debian](pages/os/linux/ubuntu-debian.md)
-  * [RHEL/CentOS](pages/os/linux/rhel-centos.md)
   * [Arch](pages/os/linux/arch.md)
   * [Raspbian](pages/os/linux/raspbian.md)
   - - - -
