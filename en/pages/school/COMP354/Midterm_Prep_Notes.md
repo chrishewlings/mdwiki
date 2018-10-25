@@ -6,7 +6,7 @@
 - Maintenance costs may be much higher than development costs
 - Need to balance 'dark forces', e.g. cost, time, competition
 
-# Software Life Cycle Models
+## Software Life Cycle Models
 
 - In theory, development is linear. But in practice, usually much more chaotic.
 - The **moving target** problem happens when requirements change during development. **No solution!**
@@ -29,17 +29,16 @@
 |Agile| <ul><li>Based on iterative-incremental model</li><li>based on <b>stories</b> the client would like to support</li><li>Emphasizes <b>test-driven development</b> and <b> pair programming</b></li><li>No specialization, no overall design, all done while building</ul>|<ul><li>Constant communication with client</li><li>Responds quickly to change</li><li>Good for when requirements are vague or changing</li></ul>|<ul><li>Too soon to evaluate overall success</li><li>Refactoring costs</li></ul>|
 |Synchronize-and-Stabilize|<ul><li>Microsoft's lifecycle model</li><li>Find most important features by interviewing clients</li><li>**Synchronize** at end of each day</li><li>**Stabilize** at end of each build</li></ul>|<ul><li>Repeated synchronization ensures components work together</li><li>Early insight into operation so requirements can be modified</li></ul>||
 
-## Other mentioned styles
+### Other mentioned styles
 
-
-### Based on Waterfall
+#### Based on Waterfall
 
 - **iterative feedback** : each step has a feedback loop to perform QA
 - **B-Model**: shaped like a lower case `b`. Once initial development done, loop on eolutionary enhancement
 - **Incremental**: Waterfall in 3d, kind of like spiral (z-axis contains a series of waterfalls)
 - **V-model** : LHS is evolution of user requirements, RHS is integration and verification. Y-axis is level of decomposition from system level
 
-### Other
+#### Other
 
 - **Wheel and spoke** :
     + Based on **Spiral**
@@ -49,8 +48,8 @@
     + Uses risk-management mainly like spiral
     + Also known as the **RUP** ,(Rational Unified Process) model
 
-## Agile
-### Principles
+### Agile
+#### Principles
 
 1. Highest priority is to satisfy customer via early+continuous delivery  
 2. Welcome changing requirements, even late in development  
@@ -65,7 +64,7 @@
 11. Best architectures, requirements, and designs emerge from self-organizing teams
 12. At regular intervals, team reflects on how to become more effective
 
-### Dumb Agile Vocabulary
+#### Dumb Agile Vocabulary
 
 - **Pair programming:** One 'drives', the other 'navigates'
 - **scrum**: iterative cycle of **sprints**
@@ -73,14 +72,14 @@
 
 
 
-# Modeling
+## Modeling
 
 - Three types of requirements:
     + Usage requirements -> best served by **use cases** + **sequence diagrams**
     + Non-functional requirements -> best served by architectural phase of design
     + Domain requirements -> best served by **domain model**
 
-## Domain Model
+### Domain Model
 
 - Illustrates meaningful real-world concepts in a problem domain
     - A concept is an **idea**, **thing**, or **object**.
@@ -95,9 +94,9 @@
 
 - "Pure" domain modelling based solely on facts from Domain Expert, "impure" approach uses other sources/abstractions
 
-### Determining conceptual classes
+#### Determining conceptual classes
 
-#### Conceptual class category list
+##### Conceptual class category list
 
 |Concept Category | Example | 
 |-----------------|---------|
@@ -109,7 +108,7 @@
 | Roles of people | Cashier | 
 | Containers | Store, bin | 
 
-#### Noun-phrase identification
+##### Noun-phrase identification
 
 From textual description of use cases, identify nouns and noun phrases, e.g.
 
@@ -117,7 +116,7 @@ From textual description of use cases, identify nouns and noun phrases, e.g.
 2. A **Cashier** starts a new sale.
 3. **Cashier** enters **item identifier**.
 
-#### Specification/Description Conceptual classes
+##### Specification/Description Conceptual classes
 
 - Allows us to represent data for a class of objects, rather than a shared/duplicated attribute.
 - Add a specification/description concept when:
@@ -128,7 +127,7 @@ From textual description of use cases, identify nouns and noun phrases, e.g.
 
 Rather than *Item* possessing `description`, `price,`, `itemID`, define a conceptual `ItemDescription` class that contains these.
 
-#### Associations
+##### Associations
 
 - An **association** is a relationship between concepts that indicates a meaningful or interesting connection. 
 - Assocations should be named as `TypeName-VerbPhrase-TypeName` e.g. `POS-Captures-Sale`,`Sale-PaidBy-Payment`
@@ -143,7 +142,7 @@ Rather than *Item* possessing `description`, `price,`, `itemID`, define a concep
 | `A` is a description of `B` | `ItemDescription` - `Item` | 
 | `A` is known/logged/recorded/captured in `B` | `Sale` - `POS` | 
 
-#### Multiplicity
+##### Multiplicity
 
 - Also called **cardinality**, it defines how many instances of type `A` can be associated with how many instances of type `B`.
 
@@ -155,7 +154,7 @@ Rather than *Item* possessing `description`, `price,`, `itemID`, define a concep
 | `n`    | Exactly `n` | 
 | `n1,n2,n3` | Exactly `n1`,`n2`, or `n3` | 
 
-#### Attributes
+##### Attributes
 
 - An **attribute** is a logical data value
 - The type of an attribute should typically not be a complex domain concept, such as `Sale` or `Airport`
@@ -362,7 +361,7 @@ Like a combined sequence diagram and domain model. There are numbered steps betw
 - Recommend: **top-down** with **expert judgment** and/or **analogy estimation**
 - Recommend: **bottom-up** with **algorithmic model**
 
-# Software Architecture
+## Software Architecture
 
 - **Architectural** design (high level) 
     + Main modules and their connections
@@ -434,7 +433,7 @@ Architectural design addresses:
 - **Controller** handles user input
 - Change-propagation mechnism (e.g. observer) ensures consistency between model + view
 
-## Distributed systems
+### Distributed systems
 
 - **Classic Client/server**: Components are servers and clients
 
@@ -479,11 +478,11 @@ Architectural design addresses:
 - `B2B` : integrate data transmission between multiple enterprises
 - `B2C` : Human users connect to businesses (e.g. Amazon)
 
-# UML 
+## UML 
 
 - Associated textual language called **OCL** (Object Constraint Language)
 
-## Class Diagram Symbols
+### Class Diagram Symbols
 
 ![](images/uml-cheatsheet.png)
 
@@ -517,7 +516,7 @@ Architectural design addresses:
     + Classes already have superclasses
     + Different implementations of same class might be available
 
-# Diagram glossary
+## Diagram glossary
 
 | Diagram type | Example | 
 |--------------|---------|
