@@ -276,9 +276,7 @@ Methods:
 | Pure Fabrication | An artificial class supporting other GRASP patterns. Presents a generic reusable object | |
 | Indirection | Intermediate object that mediates between components/services, so they remain uncoupled | | 
 
-Architectural
-Design
-Idiom
+n.b. **Cohesion** refers to elements in the **same** module, whereas **coupling** refers to elements in **different** modules.
 
 ## Communication diagram
 
@@ -411,6 +409,7 @@ Architectural design addresses:
 
 - Components generate **signals**
 - Objects can receive events at **ports** or register for **event notifications**
+- Best when delays are unpredictable (network, file system, UI)
 
 - Components (objects, capsules, modules)
     - **Publisher**: individual components announce data they wish to share
