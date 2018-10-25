@@ -78,7 +78,7 @@
 [School]()
 
 
-  * [COMP 354 - Advanced C++](pages/school//COMP345.md)
+  * [COMP 354 - Advanced C++](pages/school/COMP345.md)
   * # COMP 352
   * [Abstract Data Types](pages/school/COMP352/COMP%20352%20%2D%20Data%20Structures.md)
   * [Algorithmic Analysis](pages/school/COMP352/COMP%20352%20%2D%20Algorithms.md)  
@@ -94,8 +94,8 @@
   * [Tutorials until midterm](pages/school/COMP353/Tutorials.md)
   * [Final Prep](pages/school/COMP353/Final%20Summary.md)
   * [Video notes Summary](pages/school/COMP353/VideoNotesSummary.md)
-  * # COMP 345
-  
+  * # COMP 354
+  * [Midterm Prep Notes](pages/school/COMP354/Midterm_Prep_Notes.md)
   * # COMP 346
   * [Midterm preparation](pages/school/COMP346/MidtermReview.md)
   * [Brief Midterm Recap](pages/school/COMP346/BriefReview.md)
