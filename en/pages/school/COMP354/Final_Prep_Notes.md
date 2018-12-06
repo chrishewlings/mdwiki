@@ -524,3 +524,576 @@ Architectural design addresses:
 | Sequence     | ![](images/diagram-sequence.png) |
 | Communication | ![](images/diagram-communication.png) |
 | UML Class    | ![](images/diagram-uml_class.png) |
+
+## Impact Analysis
+
+- The process of **identifying potential consequences of a change**, or estimating what needs to be done to accomplish that change
+    - A **side effect** is an undesirable behavior that results from a change
+    - A **ripple effect** is when a small change affects many other parts
+        + e.g. requirements, interface, environment, management&logistics
+
+- Done by cross-referencing, program slicing, traceability on **software life-cycle objects** (SLOs)
+
+- Automated impact analysis tools
+    + Create models of relationships among SLOs
+    + Capture these relationships in software/representations
+    + translate a specific software change into the impacted relationships
+    + trace relationships and reasonably bound the search for impactts
+    + Retranslate the estimated affeted objects back into software objects
+
+- **General Impact Analysis**: Based on assumption and analysis of source code
+- **Static Impact Anaylsis**: Analyze source code -> call graph traversals, slicing. Results can be very large.
+- **Dynamic Impact Analysis**: Results depend on input. Gives impact related to program use
+
+## Regression Testing
+
+- Occurs **after** software changes.
+    + **corrective maintenance** : failure noted after release
+    + **adaptive maintenance** : Continuing compatibility with target environment
+    + **perfective maintenance** : improving/adding capabilities
+    + **preventive maintenance** : increase robustness, maintainability, etc.
+
+- A system **regresses** if:
+    - a modified component fails
+    - A new component causes failures via side effects
+
+- A **baseline** version is one that has passed test suite
+- A **delta** version has been changed and has not passed. 
+    
+- Who does regression tests:
+    + **Devs**: at the unit level/integration
+    + **Test Engineers**: at the function level
+    + **QA/Test Engineers**: at the system level
+
+- Models:
+    + Control flow graph
+    + State-based behavior diagram
+    + scenario-based model
+    + component-based model
+
+- Test Suite Maintenance:
+    + Test suites can **decay** or become obsolete as time goes on.
+    + To avoid decay, pay close attention to decreases in coverage.
+
+- Reduce a test suite:
+    + **Systematic sampling** : select every *nth* baseline test case
+    + **Random sampling** : produces a different test suite every time
+    + **Coverage-based filtering**: eliminating tests that exercise the same components
+
+- Retest risky use cases:
+    + **Skip** : non-critical, low priority, or highly stable
+    + **Retest**: 
+        * Individually unstable or unproven resources
+        * Resources that have not been shown to work together before
+        * Implement complex business logic
+        * Have a complex implementation
+        * Subject to high churn during development
+    + Consequences
+        * Unsafe because no anaylsis of dependencies
+        * Some tests that could be skipped may be repeated
+        * Analysis is done without code analyzers
+        * Can be applied in any circumstance & scope
+
+- Retest by profile:
+    + Use a budget-constraint operational profile
+        * Determine how many test cases can be run
+        * Distribute test cases in proportion to relative frequency of each use case (defined in profile)
+        * e.g. test more common functionality more intensively
+    + Consequences
+        * Moderate risk of missing faults
+        * Best suited to system scope testing 
+
+- Evaluating test case
+    + Calculate values by hand
+    + Supply test inputs with known answers
+    + Verify that output values fulfill certain properties (e.g √x^2 = x)
+    + Compare against a well known implementation (Oracle)
+
+### Automated regression testing
+
+#### Requirements:
+- **Version control**
+- **Modular structure**
+- **Smart comparison** : ignore output fields like timestamps
+- **Shuffling** : vary sequence of tests, to reveal sequence-sensitive bugs
+- **built-in**: test drivers packaged with a component
+
+#### Advantages:
+- **Repeatable tests**
+- **Consistent capture and analysis**
+- **Reduced costs** : pays for itself after a couple of dev cycles
+
+#### Limitations:
+- Skilled testers may be more precise with requirements. Combination of manual/automatic works better.
+- If no need to repeat, cost of automation may not be justified
+- Test suites must *also* be maintained
+
+### System Configuration Management
+
+- **Configuration item** (CMM) - aggregate treated as single entity
+- **Soft. Configuration Item** (SCI) - Information that is created as part of the software engineering process.
+    + Properties: Name, Description, Resources, Realisation
+    + Basic or aggregated
+
+- **Baseline**: a spec/product that has been formally reviewed that can only be changed by formal change control procedures
+
+- Configuration management concerns managing evolving software systems
+- The '**first law**' : no matter where you are in the life cycle, the system will change and desire to change it will persist
+
+- An **SCM Repository** is a set of mechanisms and data structures allowing a software team to manage change effectively
+    + Data Integrity
+    + Information sharing
+    + Tool integration
+    + Data integration
+    + Methodology enforcement
+    + Document standardization
+
+#### Repository Features
+
+- **Versioning**: Saves and allows restoring previous revisions
+- **Dependency tracking & Change Managment**: Manages relationships of data elements
+- **Requirements tracing**: Track design, construction components, and deliverables from a specific requirement specification
+- **Configuration Management**: Keeps track of configurations representing specific milestones or releases. 
+    + **Version Management** provides needed versions
+    + **Link Management** keeps track of interdependencies
+- **Audit trails**: establishes information about when, why and by whom changes are made
+
+- Configuration fragments/documents usually organized by hierarchical scheme with multi-level names
+- **Derivation history** is a record of changes applied, rationale, when, etc. Using standard formats like JavaDoc allows it to be processed and added to documentation automatically.
+- All configuration management should be held in a configuration database.
+- Release management should not assume that all previous releases have been accepted, e.g. Windows 95 - Windows XP
+- Release creation requires a list of files being used to create it so it can be reproduced
+
+## Design Patterns
+
+- A reuse of design expertise. Codifies good designs and explicitly names idioms
+- Patterns provide **structure** to design
+- Patterns represent a lower level of structure than **architecture**
+
+### Gang of Four
+
+![](images/gof-patterns.png)
+
+| Pattern  | Buzzwords | Example | 
+|----------|-----------|---------|
+| Composite| part-whole hierarchy, recursion | Graphical widgets | 
+| Observer | monitor state, publish-subscribe, abstract coupling | data object changes -> tells views to update, MVC |
+| Adapter  | convert interface of single object, uses old interface | different class libraries | 
+| Singleton| unique, direct visibility | | 
+| Facade   | simplify interface, decouple subsystem of multiple objects, defines new interface | compiler/lexer|  
+
+#### Frameworks
+
+- **Frameworks** focus on reuse of concrete designs, algorithms, implementations for a particular domain
+
+- **Infrastructure**: used internally within a software project
+- **Middleware**: integrate existing applications/components
+- **Enterprise**: focus on specific domain
+- **Whitebox**: 
+    + Extends functionality by **inheritance & dynamic binding**
+    + Produces system tightly coupled to framework inheritance hierarchy
+    + Changes to framework might require total recompile
+- **Blackbox**:
+    + Define interfaces that can be plugged into framework
+    + Extends functionality by **interface conformity**
+    + Generally **easier** to use, **harder** to develop
+    + Harder to extend dynamically
+
+- A **class library**, by contrast, provides more generalized reusable components that are less domain specific
+- A **component** is a self-contained instance that defines a coheisve set of operations, less tightly coupled 
+
+## Issue Tracking and Versioning
+
+- Software repositories enable collaborative development and become sources of documentation and persistency
+- Enables:
+    + Version management
+    + Configurations
+    + Parallel builds
+    + Change request tracking
+    + Process support
+    + Dependency tracking
+    + Distribution
+
+- **Change Management** systems record change requests, urgency, impact, etc.
+    + Change tracking tools track status of bugs, feature rqs, etc.
+    + Resolution tags : 
+        * `FIXED` : a fix has been checked in and tested
+        * `INVALID` : not a bug
+        * `WONTFIX` : never be fixed
+        * `LATER` : not fixed in this release
+        * `REMIND` : probably won't be fixed but might be
+        * `DUPLICATE` 
+        * `WORKSFORME`
+        * `RESOLVED` : Awaiting verification from QA
+        * `VERIFIED` : QA agrees but is resolved
+        * `CLOSED`
+
+- Some systems implement voting for gauging impact
+
+### Centralized Source Control
+
+- Server with a database
+- Each client has a working version
+
+#### Issues with concurrency:
+
+1. **Prevent it** (pessimistic) : allow only one writable copy (*SourceSafe*)
+2. **Patch up** (optimistic) : *CVS,Perforce,SVN*
+
+### Decentralized source control (Git)
+
+- Every working checkout is a repository
+- Version control even when detached
+- Backups are trivial
+- Merging is reduced (initially)
+- Uses snapshots rather than delta storage
+
+#### Git Structure
+
+- Split into three trees
+
+- `HEAD`: last commit snapshot, next parent
+- **Index**: proposed next commit snapshot
+- **Working directory**: Sandbox
+
+## Architectural Views
+
+### 4+1 View
+
+| View | Characteristics | Contains |
+|------|-----------------|----------|
+|Use Case| Present architecturally significant use cases | |
+| Logical| Conveys structure, interfaces, focuses on functional. |<ul><li>Components <ul><li>Classes</li><li>Modules</li><li>Packages</li><li>Subsystems</li></ul><li>Connectors<ul><li>Usage</li><li>Containment, aggregation</li><li>Inheritance, instantiation</li></ul></li><li>Structure<ul><li>UML2 Component diagrams</li><li>UML package + class diagrams</li></ul></li><li>Behaviour<ul><li>State diagrams</li><li>Interaction diagrams</li></ul></li></ul>|
+| Process| | <ul><li>Components<ul><li>Groups of tasks</li><li>Control</li><li>Redundancy</li></ul></li><li>Interrelationships and Communication</li><li>Allocation of logical view components to tasks</li><li>Synchronization mechanisms</li></ul>|
+| Implementation | Actual software organization | <ul><li>Components<ul><li>Libraries</li><li>Subsystems</li><li>Comon top-level arch layers</li></ul></li><li>Connectors<ul>Containment</ul><ul>Dependencies</ul></li><li>Allocates logical components to implementation components</li></ul>  |
+| Deployment | Physical model of project | <ul><li>Components<ul><li>Processors</li><li>Network nodes</li></ul></li><li>Topology</li><li>Process mapping</li></ul> |
+
+### Zachman Framework?
+
+## Software Quality
+
+- Need to make quality measurable: what **factors** -> quantifiable **criteria** -> specific **measures**
+- Different qualities can conflict, i.e. balancing security/performance
+- Common measures of quality:
+    + reliability
+    + modifiability
+    + understandability
+    + usability
+    + testability
+    + protability
+    + maintainability
+    + reusability
+
+- Different stakeholders have different views of quality
+    + **Customer** : solves problems at acceptable cost
+    + **User**: easy to learn
+    + **Developer** : easy to design/maintain
+    + **Project manager** : pleases customers while costing less
+
+### Object Oriented Design Quality
+
+- Measurable internal attributes:
+    + Coupling (between classes, within a class)
+    + Cohesion
+    + Inheritance
+    + Polymorphism
+    + Size
+
+### CK: Class-Oriented Metrics
+- Depth of inheritance tree
+- Weighted methods per class
+- Coupling between object classes
+- Lack of cohesion
+- Response for a class
+- Number of children
+
+- **CBO**: Number of couples with other classes
+    - Higher CBO -> higher sensitivity to changes in design
+    - Lower CBO -> independent class, good for reuse
+- **RFC**: Response for class
+    + Total number of methods that can be executed in response to a message to a class
+    + If many outcomes, it makes testing more difficult
+- **DIT**: Depth of Inheritance Tree
+    + How far down the inheritence tree
+    + Higher value -> more complex design
+    + Should rarely be greater than 3-4
+- **NOC**: Number of Children
+    + Number of subclasses
+    + Higher value -> more complex design
+
+- Recall: **Coupling**:
+    + High coupling -> limited reusability
+    + How cleanly the modules are separated from one another
+- Recall: **Cohesion**: 
+    + degree to which tasks performed are functionally related. 
+    + How the activities within a single module are related to one another
+    + **High Cohesion** -> simplicity, reusability
+
+## Software Testing
+
+### Failure
+
+- **Failure**: A *misbehaviour* of the system
+
+- Causes
+    + Requirements omitted or not implementable
+    + Incorrect specification
+    + Error in high-level design, low-level design, code
+
+### Fault
+
+- **Fault** : An error that causes a failure (bug)
+- **Fault Identification**: process of discovering what fault caused a failure
+- **Fault Correction**: ensuring a failure does not recur
+
+### Defect
+
+- Defect from **specification**: wrong
+- Variance from **expectation**: missing or extra
+
+- Why?
+    + Miscommunication
+    + Programming errors
+    + Change of requirements
+    + Missing requirements (60% of all defects)
+    + Time pressure
+    + Ego
+    + Poor documentation
+    + Bad SDKs
+    + Bad dev process
+
+### Error
+
+- Categories of errors
+    + Error handling (failure to anticipate)
+    + Boundary related (unexpected values)
+    + Control flow
+    + Initial/Later states (failure to initialize variable/clear flag)
+    + Handling/Interpretation of data
+    + Calculation (rounding,truncation)
+    + Race conditions
+    + Hardware
+    + Load condition
+    + Incompatible versions/linking
+
+### QA vs Testing
+
+- QA : preventing bugs
+- Testing: 
+    + prototyping, reqs analysis, formal analysis, design, formal inspection
+    + Must be applied at each stage of process
+    + Helps discover defects, assess system usability
+
+
+#### Static Testing
+
+- **Static testing**: Concerned with analysis of static representation (code + docs) to discover problems
+    + Analysis of source code by humans or software
+    + Discovers errors early on
+    + More than 60% of errors can be detected via informal inspection, 90% for more formal methods
+
+
+#### Dynamic Testing
+
+- **Dynamic testing**: Converned with exercising+observing behaviour
+    + Tests for defects in *running* systems, i.e. what makes the program run anomalously
+    + Only shows presence, not absence, of defects
+
+#### Black-box testing
+
+- Black box testing found to be more effective than white-box
+- Tests software against specification of its external behaviour, without knowledge of implementation
+- Goal is to derive sets of input conditions that exercise the external functionality
+    + Input conditions vary on boundary, type, sequence, timing
+
+
+##### Equivalence partitioning
+ 
+- Help to limit which test cases to actually run
+- Divide input domain into subdomains with common properties
+
+##### Boundary Value Analysis
+
+- Use values close to boundaries to elicit which are more likely to fail
+- Helps catch logic errors, off by one errors, etc.
+
+##### Decision Table Testing
+
+- Basically like a truth table
+
+##### State Transition Testing
+
+- Test the different **states** of the SUT
+
+##### Graph-based Testing
+
+- From an object graph, object relationships are identified and test cases are written
+
+
+#### White Box Testing
+
+- Knowing the code of the system helps figure out which inputs to test
+
+#### Branch testing
+
+- Every branch should execute at least once (coverage)
+
+#### Multiple Condition Testing
+
+- Extension of Branch testing when we have composite conditions (e.g. `x == 2 && y == 5`)
+- Minimum 2 test cases
+
+#### Path Testing
+
+- Ensuring that every path in the code is executed at least once
+- Increases minimum to \\(2^n\\) test cases
+- Compute cyclomatic complexity (number of enclosed areas + 1) 
+- Higher cyclomatic complexity -> more errors
+- Flow charts help but are not needed
+- n.b. Programs with loops may have infinite number of paths. 
+
+#### Integration Testing
+
+- About integrating modules in different orders 
+    + top-down
+    + bottom-up
+    + stress testing
+    + back-to-back 
+
+##### Big Bang 
+
+- Components are all integrated together at once, then tested.
+- Good for small projects but not feasible for larger.
+
+##### Incremental - Top down
+
+- Start with high levels, work your way down
+- Finds architecture related errors
+- May be difficult to develop stubs for other dependent modules
+- Defects in critical modules at the top level of the architecture are tested last 
+- Early prototyping not possible
+
+##### Bottom up 
+
+- Necessary for critical infrastructure components
+- Needs test drivers to be implemented
+- Does not find major design problems
+- Appropriate for OO systems
+
+#### System Testing
+
+##### Function Testing
+
+- Test in an environment simulating real-world usage
+- Compares actual performance with **functional requirements**
+- Done by testing team
+- Also:
+    + security/penetration (done by security experts)
+    + onsite alpha testing (done by customers supervised by devs)
+    + offsite beta testing 
+
+##### Performance Testing
+
+- Non functional requirements testing (volume, configuration, recovery, etc)
+- Compares actual performance to **non-functional requirements**
+- Done by testing team
+
+##### Acceptance Testing
+
+- Done by client in their environment
+- Yields a functional & operational system from the clients POV
+
+##### Installation Testing
+
+- Conducted by client & testing team after installing in client environment
+- When complete, system is delivered & operational
+
+## Software Evolution
+
+- Evolution used instead of 'maintenance'
+- **Moving target problem:**
+    + Requirements change while product is being developed
+    + No solution!
+- Software 'ages' in two ways:
+    + **Lack of Movement** : product owner fails to modify it to meet changing needs
+    + **Ignorant Surgery**: maintainers degrade original structure, introduce new bugs, etc. 
+
+### Maintenance
+
+- 60% avg cost overall
+- 60% cost for enhancement 
+- these two form the `60/60` rule
+
+1. Establish maintenance process
+2. Perform problem/modification analysis
+3. Develop and test modification
+4. Verify and validate modification
+
+#### Maintenance Prediction
+
+- Number of interfaces
+- Number of volatile requirements
+- Business practices used
+- Avg time for impact analysis
+- Avg time for implementation
+- Number of outstanding reqs.
+
+#### Change prediction
+
+- Tightly coupled systems require changes whenever environment changes
+- To estimate change difficulty:
+    + Use work classification tables with historical size for recurring types
+    + Have procedure which provides alternative techniques based on situation
+    + Collect project characteristics and make history available for reuse
+    + Develop application and organizational delivery rates
+
+#### Types of Maintenance
+
+##### Perfective (post-delivery)
+- Improve performance,dependability,maintainability
+- Update documentation
+
+##### Adaptive (development/migration)
+- Adopt to new/upgraded environment
+- Incorporate new capabilities
+
+##### Corrective (bug fixing)
+- Identify and remove defects
+
+##### Preventative (bug fixing)
+- Identify and detect latent faults
+
+##### Emergency maintenance (big fixing)
+- Unscheduled corrective maintenace
+- Riskier as less/no testing
+
+### Traceability
+
+- Track product ownership and heritage through supply chain
+- Needed for verification/validation, maintenance, visibility, access, management
+
+- 70s: matrices of manual links
+- 80s: Model and standardize traceability. Models,schema, CASE tools, etc.
+- 90s: Probabilistic information retrieval, latent semantic indexing
+
+CONS:
+- Very little automated support
+- Expensive, time consuming
+- Much of the benefit only comes late in lifecycle
+- Huge range of different document types, tools, etc.
+
+- Coverage:
+    + Requirements <==> design, code, testcases
+    + Links between requirements at different levels
+
+- Traceability process:
+    + Assign each sentence/paragraph a unique id
+    + manually identify linkages
+    + use manual tables to record linkages
+    + use a database for project wide traceability
+
+- Limitations of current tools:
+    + Fail to track useful info
+    + Lack of agreement
+    + Informal communication
+
