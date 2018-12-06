@@ -1,3 +1,5 @@
+[gimmick: math]()
+
 # Software Engineering
 
 - "**Software engineering** is the systematic approach to development, maintenance, organization of software systems."
@@ -768,8 +770,6 @@ Architectural design addresses:
 | Implementation | Actual software organization | <ul><li>Components<ul><li>Libraries</li><li>Subsystems</li><li>Comon top-level arch layers</li></ul></li><li>Connectors<ul>Containment</ul><ul>Dependencies</ul></li><li>Allocates logical components to implementation components</li></ul>  |
 | Deployment | Physical model of project | <ul><li>Components<ul><li>Processors</li><li>Network nodes</li></ul></li><li>Topology</li><li>Process mapping</li></ul> |
 
-### Zachman Framework?
-
 ## Software Quality
 
 - Need to make quality measurable: what **factors** -> quantifiable **criteria** -> specific **measures**
@@ -800,58 +800,39 @@ Architectural design addresses:
     + Size
 
 ### CK: Class-Oriented Metrics
-- Depth of inheritance tree
-- Weighted methods per class
-- Coupling between object classes
-- Lack of cohesion
-- Response for a class
-- Number of children
 
-- **CBO**: Number of couples with other classes
-    - Higher CBO -> higher sensitivity to changes in design
-    - Lower CBO -> independent class, good for reuse
-- **RFC**: Response for class
-    + Total number of methods that can be executed in response to a message to a class
-    + If many outcomes, it makes testing more difficult
-- **DIT**: Depth of Inheritance Tree
-    + How far down the inheritence tree
-    + Higher value -> more complex design
-    + Should rarely be greater than 3-4
-- **NOC**: Number of Children
-    + Number of subclasses
-    + Higher value -> more complex design
+| Characteristic | Description | Effects | 
+|----------------|-------------|---------|
+|**CBO**: Coupling between Object Classes | The number of distinct **non-inheritance** related class hierarchies on which a class depends | <ul><li>CBO &uarr; : higher sensitivity to changes in design</li><li>CBO &darr; : independent class, good for reuse</li></ul>|
+|**RFC**: Response for Class | The count of all methods that can be invoked in response to a message | <ul><li>If many outcomes, it makes testing more difficult</li></ul> |
+|**DIT**: Depth of Inheritance Tree | The number of ancestor classes | <ul><li>RFC &uarr; : more complex design</li><li>Should rarely be greater than 3-4</li></ul> |
+|**NOC**: Number of Children | Number of derived classes | <ul><li>NOC &uarr; : more complex design</li></ul> |
 
-- Recall: **Coupling**:
-    + High coupling -> limited reusability
-    + How cleanly the modules are separated from one another
-- Recall: **Cohesion**: 
-    + degree to which tasks performed are functionally related. 
-    + How the activities within a single module are related to one another
-    + **High Cohesion** -> simplicity, reusability
+- Recall: 
+|    |    | 
+|----|----|
+| **Coupling** | <ul><li>Coupling &uarr; : Limited Reusability</li><li>How cleanly the modules are separated from one another </li></ul>|
+| **Cohesion** | <ul><li>Cohesion &uarr; : simplicity, reusability</li><li>How closely the activities of a module are related to one another</li></ul>|
+
 
 ## Software Testing
 
-### Failure
+### Vocabulary
 
-- **Failure**: A *misbehaviour* of the system
+| Term | Definition | Clarifications | 
+|------|------------|----------------|
+| **Failure** | A *misbehaviour* of the system | |
+| **Fault** | An error that *causes* a failure | |
+| **Fault Identification** | Process of discovering *which fault* caused a failure | |
+| **Fault Correction** | Ensuring a failure does not recur | |
+| **Defect** | Something that is incorrect or not correctly implemented | <ul><li>Defect from **specification**: something that is simply not implemented correctly or is missing</li><li>Variance from **expectation**: something that does not act in a DWIM fashion</li></ul>|
 
-- Causes
+- Causes of **Failures**:
     + Requirements omitted or not implementable
     + Incorrect specification
     + Error in high-level design, low-level design, code
 
-### Fault
-
-- **Fault** : An error that causes a failure (bug)
-- **Fault Identification**: process of discovering what fault caused a failure
-- **Fault Correction**: ensuring a failure does not recur
-
-### Defect
-
-- Defect from **specification**: wrong
-- Variance from **expectation**: missing or extra
-
-- Why?
+- Causes of **Defects**:
     + Miscommunication
     + Programming errors
     + Change of requirements
@@ -862,19 +843,20 @@ Architectural design addresses:
     + Bad SDKs
     + Bad dev process
 
-### Error
+### Categories of Errors
 
-- Categories of errors
-    + Error handling (failure to anticipate)
-    + Boundary related (unexpected values)
-    + Control flow
-    + Initial/Later states (failure to initialize variable/clear flag)
-    + Handling/Interpretation of data
-    + Calculation (rounding,truncation)
-    + Race conditions
-    + Hardware
-    + Load condition
-    + Incompatible versions/linking
+| Type | Description | Example | 
+|------|-------------|---------|
+|Error handling | Failure to anticipate and handle common errors | <ul><li>Divide by zero</li><li>Out of memory</li></ul> | 
+|Boundary related | Failure to anticipate unexpected values | <ul><li>Passing an unsigned value to a `char`</li></ul> |
+|Control flow| Program does the wrong thing next | |
+|Initial/Later states | Runs fine initially but fails on later invocations | <ul><li>failure to initialize loop variable</li><li>Not clearing an error flag</li>| 
+|Handling/Interpretation of data| Corruption or misinterpretation of data structure between modules | |
+|Calculation | Errors in mathematical calculation| <ul><li>Improper rounding/truncation</li><li>Incorrect algorithms</li></ul>|
+|Race conditions| When one thread finishes before another that is expected to finish first| |
+|Hardware| | |
+|Load condition| Failure under high volume/high stress| <ul><li>OOM</li></ul>| |
+|Incompatible versions/linking| Old problems reappear with differing versions of support libraries| |
 
 ### QA vs Testing
 
@@ -899,114 +881,56 @@ Architectural design addresses:
     + Tests for defects in *running* systems, i.e. what makes the program run anomalously
     + Only shows presence, not absence, of defects
 
-#### Black-box testing
+#### Black-box and White-box testing
 
+- **Black box**: The implementation is unknown, testing is performed on the system
+- **White box**: The implementation is known, testing is performed based on the source
 - Black box testing found to be more effective than white-box
 - Tests software against specification of its external behaviour, without knowledge of implementation
 - Goal is to derive sets of input conditions that exercise the external functionality
     + Input conditions vary on boundary, type, sequence, timing
 
+##### Strategies for Black-Box Testing
 
-##### Equivalence partitioning
- 
-- Help to limit which test cases to actually run
-- Divide input domain into subdomains with common properties
+|Strategy| Description | Example | 
+|--------|-------------|---------|
+|**Equivalence Partitioning** | <ul><li>Help to limit which test cases to actually run</li><li>Divide input domain into subdomains with common properties</li></ul> | For testing a number that needs to be >100, throw out all values that are 1 or 2 digits | 
+|**Boundary Value Analysis** | <ul><li>Use values close to boundaries to elicit which are more likely to fail</li><li>Helps catch logic errors, off by one errors, etc.</li></ul> | If a value takes 200 < n < 700, try 200,199,699,etc. | 
+|**Decision Table Testing** | A truth table | |
+|**State Transition Testing** | Outputs are triggered by changes to the input conditions | When the object can be modeled as a state machine | 
+|**Graph-based Testing** | From an object graph, object relationships are identified and test cases are written | |
 
-##### Boundary Value Analysis
+##### Strategies of White-Box Testing
 
-- Use values close to boundaries to elicit which are more likely to fail
-- Helps catch logic errors, off by one errors, etc.
-
-##### Decision Table Testing
-
-- Basically like a truth table
-
-##### State Transition Testing
-
-- Test the different **states** of the SUT
-
-##### Graph-based Testing
-
-- From an object graph, object relationships are identified and test cases are written
-
-
-#### White Box Testing
-
-- Knowing the code of the system helps figure out which inputs to test
-
-#### Branch testing
-
-- Every branch should execute at least once (coverage)
-
-#### Multiple Condition Testing
-
-- Extension of Branch testing when we have composite conditions (e.g. `x == 2 && y == 5`)
-- Minimum 2 test cases
-
-#### Path Testing
-
-- Ensuring that every path in the code is executed at least once
-- Increases minimum to \\(2^n\\) test cases
-- Compute cyclomatic complexity (number of enclosed areas + 1) 
-- Higher cyclomatic complexity -> more errors
-- Flow charts help but are not needed
-- n.b. Programs with loops may have infinite number of paths. 
+|Strategy| Description | Example | 
+|--------|-------------|---------|
+|**Branch Testing**| Ensuring that all **branch alternatives** are followed at least once | |
+|**Multiple Condition Testing**|Ensuring that all combinations of single condition outcomes are followed| <ul><li>For compound conditionals, e.g. `if(n1 && n2)`</li><li>Requires \\(2^n\\) combinations</li></ul>|
+|**Path Testing** | Ensuring that every **path** will be executed at least once | <ul><li>Minimum \\(2^n\\) test cases</li><li>Compute cyclomatic complexity (number of enclosed areas + 1) </li><li>Cyclomatic Complexity &uarr; : more errors</li><li>Note: Programs with loops may have infinite number of paths. </li></ul> |
 
 #### Integration Testing
 
-- About integrating modules in different orders 
-    + top-down
-    + bottom-up
-    + stress testing
-    + back-to-back 
+- After unit testing, before validation testing
 
-##### Big Bang 
+##### Types of Integration Testing 
 
-- Components are all integrated together at once, then tested.
-- Good for small projects but not feasible for larger.
+| Type | Category | Description | 
+|------|----------|-------------|
+|**Big Bang** | - | <ul><li>Components are all integrated together at once, then tested</li><li>Not good for larger projects</li><li>Tests interactions between units, not system as a whole</li></ul> | 
+|**Top-down** | Incremental | <ul><li>Start with high levels, work your way down</li><li>Finds architecture related errors</li><li>May be difficult to develop stubs for other dependent modules</li><li>Defects in top-level modules of the architecture are tested last </li><li>Early prototyping not possible</li></ul> |
+|**Bottom-up**| Incremental | <ul><li>Necessary for critical infrastructure components</li><li>Needs test drivers to be implemented</li><li>Does not find major design problems</li><li>Appropriate for OO systems</li></ul> | 
+|**Sandwich** | Hybrid | Combines top-down, bottom-up | 
 
-##### Incremental - Top down
 
-- Start with high levels, work your way down
-- Finds architecture related errors
-- May be difficult to develop stubs for other dependent modules
-- Defects in critical modules at the top level of the architecture are tested last 
-- Early prototyping not possible
-
-##### Bottom up 
-
-- Necessary for critical infrastructure components
-- Needs test drivers to be implemented
-- Does not find major design problems
-- Appropriate for OO systems
 
 #### System Testing
 
-##### Function Testing
-
-- Test in an environment simulating real-world usage
-- Compares actual performance with **functional requirements**
-- Done by testing team
-- Also:
-    + security/penetration (done by security experts)
-    + onsite alpha testing (done by customers supervised by devs)
-    + offsite beta testing 
-
-##### Performance Testing
-
-- Non functional requirements testing (volume, configuration, recovery, etc)
-- Compares actual performance to **non-functional requirements**
-- Done by testing team
-
-##### Acceptance Testing
-
-- Done by client in their environment
-- Yields a functional & operational system from the clients POV
-
-##### Installation Testing
-
-- Conducted by client & testing team after installing in client environment
-- When complete, system is delivered & operational
+| Type | Who? | Where? | Description | 
+|------|------|--------|-------------|
+| Function Testing | Testing team | Simulation | Compares **actual performance** and **functional requirements** | 
+| Performance Testing | Testing team | Simulation | Compares **actual performance** and **non-functional requirements** | 
+| Acceptance Testing | Client | Real world | Yields a functional,operational system from the clients POV | 
+| Installation Testing | Client and testing team| Real world | When complete, system is delivered and operational | 
 
 ## Software Evolution
 
