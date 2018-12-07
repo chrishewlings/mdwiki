@@ -722,7 +722,7 @@ Architectural design addresses:
 |`State` | `Context` holds a `State` interface object, allows change of object behaviour when its internal state changes on calling `State.action(this)` | 
 |`Strategy` | Stores reference to a method or action that can be changed at runtime | 
 |`Template`| Base class has shared code, variant implementations in derived classes | 
-|`Visitor`| Adds new operations without changing other classes. Visitors declare `visit(element)` method, elements implement `accept`
+|`Visitor`| Adds new operations without changing other classes. Visitors declare `visit(element)` method, elements implement `accept`|
 
 #### Frameworks
 
