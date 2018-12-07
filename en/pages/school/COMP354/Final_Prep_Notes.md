@@ -684,6 +684,46 @@ Architectural design addresses:
 | Singleton| unique, direct visibility | | 
 | Facade   | simplify interface, decouple subsystem of multiple objects, defines new interface | compiler/lexer|  
 
+### GOF Implementations
+
+#### Creational
+
+| Name | When to use | 
+|------|-------------|
+|`Factory`| Emitting multiple types of similar objects | 
+|`AbstractFactory` | Provide interface for making families of related objects, good for widgets in GUIs | 
+|`Builder`/`ConcreteBuilder` | When number of options would give you a billion constructors | 
+|`Prototype`,(`.clone()`) | Create a true copy of an object rather than initializing a new one | 
+| `Singleton` | Global state where there was none before | 
+
+#### Structural
+
+| Name | When to use | 
+|------|-------------|
+|`Adapter`| Two classes/interfaces that aren't meant to talk to each other | 
+|`Bridge` | Separate abstraction and implementation. Has `Implementor` interface that can vary at runtime|
+|`Composite`| part-whole hierarchy share a `Component` interface. recursion,graphical widgets |
+|`Decorator`| Each class derived from `Decorator` interface can dynamically add behaviour to an object instance | 
+|`Facade`| Provide a simple interface to more complex subsystems | 
+|`Flyweight`| Immutable value object that shares data with others of same type. Saves memory for repeated values. A `Factory` returns an existing reference rather than a new copy | 
+|`Proxy`| Control access to another object through a shared interface |
+
+#### Behavioural
+
+| Name | When to use | 
+|------|-------------|
+|`Chain of Responsibility`|`Handler`s delegate work to `Receiver`s that derive from same external interface. Allows extending processing at runtime|
+|`Command`| Command, receiver, invoker, client. Invoker does not know about a concrete command but only an interface | 
+|`Interpreter`| Basically a domain specific language and an AST. `AbstractExpression` and context interface used to parse expressions |
+|`Iterator` | Decouples algorithms from container |
+|`Mediator` | Reduces coupling by both objects communicating with a mediator rather than each other directly |
+|`Memento` | Saves an internal state of an object externally so it can be restored later | 
+|`Observer` | monitor state, publish-subscribe, abstract coupling. data object changes -> tells views to update, MVC |
+|`State` | `Context` holds a `State` interface object, allows change of object behaviour when its internal state changes on calling `State.action(this)` | 
+|`Strategy` | Stores reference to a method or action that can be changed at runtime | 
+|`Template`| Base class has shared code, variant implementations in derived classes | 
+|`Visitor`| Adds new operations without changing other classes. Visitors declare `visit(element)` method, elements implement `accept`
+
 #### Frameworks
 
 - **Frameworks** focus on reuse of concrete designs, algorithms, implementations for a particular domain
@@ -1020,4 +1060,3 @@ CONS:
     + Fail to track useful info
     + Lack of agreement
     + Informal communication
-
