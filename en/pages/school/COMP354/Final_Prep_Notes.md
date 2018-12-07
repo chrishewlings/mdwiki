@@ -197,14 +197,14 @@ Methods:
 - Must be **clear** to a client who is not specialized in the field
 - Must be **precise** enough to be fault-free 
 
-|Technique| Characteristics | Pros | Cons |
-|---------|-----------------|------|------|
-|Plain English |  | | <ul><li>Imprecise</li><li>Sometimes confusing</li><li>Cannot be checked for completeness</li></ul>|
-|Pseudocode | Also called 'Programming Design Language' | Intentions are clear | May be confusing for non-technical readers | 
-|Dataflow diagram | 4 Major Components: <ol><li>Process</li><li>Flow of Data</li><li>External entity</li><li>Data store</li></ol> |&nbsp; |
-|Decision Table | <ul><li>A table with input and output conditions on Y and results on X</li><li>If completed, 2^n size where n = number of conditions </li></ul>|<ul><li>Allows checking completeness/contradictions</li><li>Easy to understand</li><li>Can perform automatic analysis</li></ul>|<ul><li>Can't recognize missing conditions</li><li>Many cases will be inconsequential</li><li>Only works when `n` is small</li></ul>|
-|State Transition Diagram| <ul><li>A set of states (`s0`,`s1`,...)</li><li>Arrows between them represent transitions</li><li>From every state, there should be `n` outgoing transitions, where `n` is the number of inputs</ul>|<ul><li>Easy to learn</li><li>Allows automated analysis</li><li>Certain error types detectable</li></ul>|<ul><li>Does not scale well, only useful if `n` is low</li></ul>|
-|Z-Specification | <ol><li>Given sets, data types, constants</li><li>State definition</li><li>Initial state</li><li>Operations</li></ol>|<ul><li>Can be checked for completeness</li><li>Can check that each state is reachable</li><li>Best for mission critical applications</li></ul>|<ul><li>Time consuming</li><li>Requires background in formal methods</li></ul>|
+|Technique| Description | Characteristics
+|---------|-----------------|-------------|
+|Plain English |   | <ul><li class="con">Imprecise</li><li class="con">Sometimes confusing</li><li class="con">Cannot be checked for completeness</li></ul>|
+|Pseudocode | Also called 'Programming Design Language' | <ul><li class="pro">Intentions are clear</li> <li class="con">May be confusing for non-technical readers</li></ul> | 
+|Dataflow diagram | 4 Major Components: <ol><li>Process</li><li>Flow of Data</li><li>External entity</li><li>Data store</li></ol> | &nbsp; |
+|Decision Table | <ul><li>A table with input and output conditions on Y and results on X</li><li>If completed, 2^n size where n = number of conditions </li></ul>|<ul><li class="pro">Allows checking completeness/contradictions</li><li class="pro">Easy to understand</li><li class="pro">Can perform automatic analysis</li></ul><li class="con">Can't recognize missing conditions</li><li class="con">Many cases will be inconsequential</li><li class="con">Only works when `n` is small</li></ul>|
+|State Transition Diagram| <ul><li>A set of states (`s0`,`s1`,...)</li><li>Arrows between them represent transitions</li><li>From every state, there should be `n` outgoing transitions, where `n` is the number of inputs</ul>|<ul><li class="pro">Easy to learn</li><li class="pro">Allows automated analysis</li><li class="pro">Certain error types detectable</li><li class="con">Does not scale well, only useful if `n` is low</li></ul>|
+|Z-Specification | <ol><li>Given sets, data types, constants</li><li>State definition</li><li>Initial state</li><li>Operations</li></ol>|<ul><li class="pro">Can be checked for completeness</li><li class="pro">Can check that each state is reachable</li><li class="pro">Best for mission critical applications</li><li class="con">Time consuming</li><li class="con">Requires background in formal methods</li></ul>|
 
 
 ## Use Case Modeling 
