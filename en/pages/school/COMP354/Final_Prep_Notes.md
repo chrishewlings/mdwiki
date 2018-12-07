@@ -1,4 +1,7 @@
 [gimmick: math]()
+<link rel="stylesheet" href="data:text/css,li.con%20%7B%20list-style-image%3A%20url('pages/school/COMP354/images/icons8-minus-48.png');%20color%3Ared%20%7D%20li.pro%20%7B%20list-style-image%3A%20url('pages/school/COMP354/images/icons8-plus-48.png');color%3A%20green%20%7D" />
+
+
 
 # Software Engineering
 
@@ -29,7 +32,7 @@
 |Iterative-and-Incremental| <ul><li>No single requirements/design phase, but multiple instances</li><li>At different times, one workflow predominates</li><li>Like a set of mini-waterfalls</li></ul>|<ul><li>Allows mitigating risks early</li><li>Always have a working version</li></ul>||
 |Spiral| <ul><li>Rapid prototyping + risk analysis at each phase</li><li>If risks can't be mitigated, project is terminated</li></ul>|<ul><li>Emphasizes alternatives and constraints to allow reuse of existing software</li><li>Incorporates software quality as a specific objective</li><li>No distinction from development/maintenance</li></ul>|<ul><li>Only works for large-scale projects</li><li>Only works for in-house software development</li></ul>|
 |Agile| <ul><li>Based on iterative-incremental model</li><li>based on <b>stories</b> the client would like to support</li><li>Emphasizes <b>test-driven development</b> and <b> pair programming</b></li><li>No specialization, no overall design, all done while building</ul>|<ul><li>Constant communication with client</li><li>Responds quickly to change</li><li>Good for when requirements are vague or changing</li></ul>|<ul><li>Too soon to evaluate overall success</li><li>Refactoring costs</li></ul>|
-|Synchronize-and-Stabilize|<ul><li>Microsoft's lifecycle model</li><li>Find most important features by interviewing clients</li><li>**Synchronize** at end of each day</li><li>**Stabilize** at end of each build</li></ul>|<ul><li>Repeated synchronization ensures components work together</li><li>Early insight into operation so requirements can be modified</li></ul>||
+|Synchronize-and-Stabilize|<ul><li>Microsoft's lifecycle model</li><li>Find most important features by interviewing clients</li><li>**Synchronize** at end of each day</li><li>**Stabilize** at end of each build</li></ul>|<ul><li>Repeated synchronization ensures components work together</li><li>Early insight into operation so requirements can be modified</li></ul>|&nbsp;|
 
 ### Other mentioned styles
 
@@ -127,7 +130,7 @@ From textual description of use cases, identify nouns and noun phrases, e.g.
 
 - e.g. 
 
-Rather than *Item* possessing `description`, `price,`, `itemID`, define a conceptual `ItemDescription` class that contains these.
+Rather than *Item* possessing `description`, `price`, `itemID`, define a conceptual `ItemDescription` class that contains these.
 
 ##### Associations
 
@@ -198,7 +201,7 @@ Methods:
 |---------|-----------------|------|------|
 |Plain English |  | | <ul><li>Imprecise</li><li>Sometimes confusing</li><li>Cannot be checked for completeness</li></ul>|
 |Pseudocode | Also called 'Programming Design Language' | Intentions are clear | May be confusing for non-technical readers | 
-|Dataflow diagram | 4 Major Components: <ol><li>Process</li><li>Flow of Data</li><li>External entity</li><li>Data store</li></ol> | |
+|Dataflow diagram | 4 Major Components: <ol><li>Process</li><li>Flow of Data</li><li>External entity</li><li>Data store</li></ol> |&nbsp; |
 |Decision Table | <ul><li>A table with input and output conditions on Y and results on X</li><li>If completed, 2^n size where n = number of conditions </li></ul>|<ul><li>Allows checking completeness/contradictions</li><li>Easy to understand</li><li>Can perform automatic analysis</li></ul>|<ul><li>Can't recognize missing conditions</li><li>Many cases will be inconsequential</li><li>Only works when `n` is small</li></ul>|
 |State Transition Diagram| <ul><li>A set of states (`s0`,`s1`,...)</li><li>Arrows between them represent transitions</li><li>From every state, there should be `n` outgoing transitions, where `n` is the number of inputs</ul>|<ul><li>Easy to learn</li><li>Allows automated analysis</li><li>Certain error types detectable</li></ul>|<ul><li>Does not scale well, only useful if `n` is low</li></ul>|
 |Z-Specification | <ol><li>Given sets, data types, constants</li><li>State definition</li><li>Initial state</li><li>Operations</li></ol>|<ul><li>Can be checked for completeness</li><li>Can check that each state is reachable</li><li>Best for mission critical applications</li></ul>|<ul><li>Time consuming</li><li>Requires background in formal methods</li></ul>|
@@ -224,10 +227,10 @@ Methods:
 | Secondary Actor(s)| provides a service, usually a system |
 | Trigger | | 
 |Main Scenario | Step, Action | 
-|  &nbsp       | Description of steps      |
-|  &nbsp      |  in successful execution   |
-|  &nbsp      |  &nbsp   |
-|  &nbsp      |  &nbsp   |
+|  &nbsp;       | Description of steps      |
+|  &nbsp;      |  in successful execution   |
+|  &nbsp;      |  &nbsp;   |
+|  &nbsp;      |  &nbsp;   |
 | Extensions   | Step, Branching Action | 
 |  &nbsp       | Optional path      |
 |  &nbsp       |  or error path        |
@@ -242,7 +245,6 @@ Methods:
 
 - Used to document interactions in a single **use case** or scenario
 - Shows concurrent processes/activities. Emphasizes time ordering and logical flow
-
 - `aObject: Object` is a particular instance of `Object`
 - **Lifeline** runs vertically and has a solid bar around it when that object is acting
 - **Dotted line** indicates return message
@@ -270,13 +272,13 @@ Methods:
 
 |  Pattern | When to use? | Characteristics | 
 |----------|-----------------|-------|
-| Expert | Assigns responsibility to class that has information necessary to fulfill it | <ul><li>+Encapsulation</li><li>+Promotes low coupling</li><li>+Promotes high cohesiveness</li><li>-Can make class too complex</li></ul> | 
-| Creator| When `B` **aggregates** or **contains** `A` objects | <ul><li>+Promotes low coupling</li><li>+Avoids external dependency</li>|
-| Low coupling | When classes need to be easily reused | <ul><li>+Easier maintenance</li><li>+Easier reuse</li><li>Changes remain localized</li></ul>|
-| High Cohesion| When classes start to become overly complex. Moderate responsibility but collaborates with other classes to fulfill tasks | <ul><li>+ Easier Maintenance</li><li>+ Easier to understand</li><li>+ Often supports low coupling </li><li>Supports reuse</li></ul>|
-| Controller | Decoupling event-receiving logic from objects that handling them. **Facade**, **role**, **use case** controllers all exist | <ul><li> +Decouples business logic and presentation implementation </li></ul>|
+| Expert | Assigns responsibility to class that has information necessary to fulfill it | <ul><li class="pro">Encapsulation</li><li class="pro">Promotes low coupling</li><li class="pro">Promotes high cohesiveness</li><li class="con">Can make class too complex</li></ul> | 
+| Creator| When `B` **aggregates** or **contains** `A` objects | <ul><li class="pro">Promotes low coupling</li><li class="pro">Avoids external dependency</li>|
+| Low coupling | When classes need to be easily reused | <ul><li class="pro">Easier maintenance</li><li class="pro">Easier reuse</li><li>Changes remain localized</li></ul>|
+| High Cohesion| When classes start to become overly complex. Moderate responsibility but collaborates with other classes to fulfill tasks | <ul><li class="pro"> Easier Maintenance</li><li class="pro"> Easier to understand</li><li class="pro"> Often supports low coupling </li><li>Supports reuse</li></ul>|
+| Controller | Decoupling event-receiving logic from objects that handling them. **Facade**, **role**, **use case** controllers all exist | <ul><li class="pro"> Decouples business logic and presentation implementation </li></ul>|
 | Pure Fabrication | An artificial class supporting other GRASP patterns. Presents a generic reusable object | |
-| Indirection | Intermediate object that mediates between components/services, so they remain uncoupled | | 
+| Indirection | Intermediate object that mediates between components/services, so they remain uncoupled | &nbsp;| 
 
 n.b. **Cohesion** refers to elements in the **same** module, whereas **coupling** refers to elements in **different** modules.
 
@@ -292,11 +294,13 @@ Like a combined sequence diagram and domain model. There are numbered steps betw
     + cost overruns
     + schedule overruns
 
+
 - **Causes** of poor cost estimation:
     + **Underestimating time/effort**
     + Imprecise/drifting **requirements**
     + **Resource** unavailability
     + Bias
+
 
 - Harder to estimate for software since it is not uniform or necessarily commoditized
 - Effort costs are hardest to predict
@@ -307,6 +311,7 @@ Like a combined sequence diagram and domain model. There are numbered steps betw
     + Project size
     + Technology support
     + Working environment 
+
 
 - Factor influencing cost estimation:
     + Market opportunity
@@ -330,22 +335,22 @@ Like a combined sequence diagram and domain model. There are numbered steps betw
 
 ## Cost Estimation Methods
 
-| Estimation Method | Description | Pros | Cons | 
-|-------------------|-------------|------|------|
-| Analogy | uses an existing project as an analysis | Based on actual experience | Difficult to know if older project is representative | 
-| Expert judgment| Consults 1+ experts | Factors in differences, interactions, and exceptional circumstances derived from experience | <ul> <li>Might not be better than estimator</li> <li>incomplete recall</li> <li>human bias</li> </ul>|
-| Algorithmic model | See below | <ul> <li>Objective and repeatable</li> <li>Calibrated to experience</li> </ul>| <ul> <li>Inputs are subjective</li> <li>Calibrated to past experience</li> <li>Can't handle exceptional circumstances</li> </ul>|
-| Parkinsonian | "Work expands to fill available volume". Cost estimate based on available resources | Correlates with experience | <ul> <li>Inaccurate</li> <li>Reinforces poor practice</li> </ul>|
-| Price-to-win | Estimate is calculated to the **price** to win the job | Usually gets contract| <ul> <li>May result in poor functionality</li> <li>Reinforced poor software dev practice</li> <li>Must know how much client willing to pay</li> </ul>|
-| Top-down | Estimate derived by global properties and **divided** to its components | <ul> <li>System level focus</li> <li>Efficient</li> </ul>| <ul> <li>Less detailed basis</li> <li>Less stable</li> <li>Needs lots of experience</li> </ul>|
-| Bottom-up | Each component separately estimated and **summed** | <ul> <li>More detailed basis</li> <li>Fosters individual commitment</li> </ul>| <ul> <li>Overlooks **system level costs**</li> <li>Required **more effort**</li> </ul>|
+| Estimation Method | Description | Characteristics |
+|-------------------|-------------|-------------|
+| Analogy | uses an existing project as an analysis | <ul><li class="pro">Based on actual experience</li><li class="con">Difficult to know if older project is representative</li> |
+| Expert judgment| Consults 1+ experts | <ul><li class="pro">Factors in differences, interactions, and exceptional circumstances derived from experience</li> <li class="con">Might not be better than estimator</li> <li class="con">incomplete recall</li> <li class="con">human bias</li> </ul>|
+| Algorithmic model | See below | <ul> <li class="pro">Objective and repeatable</li> <li class="pro">Calibrated to experience</li> <li class="con">Inputs are subjective</li> <li class="con">Calibrated to past experience</li> <li class="con">Can't handle exceptional circumstances</li> </ul>|
+| Parkinsonian | "Work expands to fill available volume". Cost estimate based on available resources | <ul> <li class="pro">Correlates with experience</li><li class="con">Inaccurate</li> <li class="con">Reinforces poor practice</li> </ul>|
+| Price-to-win | Estimate is calculated to the **price** to win the job | <ul><li class="pro">Usually gets contract</li> <li class="con">May result in poor functionality</li> <li class="con">Reinforces poor software dev practice</li> <li class="con">Must know how much client willing to pay</li> </ul>|
+| Top-down | Estimate derived by global properties and **divided** to its components | <ul> <li class="pro">System level focus</li> <li class="pro">Efficient</li> <li class="con">Less detailed basis</li> <li class="con">Less stable</li> <li class="con">Needs lots of experience</li> </ul>|
+| Bottom-up | Each component separately estimated and **summed** | <ul> <li class="pro">More detailed basis</li> <li class="pro">Fosters individual commitment</li> <li class="con">Overlooks **system level costs**</li> <li class="con">Requires **more effort**</li> </ul>|
 
 ### Algorithmic models
 
 #### COCOMO
 
 - "Constructive Cost Model"
-- Effort (person/month) = \\( a*(\text{size in kLOC})^{b} * c \\)
+- Effort (person/month) = \\( a \times (\text{size in kLOC})^{b} \times c \\)
 
 |Project type| \\(a\\) | \\(b\\) |
 |------------|---------|---------|
@@ -375,12 +380,11 @@ Like a combined sequence diagram and domain model. There are numbered steps betw
     + Detailed enough to be implemented in the target PL
 
 - Design, unlike analysis, focuses on the **solution** domain
-
-Architectural design addresses:
-    - Decomposition of a system into interacting parts
-    - Emergent system properties
-    - Rational
-    - Envelope of allowed change
+- Architectural design addresses:
+    + Decomposition of a system into interacting parts
+    + Emergent system properties
+    + Rational
+    + Envelope of allowed change
 
 
 - Good architecture properties:
@@ -398,13 +402,13 @@ Architectural design addresses:
 | Style | Components | Connectors | Examples | Characteristics| 
 |-------|------------|------------|----------|----------------|
 |Batch sequential | Independent Programs | Media (tape, disk) | periodic non-real time computation| each step happens only after previous step ends | 
-|Pipe and filter | Independent programs | Data streams | Unix | Parallel but linear. <ul> <li>+ Simple</li> <li>+ Efficient</li> <li>+ Reusable</li> <li>- Must agree on lowest common denominator data format</li> <li>- Only allows stateless data transformation</li> </ul> |
-|Layered system| Programs or subprograms| RPC or System calls | OSI network model | <ul> <li>+ Maintainable (can change things as long as layers are maintained)</li> <li>+ Adaptable (can replace layers)</li> <li>- Performance degratation with too many layers</li> <li>- Can be difficult to assign responsibility to the right layer</li> </ul>|
-|Process Control| Controllers,processes | Variables | Cruise control | <ul> <li>+ Well suited to continunous processes even when control algorithm may change</li> <li>- Not easily applicable to multiple interacting processess</li> </ul>|
-|Event based/Implicit Invocation| Programs that *announce* + *register interest* in events | Event broadcasts and registration | Debugger |<ul> <li>- Components have no guarantee of getting a response</li> <li>- Components announcing events have no control over order of responses</li> <li>- Difficult to reason about behaviour independent of registered components</li> <li>- Inadequate for data exchange</li> </ul>|
-|Blackboard (push) | Blackboard clients | Blackboard (shared data repository)| Chatroom transcript |<ul> <li>+ Only one connector that everyone uses</li> <li>- Bottlenecked with too many clients</li> <li>- Data 'partitions' may cause confusion</li> </ul>|
-|Repository (fetch)| Database + clients | Queries | | <ul> <li>+ Clients are independent of one another</li> <li>+ Data store is independent of clients</li> <li>- Strong dependence on data store</li> </ul>|
-|Hypertext| Documents | Hyperlinks | Web database |<ul> <li>- Reliability</li> <li>- Difficult to maintain context</li> <li>- Needs sophisticated indexing</li> </ul>|
+|Pipe and filter | Independent programs | Data streams | Unix | Parallel but linear. <ul> <li class="pro"> Simple</li> <li class="pro"> Efficient</li> <li class="pro"> Reusable</li> <li class="con"> Must agree on lowest common denominator data format</li> <li class="con"> Only allows stateless data transformation</li> </ul> |
+|Layered system| Programs or subprograms| RPC or System calls | OSI network model | <ul> <li class="pro"> Maintainable (can change things as long as layers are maintained)</li> <li class="pro"> Adaptable (can replace layers)</li> <li class="con"> Performance degratation with too many layers</li> <li class="con"> Can be difficult to assign responsibility to the right layer</li> </ul>|
+|Process Control| Controllers,processes | Variables | Cruise control | <ul> <li class="pro"> Well suited to continunous processes even when control algorithm may change</li> <li class="con"> Not easily applicable to multiple interacting processess</li> </ul>|
+|Event based/Implicit Invocation| Programs that *announce* + *register interest* in events | Event broadcasts and registration | Debugger |<ul> <li class="con"> Components have no guarantee of getting a response</li> <li class="con"> Components announcing events have no control over order of responses</li> <li class="con"> Difficult to reason about behaviour independent of registered components</li> <li class="con"> Inadequate for data exchange</li> </ul>|
+|Blackboard (push) | Blackboard clients | Blackboard (shared data repository)| Chatroom transcript |<ul> <li class="pro"> Only one connector that everyone uses</li> <li class="con"> Bottlenecked with too many clients</li> <li class="con"> Data 'partitions' may cause confusion</li> </ul>|
+|Repository (fetch)| Database + clients | Queries | | <ul> <li class="pro"> Clients are independent of one another</li> <li class="pro"> Data store is independent of clients</li> <li class="con"> Strong dependence on data store</li> </ul>|
+|Hypertext| Documents | Hyperlinks | Web database |<ul> <li class="con"> Reliability</li> <li class="con"> Difficult to maintain context</li> <li class="con"> Needs sophisticated indexing</li> </ul>|
 |Event based| Publisher, Subscriber | Bindings,Callbacks | | See below | 
 
 ### Event based architecutre
@@ -474,10 +478,11 @@ Architectural design addresses:
     + `WSDL` : Web Services Description Language
     + `UDDI` : Universal Description, Discovery, and Integration
 
+
 - `EAI`: Enterprise application integration
 - `EDI`: Electronic data interchange
-- `B2B` : integrate data transmission between multiple enterprises
-- `B2C` : Human users connect to businesses (e.g. Amazon)
+- `B2B`: integrate data transmission between multiple enterprises
+- `B2C`: Human users connect to businesses (e.g. Amazon)
 
 ## UML 
 
@@ -524,6 +529,7 @@ Architectural design addresses:
 | Domain Model | ![](images/diagram-domain_model.png) |
 | Illustrated Use Case| ![](images/diagram-use_case.png) |
 | Sequence     | ![](images/diagram-sequence.png) |
+| System Sequence     | ![](images/diagram-systemsequence.png) |
 | Communication | ![](images/diagram-communication.png) |
 | UML Class    | ![](images/diagram-uml_class.png) |
 
@@ -676,16 +682,6 @@ Architectural design addresses:
 
 ![](images/gof-patterns.png)
 
-| Pattern  | Buzzwords | Example | 
-|----------|-----------|---------|
-| Composite| part-whole hierarchy, recursion | Graphical widgets | 
-| Observer | monitor state, publish-subscribe, abstract coupling | data object changes -> tells views to update, MVC |
-| Adapter  | convert interface of single object, uses old interface | different class libraries | 
-| Singleton| unique, direct visibility | | 
-| Facade   | simplify interface, decouple subsystem of multiple objects, defines new interface | compiler/lexer|  
-
-### GOF Implementations
-
 #### Creational
 
 | Name | When to use | 
@@ -727,7 +723,6 @@ Architectural design addresses:
 #### Frameworks
 
 - **Frameworks** focus on reuse of concrete designs, algorithms, implementations for a particular domain
-
 - **Infrastructure**: used internally within a software project
 - **Middleware**: integrate existing applications/components
 - **Enterprise**: focus on specific domain
@@ -807,7 +802,7 @@ Architectural design addresses:
 |Use Case| Present architecturally significant use cases | |
 | Logical| Conveys structure, interfaces, focuses on functional. |<ul><li>Components <ul><li>Classes</li><li>Modules</li><li>Packages</li><li>Subsystems</li></ul><li>Connectors<ul><li>Usage</li><li>Containment, aggregation</li><li>Inheritance, instantiation</li></ul></li><li>Structure<ul><li>UML2 Component diagrams</li><li>UML package + class diagrams</li></ul></li><li>Behaviour<ul><li>State diagrams</li><li>Interaction diagrams</li></ul></li></ul>|
 | Process| | <ul><li>Components<ul><li>Groups of tasks</li><li>Control</li><li>Redundancy</li></ul></li><li>Interrelationships and Communication</li><li>Allocation of logical view components to tasks</li><li>Synchronization mechanisms</li></ul>|
-| Implementation | Actual software organization | <ul><li>Components<ul><li>Libraries</li><li>Subsystems</li><li>Comon top-level arch layers</li></ul></li><li>Connectors<ul>Containment</ul><ul>Dependencies</ul></li><li>Allocates logical components to implementation components</li></ul>  |
+| Implementation | Actual software organization | <ul><li>Components<ul><li>Libraries</li><li>Subsystems</li><li>Common top-level arch layers</li></ul></li><li>Connectors<ul>Containment</ul><ul>Dependencies</ul></li><li>Allocates logical components to implementation components</li></ul>  |
 | Deployment | Physical model of project | <ul><li>Components<ul><li>Processors</li><li>Network nodes</li></ul></li><li>Topology</li><li>Process mapping</li></ul> |
 
 ## Software Quality
@@ -849,8 +844,9 @@ Architectural design addresses:
 |**NOC**: Number of Children | Number of derived classes | <ul><li>NOC &uarr; : more complex design</li></ul> |
 
 - Recall: 
-|    |    | 
-|----|----|
+
+|&nbsp;| &nbsp;| 
+|-------|--------|
 | **Coupling** | <ul><li>Coupling &uarr; : Limited Reusability</li><li>How cleanly the modules are separated from one another </li></ul>|
 | **Cohesion** | <ul><li>Cohesion &uarr; : simplicity, reusability</li><li>How closely the activities of a module are related to one another</li></ul>|
 
@@ -894,9 +890,9 @@ Architectural design addresses:
 |Handling/Interpretation of data| Corruption or misinterpretation of data structure between modules | |
 |Calculation | Errors in mathematical calculation| <ul><li>Improper rounding/truncation</li><li>Incorrect algorithms</li></ul>|
 |Race conditions| When one thread finishes before another that is expected to finish first| |
-|Hardware| | |
-|Load condition| Failure under high volume/high stress| <ul><li>OOM</li></ul>| |
-|Incompatible versions/linking| Old problems reappear with differing versions of support libraries| |
+|Hardware|&nbsp;|&nbsp;|
+|Load condition| Failure under high volume/high stress| <ul><li>OOM</li></ul>|
+|Incompatible versions/linking| Old problems reappear with differing versions of support libraries|&nbsp;|
 
 ### QA vs Testing
 
@@ -934,11 +930,11 @@ Architectural design addresses:
 
 |Strategy| Description | Example | 
 |--------|-------------|---------|
-|**Equivalence Partitioning** | <ul><li>Help to limit which test cases to actually run</li><li>Divide input domain into subdomains with common properties</li></ul> | For testing a number that needs to be >100, throw out all values that are 1 or 2 digits | 
-|**Boundary Value Analysis** | <ul><li>Use values close to boundaries to elicit which are more likely to fail</li><li>Helps catch logic errors, off by one errors, etc.</li></ul> | If a value takes 200 < n < 700, try 200,199,699,etc. | 
-|**Decision Table Testing** | A truth table | |
+|**Equivalence Partitioning** | <ul><li>Help to limit which test cases to actually run</li><li>Divide input domain into subdomains with common properties</li></ul> | For testing a number that needs to be \\(\geq 100 \\), throw out all values that are 1 or 2 digits | 
+|**Boundary Value Analysis** | <ul><li>Use values close to boundaries to elicit which are more likely to fail</li><li>Helps catch logic errors, off by one errors, etc.</li></ul> | If a value takes \\( 200 \lt n \lt 700 \\), try \\(200,199,699\\),etc. | 
+|**Decision Table Testing** | A truth table |&nbsp;|
 |**State Transition Testing** | Outputs are triggered by changes to the input conditions | When the object can be modeled as a state machine | 
-|**Graph-based Testing** | From an object graph, object relationships are identified and test cases are written | |
+|**Graph-based Testing** | From an object graph, object relationships are identified and test cases are written |&nbsp;|
 
 ##### Strategies of White-Box Testing
 
@@ -956,10 +952,10 @@ Architectural design addresses:
 
 | Type | Category | Description | 
 |------|----------|-------------|
-|**Big Bang** | - | <ul><li>Components are all integrated together at once, then tested</li><li>Not good for larger projects</li><li>Tests interactions between units, not system as a whole</li></ul> | 
+|**Big Bang** | &nbsp; | <ul><li>Components are all integrated together at once, then tested</li><li>Not good for larger projects</li><li>Tests interactions between units, not system as a whole</li></ul> | 
 |**Top-down** | Incremental | <ul><li>Start with high levels, work your way down</li><li>Finds architecture related errors</li><li>May be difficult to develop stubs for other dependent modules</li><li>Defects in top-level modules of the architecture are tested last </li><li>Early prototyping not possible</li></ul> |
 |**Bottom-up**| Incremental | <ul><li>Necessary for critical infrastructure components</li><li>Needs test drivers to be implemented</li><li>Does not find major design problems</li><li>Appropriate for OO systems</li></ul> | 
-|**Sandwich** | Hybrid | Combines top-down, bottom-up | 
+|**Sandwich** | Hybrid | <ul><li>Combines top-down, bottom-up</li></ul> | 
 
 
 
@@ -1013,38 +1009,25 @@ Architectural design addresses:
 
 #### Types of Maintenance
 
-##### Perfective (post-delivery)
-- Improve performance,dependability,maintainability
-- Update documentation
-
-##### Adaptive (development/migration)
-- Adopt to new/upgraded environment
-- Incorporate new capabilities
-
-##### Corrective (bug fixing)
-- Identify and remove defects
-
-##### Preventative (bug fixing)
-- Identify and detect latent faults
-
-##### Emergency maintenance (big fixing)
-- Unscheduled corrective maintenace
-- Riskier as less/no testing
+|Type|When?|Characteristics|
+|----|-----|---------------|
+|Perfective| post-delivery | <ul><li>Improve performance,dependability,maintainability</li><li>Update documentation</li></ul> |
+|Adaptive | development/migration| <ul><li>Adopt to new/upgraded environment</li><li>Incorporate new capabilities</li></ul>|
+|Corrective| bug fixing | <ul><li>Identify and remove **defects**</li></ul>|
+|Preventative| bug fixing | <ul><li>Identify and detect **latent faults**</li></ul>|
+|Emergency Maintenance| bug fixing | <ul><li>Unscheduled corrective maintenace</li><li>Riskier; less testing</li></ul>|
 
 ### Traceability
 
 - Track product ownership and heritage through supply chain
 - Needed for verification/validation, maintenance, visibility, access, management
+- History:
+    + **70s**: matrices of manual links
+    + **80s**: Model and standardize traceability. Models,schema, CASE tools, etc.
+    + **90s**: Probabilistic information retrieval, latent semantic indexing
 
-- 70s: matrices of manual links
-- 80s: Model and standardize traceability. Models,schema, CASE tools, etc.
-- 90s: Probabilistic information retrieval, latent semantic indexing
+- CONS: <ul><li class="con">Very little automated support</li><li class="con">Expensive, time consuming</li><li class="con">Much of the benefit only comes late in lifecycle</li><li class="con">Huge range of different document types, tools, etc.</li></ul>
 
-CONS:
-- Very little automated support
-- Expensive, time consuming
-- Much of the benefit only comes late in lifecycle
-- Huge range of different document types, tools, etc.
 
 - Coverage:
     + Requirements <==> design, code, testcases
