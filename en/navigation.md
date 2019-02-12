@@ -77,7 +77,7 @@
 
 [School]()
 
-
+  * [COMP 499 - Computer Vision](pages/school/COMP499.md)
   * [COMP 354 - Advanced C++](pages/school/COMP345.md)
   * # COMP 352
   * [Abstract Data Types](pages/school/COMP352/COMP%20352%20%2D%20Data%20Structures.md)
