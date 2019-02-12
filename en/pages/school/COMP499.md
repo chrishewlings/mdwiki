@@ -1,3 +1,5 @@
+[gimmick: math]()
+
 # COMP 499 
 
 ## Images
