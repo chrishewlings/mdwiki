@@ -77,6 +77,7 @@
 
 [School]()
 
+  * [COMP 426 - Multicore programming](pages/school/COMP426/final.md)
   * [COMP 499 - Computer Vision](pages/school/COMP499.md)
   * [COMP 354 - Advanced C++](pages/school/COMP345.md)
   * # COMP 352
